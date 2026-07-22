@@ -60,6 +60,61 @@
     font-size: 0.95rem;
     line-height: 1.6;
   }
+
+  /* Status Indicator Pulse Animation */
+  .status-dot {
+    height: 12px;
+    width: 12px;
+    background-color: #25d366;
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 10px #25d366;
+    animation: pulse 1.5s infinite;
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+  }
+
+  /* Command Table Styling */
+  .cmd-table {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background: #111;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #222;
+  }
+
+  .cmd-table th, .cmd-table td {
+    padding: 15px 20px;
+    text-align: left;
+    border-bottom: 1px solid #222;
+  }
+
+  .cmd-table th {
+    background-color: rgba(0, 162, 255, 0.15);
+    color: #00a2ff;
+    font-size: 1rem;
+  }
+
+  .cmd-table td {
+    color: #ccc;
+    font-size: 0.95rem;
+  }
+
+  .cmd-code {
+    background: #222;
+    color: #00a2ff;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-family: monospace;
+    font-weight: bold;
+  }
 </style>
 
 </head>
@@ -113,12 +168,12 @@
 <div class="buttons">
 
 
-<button onclick="copyIP()" class="btn-primary">
+<button onclick="copyIP()" class="btn-primary" id="btn-copy-java">
 📋 Copy Java IP
 </button>
 
 
-<button onclick="copyBedrock()" class="btn-primary">
+<button onclick="copyBedrock()" class="btn-primary" id="btn-copy-bedrock">
 📱 Bedrock Port
 </button>
 
@@ -134,6 +189,30 @@
 </div>
 
 
+</section>
+
+
+
+
+<!-- 🟢 LIVE SERVER STATUS BAR -->
+<section class="server-status" style="margin: 30px auto; max-width: 800px; padding: 0 20px;">
+  <div style="background: #111; border: 1px solid #222; border-radius: 15px; padding: 20px; display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 15px; text-align: center;">
+    <div>
+      <span class="status-dot"></span>
+      <span style="color: #fff; font-weight: bold; margin-left: 8px;">Aternos Host</span>
+    </div>
+    <div style="color: #bbb;">
+      🎮 Version: <strong style="color: #00a2ff;">1.21.11+</strong>
+    </div>
+    <div style="color: #bbb;">
+      👥 Max Slots: <strong style="color: #00a2ff;">100 Players</strong>
+    </div>
+    <div>
+      <button onclick="window.open('https://wa.me/923114140301?text=Is%20Storm%20Steal%20server%20online?','_blank')" class="btn-primary" style="padding: 8px 20px; font-size: 0.85rem;">
+        ⚡ Check Status
+      </button>
+    </div>
+  </div>
 </section>
 
 
@@ -310,6 +389,52 @@
 
 
 
+<!-- 💻 ESSENTIAL SERVER COMMANDS -->
+<section class="commands" style="text-align: center; margin: 60px 0; padding: 0 15px;">
+  <h2>💻 ESSENTIAL COMMANDS</h2>
+  <p style="color: #bbb; margin-bottom: 30px;">Master these in-game commands to get ahead in Storm Steal.</p>
+  
+  <table class="cmd-table">
+    <thead>
+      <tr>
+        <th>Command</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="cmd-code">/lifesteal</span></td>
+        <td>Check your active heart count and stats.</td>
+      </tr>
+      <tr>
+        <td><span class="cmd-code">/withdraw [amount]</span></td>
+        <td>Convert your hearts into item forms to store or trade.</td>
+      </tr>
+      <tr>
+        <td><span class="cmd-code">/team create [name]</span></td>
+        <td>Establish a team empire with your friends.</td>
+      </tr>
+      <tr>
+        <td><span class="cmd-code">/shop</span></td>
+        <td>Access the global server market to buy and sell resources.</td>
+      </tr>
+      <tr>
+        <td><span class="cmd-code">/rtp</span></td>
+        <td>Randomly teleport into the wild to start your base.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top: 25px;">
+    <button onclick="window.location.href='pages/rules.html'" class="btn-primary">
+      📖 View Full Rules & Commands
+    </button>
+  </div>
+</section>
+
+
+
+
 <!-- 📜 RULES HIGHLIGHTS -->
 <section class="rules-preview" style="text-align: center; margin: 60px 0;">
   <h2>📜 SERVER RULES HIGHLIGHTS</h2>
@@ -414,6 +539,55 @@
 
 </div>
 
+</section>
+
+
+
+
+<!-- 📰 RECENT UPDATES & NEWS -->
+<section class="updates" style="text-align: center; margin: 60px 0; padding: 0 15px;">
+  <h2>📰 LATEST UPDATES & ANNOUNCEMENTS</h2>
+  <p style="color: #bbb; margin-bottom: 30px;">Stay updated with the newest features added to Storm Steal.</p>
+
+  <div style="display: flex; justify-content: center; gap: 25px; flex-wrap: wrap;">
+    <div class="card" style="max-width: 350px; width: 100%; text-align: left; background: #111; border: 1px solid #222; padding: 25px; border-radius: 12px;">
+      <span style="background: #00a2ff; color: #fff; padding: 3px 8px; border-radius: 5px; font-size: 0.75rem; font-weight: bold;">SEASON UPDATE</span>
+      <h3 style="margin: 10px 0 5px 0; color: #fff;">Storm Steal Season Launch</h3>
+      <p style="font-size: 0.85rem; color: #888; margin-bottom: 12px;">Updated for 1.21.11 support</p>
+      <p style="font-size: 0.95rem; color: #ccc; line-height: 1.5;">
+        The new season is live! We've improved Bedrock cross-play stability, updated combat kits, and added new daily coin rewards.
+      </p>
+    </div>
+
+    <div class="card" style="max-width: 350px; width: 100%; text-align: left; background: #111; border: 1px solid #222; padding: 25px; border-radius: 12px;">
+      <span style="background: #25d366; color: #fff; padding: 3px 8px; border-radius: 5px; font-size: 0.75rem; font-weight: bold;">NEW FEATURE</span>
+      <h3 style="margin: 10px 0 5px 0; color: #fff;">WhatsApp Coin Store</h3>
+      <p style="font-size: 0.85rem; color: #888; margin-bottom: 12px;">Instant Redeem Codes</p>
+      <p style="font-size: 0.95rem; color: #ccc; line-height: 1.5;">
+        You can now instantly purchase coin redeem codes directly through WhatsApp! Simply submit your code below to claim in-game funds.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- 📺 COMMUNITY & TRAILER SHOWCASE -->
+<section class="trailer" style="text-align: center; margin: 60px 0; padding: 0 15px;">
+  <h2>📺 SERVER TRAILER & SHOWCASE</h2>
+  <p style="color: #bbb; margin-bottom: 25px;">Check out the action on Storm Steal!</p>
+  
+  <div style="max-width: 700px; margin: 0 auto; background: #111; border: 1px solid #222; border-radius: 15px; padding: 20px;">
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px;">
+      <iframe src="https://www.youtube.com/embed?listType=user_uploads&list=Shuj4Playz" style="position: absolute; top:0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+    </div>
+    <div style="margin-top: 20px;">
+      <button onclick="window.open('https://youtube.com/@Shuj4Playz','_blank')" class="btn-primary">
+        📺 Subscribe on YouTube
+      </button>
+    </div>
+  </div>
 </section>
 
 
@@ -658,7 +832,7 @@ function toggleFaq(element) {
 <h3>💬 Discord Ticket Support</h3>
 <p style="margin-top: 10px; margin-bottom: 20px;">Open a support ticket in our official Discord server for fast help.</p>
 </div>
-<button onclick="window.open('https://discord.gg/4hAXKeqe3','_blank')" style="background-color: #00a2ff; color: #ffffff; border: none; padding: 14px 20px; border-radius: 50px; font-weight: 600; font-size: 1rem; cursor: pointer; width: 85%; min-height: 52px; display: flex; align-items: center; justify-content: center;">
+<button onclick="window.open('https://discord.gg/4hAXKeqe3','_blank')" class="btn-primary" style="width: 85%; min-height: 52px; display: flex; align-items: center; justify-content: center;">
 💬 Open Discord Ticket
 </button>
 </div>
@@ -669,7 +843,7 @@ function toggleFaq(element) {
 <h3>📱 Direct Owner Support</h3>
 <p style="margin-top: 10px; margin-bottom: 20px;">Have urgent payment questions or rank issues? Message the owner.</p>
 </div>
-<button onclick="window.open('https://wa.me/923114140301?text=I%20need%20help%20with%20Storm%20Steal%20Server','_blank')" style="background-color: #00a2ff; color: #ffffff; border: none; padding: 14px 20px; border-radius: 50px; font-weight: 600; font-size: 1rem; cursor: pointer; width: 85%; min-height: 52px; display: flex; align-items: center; justify-content: center;">
+<button onclick="window.open('https://wa.me/923114140301?text=I%20need%20help%20with%20Storm%20Steal%20Server','_blank')" class="btn-primary" style="width: 85%; min-height: 52px; display: flex; align-items: center; justify-content: center;">
 📱 Contact Owner
 </button>
 </div>
@@ -708,6 +882,29 @@ function toggleFaq(element) {
 
 
 
+
+<script>
+// Copy IP and Port interactive handlers
+function copyIP() {
+  navigator.clipboard.writeText("stormsteal.aternos.me");
+  var btn = document.getElementById("btn-copy-java");
+  if (btn) {
+    var originalText = btn.innerHTML;
+    btn.innerHTML = "✅ IP Copied!";
+    setTimeout(function() { btn.innerHTML = originalText; }, 2000);
+  }
+}
+
+function copyBedrock() {
+  navigator.clipboard.writeText("22956");
+  var btn = document.getElementById("btn-copy-bedrock");
+  if (btn) {
+    var originalText = btn.innerHTML;
+    btn.innerHTML = "✅ Port Copied!";
+    setTimeout(function() { btn.innerHTML = originalText; }, 2000);
+  }
+}
+</script>
 
 <script src="script.js"></script>
 
