@@ -401,7 +401,43 @@
 
   </div>
 
+
+  <!-- REDEEM CODE AREA -->
+  <div style="margin-top: 50px; display: flex; justify-content: center;">
+    <div class="card" style="max-width: 500px; width: 90%; border: 2px dashed #00a2ff; padding: 30px; border-radius: 20px; background: rgba(0,0,0,0.3);">
+      <div style="font-size: 2.5rem; margin-bottom: 10px;">🎁</div>
+      <h3 style="font-size: 1.6rem; color: #fff;">REDEEM CODE AREA</h3>
+      <p style="color: #bbb; margin: 10px 0 20px 0; font-size: 0.95rem;">
+        Paste your redeem code below along with your In-Game Name, then send it with a payment screenshot (SS) to the owner on WhatsApp to get your coins!
+      </p>
+
+      <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
+        <input type="text" id="ignInput" placeholder="Your Minecraft Username" style="padding: 12px 20px; border-radius: 50px; border: 1px solid #00a2ff; background: #111; color: #fff; font-size: 1rem; outline: none; text-align: center;">
+        <input type="text" id="codeInput" placeholder="Paste Redeem Code Here" style="padding: 12px 20px; border-radius: 50px; border: 1px solid #00a2ff; background: #111; color: #fff; font-size: 1rem; outline: none; text-align: center;">
+      </div>
+
+      <button onclick="sendRedeemToWhatsApp()" style="background-color: #00a2ff; color: #ffffff; border: none; padding: 14px 30px; border-radius: 50px; font-weight: bold; font-size: 1.05rem; cursor: pointer; width: 100%;">
+        📱 Submit Code & Send SS to Owner
+      </button>
+    </div>
+  </div>
+
 </section>
+
+<script>
+function sendRedeemToWhatsApp() {
+  var username = document.getElementById('ignInput').value.trim();
+  var code = document.getElementById('codeInput').value.trim();
+
+  if(!username || !code) {
+    alert("Please enter both your Minecraft Username and your Redeem Code!");
+    return;
+  }
+
+  var message = "Hello Owner! I want to redeem my code.%0A%0A🎮 Username: " + encodeURIComponent(username) + "%0A🔑 Redeem Code: " + encodeURIComponent(code) + "%0A%0A(I am attaching my payment SS below)";
+  window.open("https://wa.me/923114140301?text=" + message, "_blank");
+}
+</script>
 
 
 
