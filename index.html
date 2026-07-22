@@ -1,54 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StormSteal</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        body{
-            margin:0;
-            background:#0f172a;
-            color:white;
-            font-family:Arial, sans-serif;
-            text-align:center;
-        }
+<title>StormSteal</title>
 
-        h1{
-            margin-top:100px;
-            font-size:60px;
-            color:#00d4ff;
-        }
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
 
-        p{
-            font-size:24px;
-        }
+body{
+background:#090d1f;
+color:white;
+text-align:center;
+}
 
-        .button{
-            display:inline-block;
-            margin-top:30px;
-            padding:15px 40px;
-            background:#00d4ff;
-            color:black;
-            text-decoration:none;
-            border-radius:10px;
-            font-size:22px;
-            font-weight:bold;
-        }
+.hero{
+padding:60px 20px;
+}
 
-        .button:hover{
-            background:#00a8cc;
-        }
-    </style>
+.hero img{
+width:350px;
+max-width:90%;
+border-radius:20px;
+box-shadow:0 0 35px #8f3cff;
+margin-bottom:30px;
+}
+
+h1{
+font-size:70px;
+color:#9d5cff;
+text-shadow:0 0 20px #9d5cff;
+}
+
+p{
+font-size:24px;
+margin-top:15px;
+color:#ddd;
+}
+
+.button{
+display:inline-block;
+margin-top:40px;
+padding:18px 45px;
+background:#9d5cff;
+color:white;
+text-decoration:none;
+font-size:22px;
+font-weight:bold;
+border-radius:12px;
+transition:.3s;
+}
+
+.button:hover{
+background:#7d2cff;
+transform:scale(1.05);
+box-shadow:0 0 25px #9d5cff;
+}
+
+.features{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:25px;
+margin:80px 20px;
+}
+
+.card{
+background:#151a33;
+padding:25px;
+width:280px;
+border-radius:15px;
+box-shadow:0 0 20px rgba(157,92,255,.3);
+}
+
+.card h2{
+color:#9d5cff;
+margin-bottom:10px;
+}
+</style>
+
 </head>
-
 <body>
 
-<h1>⚡ StormSteal ⚡</h1>
+<div class="hero">
+
+<img src="logo.png.png" alt="StormSteal Logo">
+
+<h1>StormSteal</h1>
 
 <p>The Ultimate Lifesteal Minecraft Server</p>
 
-<a class="button" href="#">Join Now</a>
+<a class="button" href="#">Join Server</a>
+
+</div>
+
+<div class="features">
+
+<div class="card">
+<h2>⚔ Lifesteal</h2>
+<p>Fight players and steal hearts.</p>
+</div>
+
+<div class="card">
+<h2>💰 Economy</h2>
+<p>Earn money and become the richest player.</p>
+</div>
+
+<div class="card">
+<h2>👥 Teams</h2>
+<p>Create powerful teams and dominate the server.</p>
+</div>
+
+</div>
 
 </body>
 </html>
