@@ -408,13 +408,43 @@
       </div>
 
       <div style="max-width: 800px; margin: 0 auto; padding: 0 20px;">
+        <!-- VIP RANK -->
         <div id="vipKit" class="rank-content card">
           <h3 style="color: var(--primary);">💎 VIP Rank Details</h3>
-          <ul style="text-align: left; display: inline-block; color: var(--text-muted);">
+          <ul style="text-align: left; display: inline-block; color: var(--text-muted); line-height: 1.8;">
             <li>✔ Green [VIP] Prefix</li>
             <li>✔ Access to /kit vip</li>
             <li>✔ +2 Extra Hearts Capacity</li>
+            <li>✔ Priority Queue Access</li>
           </ul>
+          <br><br>
+          <a href="https://wa.me/923114140301?text=Hello%20Shuj4Playz!%20I%20want%20to%20buy%20the%20VIP%20Rank%20($5)" target="_blank" class="btn-primary" style="background: #25d366;">🛒 Buy VIP Rank ($5)</a>
+        </div>
+
+        <!-- LEGENDARY RANK -->
+        <div id="legendKit" class="rank-content card" style="display: none;">
+          <h3 style="color: var(--bedwars-gold);">🌟 LEGENDARY Rank Details</h3>
+          <ul style="text-align: left; display: inline-block; color: var(--text-muted); line-height: 1.8;">
+            <li>✔ Gold [LEGEND] Prefix</li>
+            <li>✔ Access to /kit legend</li>
+            <li>✔ +5 Extra Hearts Capacity</li>
+            <li>✔ Flying in Lobby (/fly)</li>
+          </ul>
+          <br><br>
+          <a href="https://wa.me/923114140301?text=Hello%20Shuj4Playz!%20I%20want%20to%20buy%20the%20LEGENDARY%20Rank%20($10)" target="_blank" class="btn-primary" style="background: #25d366;">🛒 Buy LEGENDARY Rank ($10)</a>
+        </div>
+
+        <!-- STORM RANK -->
+        <div id="stormKit" class="rank-content card" style="display: none;">
+          <h3 style="color: var(--lifesteal-red);">⚡ STORM Rank Details</h3>
+          <ul style="text-align: left; display: inline-block; color: var(--text-muted); line-height: 1.8;">
+            <li>✔ Dark Red [STORM] Animated Prefix</li>
+            <li>✔ Access to /kit storm</li>
+            <li>✔ +10 Extra Hearts Capacity</li>
+            <li>✔ Custom Particle Effects & All Perks</li>
+          </ul>
+          <br><br>
+          <a href="https://wa.me/923114140301?text=Hello%20Shuj4Playz!%20I%20want%20to%20buy%20the%20STORM%20Rank%20($15)" target="_blank" class="btn-primary" style="background: #25d366;">🛒 Buy STORM Rank ($15)</a>
         </div>
       </div>
     </section>
@@ -447,6 +477,24 @@
 
     function playClickSound() {
       // Sound feedback logic
+    }
+
+    /* Rank Switching Functionality */
+    function openRankTab(evt, kitName) {
+      var i, rankContent, tabBtns;
+      
+      rankContent = document.getElementsByClassName("rank-content");
+      for (i = 0; i < rankContent.length; i++) {
+        rankContent[i].style.display = "none";
+      }
+      
+      tabBtns = document.getElementsByClassName("tab-btn");
+      for (i = 0; i < tabBtns.length; i++) {
+        tabBtns[i].className = tabBtns[i].className.replace(" active", "");
+      }
+      
+      document.getElementById(kitName).style.display = "block";
+      evt.currentTarget.className += " active";
     }
   </script>
 </body>
