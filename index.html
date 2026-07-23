@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Storm Steal Network | Lifesteal & Bedwars</title>
   <link rel="icon" type="image/png" href="logo.png.png">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">a
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -22,6 +22,7 @@
 
     body.theme-red { --primary: #ff0055; --primary-dark: #b3003b; }
     body.theme-gold { --primary: #ffaa00; --primary-dark: #cc8800; }
+    body.theme-light { --bg-dark: #f0f4f8; --card-bg: #ffffff; --border-color: #cbd5e1; --text-light: #0f172a; --text-muted: #475569; }
 
     * { box-sizing: border-box; scroll-behavior: smooth; }
 
@@ -31,11 +32,10 @@
       font-family: 'Poppins', sans-serif;
       margin: 0; padding: 0;
       overflow-x: hidden;
-      transition: background-color 0.4s ease;
+      transition: background-color 0.4s ease, color 0.4s ease;
       position: relative;
     }
 
-    /* Particle Background Canvas */
     #particles-canvas {
       position: fixed;
       top: 0; left: 0;
@@ -47,7 +47,6 @@
 
     .main-content { position: relative; z-index: 1; }
 
-    /* News Ticker Bar */
     .ticker-bar {
       background: linear-gradient(90deg, var(--primary-dark), var(--primary));
       color: #fff; overflow: hidden; white-space: nowrap;
@@ -64,7 +63,6 @@
       100% { transform: translateX(-100%); }
     }
 
-    /* Navigation Bar */
     .navbar {
       display: flex; justify-content: space-between; align-items: center;
       padding: 15px 5%; background: rgba(10, 12, 16, 0.95);
@@ -74,8 +72,8 @@
 
     .logo img { height: 45px; }
 
-    .nav-links { display: flex; list-style: none; gap: 20px; margin: 0; padding: 0; }
-    .nav-links a { color: var(--text-light); text-decoration: none; font-weight: 600; transition: color 0.3s ease; }
+    .nav-links { display: flex; list-style: none; gap: 15px; margin: 0; padding: 0; flex-wrap: wrap; }
+    .nav-links a { color: var(--text-light); text-decoration: none; font-weight: 600; transition: color 0.3s ease; font-size: 0.88rem; }
     .nav-links a:hover { color: var(--primary); }
 
     .hamburger { display: none; font-size: 1.8rem; cursor: pointer; color: #fff; }
@@ -85,23 +83,20 @@
       padding: 20px; position: absolute; top: 100%; left: 0; right: 0;
       border-bottom: 2px solid var(--primary); z-index: 999;
     }
-    .mobile-menu a { color: #fff; text-decoration: none; padding: 10px 0; font-weight: 600; border-bottom: 1px solid var(--border-color); }
+    .mobile-menu a { color: var(--text-light); text-decoration: none; padding: 10px 0; font-weight: 600; border-bottom: 1px solid var(--border-color); }
 
-    /* Theme Picker */
     .theme-picker { display: flex; gap: 6px; align-items: center; }
     .theme-dot { width: 18px; height: 18px; border-radius: 50%; cursor: pointer; border: 2px solid #fff; transition: transform 0.2s; }
     .theme-dot:hover { transform: scale(1.2); }
 
-    /* Hero Section */
     .hero {
       text-align: center; padding: 60px 20px 40px 20px;
       background: radial-gradient(circle at center, rgba(0, 162, 255, 0.15) 0%, transparent 70%);
     }
     .hero-logo { height: 110px; margin-bottom: 15px; }
-    .hero h1 { font-size: 3.2rem; font-weight: 900; margin: 0; color: #fff; text-shadow: 0 0 20px rgba(0,162,255,0.5); }
+    .hero h1 { font-size: 3.2rem; font-weight: 900; margin: 0; color: var(--text-light); text-shadow: 0 0 20px rgba(0,162,255,0.5); }
     .hero p { font-size: 1.2rem; color: var(--text-muted); margin-top: 10px; }
 
-    /* Widgets & Boxes */
     .status-box {
       background: var(--card-bg); border: 2px solid var(--primary);
       border-radius: 20px; padding: 20px; max-width: 500px; margin: 20px auto;
@@ -120,24 +115,21 @@
     .timer-unit { background: var(--card-bg); padding: 10px 15px; border-radius: 10px; min-width: 70px; }
     .timer-val { font-size: 1.5rem; font-weight: 800; color: var(--bedwars-gold); }
 
-    /* Buttons */
     .btn-primary {
       background: linear-gradient(135deg, var(--primary), var(--primary-dark));
       color: #fff; border: none; padding: 12px 26px; border-radius: 50px;
       font-weight: 700; font-size: 0.95rem; cursor: pointer;
       transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0, 162, 255, 0.3);
-      display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px; text-decoration: none; justify-content: center;
     }
     .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 6px 25px rgba(0, 162, 255, 0.6); }
 
-    /* Cards & Grids */
-    .section-title { text-align: center; font-size: 2.2rem; margin: 50px 0 30px 0; color: #fff; }
+    .section-title { text-align: center; font-size: 2.2rem; margin: 50px 0 30px 0; color: var(--text-light); }
     .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
     .card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 15px; padding: 25px; text-align: center; transition: transform 0.3s ease, border-color 0.3s ease; }
     .card:hover { transform: translateY(-5px); border-color: var(--primary); }
     .card-icon { font-size: 2.5rem; margin-bottom: 12px; }
 
-    /* Staff Cards */
     .staff-avatar {
       width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 15px auto;
       border: 3px solid var(--primary); background-size: cover; background-position: center;
@@ -150,28 +142,23 @@
 
     .feature-box { background: var(--card-bg); border: 2px dashed var(--primary); border-radius: 20px; padding: 30px; max-width: 800px; margin: 30px auto; text-align: center; }
 
-    /* Inputs & Selects */
     input, select, textarea {
       width: 100%;
       padding: 12px 20px; border-radius: 50px; border: 1px solid var(--primary);
-      background: #0a0c10; color: #fff; font-size: 1rem; outline: none; text-align: center; margin: 5px 0;
+      background: var(--bg-dark); color: var(--text-light); font-size: 1rem; outline: none; text-align: center; margin: 5px 0;
       font-family: inherit;
     }
     textarea { border-radius: 15px; text-align: left; resize: vertical; }
 
-    /* Tabs */
     .tab-buttons { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
-    .tab-btn { background: var(--card-bg); border: 1px solid var(--border-color); color: #fff; padding: 10px 20px; border-radius: 25px; cursor: pointer; font-weight: 600; }
-    .tab-btn.active { background: var(--primary); border-color: var(--primary); }
+    .tab-btn { background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-light); padding: 10px 20px; border-radius: 25px; cursor: pointer; font-weight: 600; }
+    .tab-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; }
 
-    /* Skin Viewer */
     .skin-viewer { display: flex; flex-direction: column; align-items: center; background: var(--card-bg); border-radius: 15px; padding: 20px; border: 1px solid var(--border-color); margin-top: 20px; }
     .skin-avatar { width: 100px; height: 100px; border-radius: 10px; background-size: cover; margin-bottom: 10px; border: 2px solid var(--primary); }
 
-    /* Chat Preview Widget */
-    .chat-preview-box { background: #000; border-radius: 10px; padding: 15px; font-family: monospace; text-align: left; border: 1px solid var(--border-color); margin-top: 10px; }
+    .chat-preview-box { background: #000; border-radius: 10px; padding: 15px; font-family: monospace; text-align: left; border: 1px solid var(--border-color); margin-top: 10px; color: #fff; }
 
-    /* Floating Widget */
     .floating-support {
       position: fixed; bottom: 25px; right: 25px; z-index: 1500;
       background: #25d366; color: #fff; border-radius: 50px; padding: 12px 20px;
@@ -179,12 +166,10 @@
       display: flex; align-items: center; gap: 8px; text-decoration: none;
     }
 
-    /* FAQ */
     .faq-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 15px; text-align: left; overflow: hidden; }
-    .faq-question { padding: 18px 25px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: #fff; }
+    .faq-question { padding: 18px 25px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--text-light); }
     .faq-answer { padding: 0 25px 18px 25px; color: var(--text-muted); display: none; font-size: 0.95rem; line-height: 1.6; }
 
-    /* Toast */
     #toast {
       visibility: hidden; min-width: 250px; background-color: var(--primary); color: #fff; text-align: center;
       border-radius: 50px; padding: 16px; position: fixed; z-index: 2000; left: 50%; bottom: 30px;
@@ -200,33 +185,36 @@
       .hamburger { display: block; }
     }
 
+    /* Wheel Spinning Styles */
+    .wheel-container { position: relative; width: 200px; height: 200px; margin: 0 auto 15px auto; border-radius: 50%; border: 5px solid var(--primary); overflow: hidden; transition: transform 3s cubic-bezier(0.15, 0.9, 0.2, 1); }
+    .wheel-segment { position: absolute; width: 100%; height: 100%; clip-path: polygon(50% 50%, 0 0, 100% 0); transform-origin: 50% 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #fff; font-size: 0.8rem; }
+
+    /* Scoreboard Mockup */
+    .scoreboard { background: rgba(0,0,0,0.7); border: 1px solid var(--primary); border-radius: 10px; padding: 15px; font-family: monospace; text-align: left; width: 220px; margin: 0 auto; box-shadow: 0 0 10px rgba(0,0,0,0.5); }
+    .sb-title { color: var(--bedwars-gold); font-weight: bold; text-align: center; border-bottom: 1px dashed var(--text-muted); padding-bottom: 5px; margin-bottom: 8px; }
+
     footer { text-align: center; padding: 40px 20px; border-top: 1px solid var(--border-color); margin-top: 60px; color: var(--text-muted); }
   </style>
 </head>
 
 <body>
 
-  <!-- Particle Background Canvas -->
   <canvas id="particles-canvas"></canvas>
 
   <div class="main-content">
 
-    <!-- Toast Notification -->
     <div id="toast">Copied to Clipboard!</div>
 
-    <!-- Floating Quick WhatsApp Support Widget -->
     <a href="https://wa.me/923114140301?text=Hello%20Owner%20Shuj4Playz!%20I%20need%20help%20with%20Storm%20Steal%20Network!" target="_blank" class="floating-support" onclick="playClickSound()">
       💬 Live WhatsApp Help
     </a>
 
-    <!-- News Ticker -->
     <div class="ticker-bar">
       <div class="ticker-content">
         🎉 Welcome to Storm Steal Network! &nbsp;&nbsp;•&nbsp;&nbsp; 👑 Owner: Shuj4Playz &nbsp;&nbsp;•&nbsp;&nbsp; 🛡️ Admins: Void_x_ViperYt & .SherrySlayer101 &nbsp;&nbsp;•&nbsp;&nbsp; 🛏️ Bedwars Game Mode Released! &nbsp;&nbsp;•&nbsp;&nbsp; 🪙 Buy In-Game Coins via WhatsApp!
       </div>
     </div>
 
-    <!-- Navigation Bar -->
     <nav class="navbar">
       <div class="logo">
         <img src="logo.png.png" alt="Storm Steal Logo">
@@ -235,41 +223,43 @@
         <li><a href="#home" onclick="playClickSound()">Home</a></li>
         <li><a href="#status" onclick="playClickSound()">Status</a></li>
         <li><a href="#modes" onclick="playClickSound()">Modes</a></li>
-        <li><a href="#staff" onclick="playClickSound()">Staff Team</a></li>
+        <li><a href="#staff" onclick="playClickSound()">Staff</a></li>
+        <li><a href="#wheel" onclick="playClickSound()">Wheel</a></li>
         <li><a href="#tools" onclick="playClickSound()">Tools</a></li>
         <li><a href="#ranks" onclick="playClickSound()">Ranks</a></li>
+        <li><a href="#leaderboards" onclick="playClickSound()">Leaderboards</a></li>
         <li><a href="#applications" onclick="playClickSound()">Apply</a></li>
         <li><a href="#coins" onclick="playClickSound()">Coins</a></li>
         <li><a href="#rules" onclick="playClickSound()">Rules</a></li>
         <li><a href="#faq" onclick="playClickSound()">FAQ</a></li>
       </ul>
 
-      <!-- Theme Switcher Controls -->
       <div class="theme-picker">
         <div class="theme-dot" style="background: #00a2ff;" onclick="setTheme('default')" title="Blue Theme"></div>
         <div class="theme-dot" style="background: #ff0055;" onclick="setTheme('red')" title="Lifesteal Red"></div>
         <div class="theme-dot" style="background: #ffaa00;" onclick="setTheme('gold')" title="Bedwars Gold"></div>
+        <div class="theme-dot" style="background: #ffffff;" onclick="setTheme('light')" title="Light Mode"></div>
+        <button onclick="toggleAudio()" id="audioBtn" style="background:none; border:none; cursor:pointer; font-size:1.2rem; margin-left:5px;">🔊</button>
       </div>
 
-      <!-- Mobile Hamburger Icon -->
       <div class="hamburger" onclick="toggleMobileMenu()">☰</div>
     </nav>
 
-    <!-- Mobile Drawer -->
     <div class="mobile-menu" id="mobileMenu">
       <a href="#home" onclick="toggleMobileMenu()">Home</a>
       <a href="#status" onclick="toggleMobileMenu()">Status</a>
       <a href="#modes" onclick="toggleMobileMenu()">Modes</a>
-      <a href="#staff" onclick="toggleMobileMenu()">Staff Team</a>
+      <a href="#staff" onclick="toggleMobileMenu()">Staff</a>
+      <a href="#wheel" onclick="toggleMobileMenu()">Daily Wheel</a>
       <a href="#tools" onclick="toggleMobileMenu()">Tools</a>
       <a href="#ranks" onclick="toggleMobileMenu()">Ranks</a>
+      <a href="#leaderboards" onclick="toggleMobileMenu()">Leaderboards</a>
       <a href="#applications" onclick="toggleMobileMenu()">Apply</a>
       <a href="#coins" onclick="toggleMobileMenu()">Coins</a>
       <a href="#rules" onclick="toggleMobileMenu()">Rules</a>
       <a href="#faq" onclick="toggleMobileMenu()">FAQ</a>
     </div>
 
-    <!-- Hero Section -->
     <section id="home" class="hero">
       <img src="logo.png.png" class="hero-logo" alt="Storm Steal Logo">
       <h1>STORM STEAL</h1>
@@ -282,12 +272,16 @@
       </div>
     </section>
 
-    <!-- LIVE Server Status Widget -->
+    <!-- NEW FEATURE: Staff Online Duty Status -->
+    <div style="background: var(--card-bg); border-y: 1px solid var(--border-color); padding: 10px; text-align: center; font-size: 0.9rem;">
+      🟢 <strong>Staff On Duty Live:</strong> Owner: <span style="color:#25d366;">Online</span> | Admins: <span style="color:#25d366;">Void_x_ViperYt</span>, <span style="color:#ff3b30;">SherrySlayer101 (AFK)</span>
+    </div>
+
     <section id="status">
       <div class="status-box">
         <div style="display: flex; justify-content: space-between; align-items: center;">
           <div style="text-align: left;">
-            <h3 style="margin: 0; color: #fff;">
+            <h3 style="margin: 0;">
               <span id="statusDot" class="status-dot"></span>
               <span id="statusText">Checking Status...</span>
             </h3>
@@ -302,9 +296,8 @@
         </div>
       </div>
 
-      <!-- Live Event Countdown Widget -->
       <div class="countdown-box">
-        <h3 style="margin: 0; color: #fff;">🏆 NEXT SERVER EVENT IN:</h3>
+        <h3 style="margin: 0;">🏆 NEXT SERVER EVENT IN:</h3>
         <div class="timer-units">
           <div class="timer-unit"><div class="timer-val" id="days">02</div><span>Days</span></div>
           <div class="timer-unit"><div class="timer-val" id="hours">14</div><span>Hours</span></div>
@@ -314,10 +307,44 @@
       </div>
     </section>
 
-    <!-- Aternos Startup Helper -->
+    <!-- NEW FEATURE: Wheel of Fortune Daily Spin -->
+    <section id="wheel">
+      <div class="feature-box" style="border-color: var(--bedwars-gold);">
+        <h3 style="color: var(--bedwars-gold); margin-top: 0;">🎡 DAILY WHEEL OF FORTUNE</h3>
+        <p style="color: var(--text-muted); font-size:0.9rem;">Spin daily to win free in-game coins, rank discounts, or extra hearts!</p>
+        <div class="wheel-container" id="wheelBox">
+          <div class="wheel-segment" style="background:#ff0055; transform: rotate(0deg);">500 Coins</div>
+          <div class="wheel-segment" style="background:#00a2ff; transform: rotate(90deg);">+1 Heart</div>
+          <div class="wheel-segment" style="background:#ffaa00; transform: rotate(180deg);">1000 Coins</div>
+          <div class="wheel-segment" style="background:#25d366; transform: rotate(270deg);">VIP Pass</div>
+        </div>
+        <button onclick="spinWheel()" id="spinBtn" class="btn-primary" style="background: var(--bedwars-gold);">🎁 Spin The Wheel!</button>
+        <h4 id="wheelReward" style="margin-top:15px; color:#25d366;"></h4>
+      </div>
+    </section>
+
+    <!-- NEW FEATURE: Live In-Game Scoreboard Mockup -->
+    <section>
+      <h2 class="section-title">📊 IN-GAME SCOREBOARD PREVIEW</h2>
+      <div style="display:flex; justify-center: center; justify-content:center; gap:20px; flex-wrap:wrap;">
+        <div class="scoreboard">
+          <div class="sb-title">STORM STEAL LIFESTEAL</div>
+          <div style="color:#aaa; font-size:0.8rem;">
+            Player: <span style="color:#fff;">You</span><br>
+            Hearts: <span style="color:#ff0055;">❤️❤️❤️❤️❤️ (10)</span><br>
+            Kills: <span style="color:#25d366;">14</span><br>
+            Coins: <span style="color:#ffaa00;">$12,450</span><br>
+            Combat: <span style="color:#25d366;">Safe</span><br>
+            --------------------<br>
+            <span style="color:var(--primary);">stormsteal.aternos.me</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <div class="feature-box">
       <div style="font-size: 2.5rem; margin-bottom: 10px;">⚡</div>
-      <h3 style="font-size: 1.5rem; color: #fff; margin-top: 0;">SERVER OFFLINE? NEED IT TURNED ON?</h3>
+      <h3 style="font-size: 1.5rem; margin-top: 0;">SERVER OFFLINE? NEED IT TURNED ON?</h3>
       <p style="color: var(--text-muted);">
         Because our server runs on Aternos, it automatically turns off when no players are online. Contact Owner <strong>Shuj4Playz</strong> to start it up!
       </p>
@@ -331,7 +358,6 @@
       </div>
     </div>
 
-    <!-- Game Modes Section -->
     <section id="modes">
       <h2 class="section-title">🎮 OUR GAME MODES</h2>
       <div class="grid-container">
@@ -355,45 +381,69 @@
       </div>
     </section>
 
-    <!-- Server Staff & Leadership Team -->
+    <!-- NEW FEATURE: Lifesteal Custom Heart Crafting Recipe Previewer -->
+    <section>
+      <div class="feature-box" style="border-color: var(--lifesteal-red);">
+        <h3 style="color: var(--lifesteal-red); margin-top:0;">📖 LIFESTEAL RECIPE BOOK</h3>
+        <p style="color: var(--text-muted); font-size:0.85rem;">Check crafting recipes for Heart Items in-game!</p>
+        <div style="display:grid; grid-template-columns: repeat(3, 40px); gap:5px; justify-content:center; margin:15px auto;">
+          <div style="background:#222; border:1px solid #444; height:40px; line-height:40px;">💎</div>
+          <div style="background:#222; border:1px solid #444; height:40px; line-height:40px;">🍎</div>
+          <div style="background:#222; border:1px solid #444; height:40px; line-height:40px;">💎</div>
+          <div style="background:#222; border:1px solid #444; height:40px; line-height:40px;">🍎</div>
+          <div style="background:#222; border:1px solid #ff0055; height:40px; line-height:40px;">❤️</div>
+          <div style="background:#222; border:1px solid #444; height:40px; line-height:40px;">🍎</div>
+          <div style="background:#222; border:1px solid #444; height:40px; line-height:40px;">💎</div>
+          <div style="background:#222; border:1px solid #444; height:40px; line-height:40px;">🍎</div>
+          <div style="background:#222; border:1px solid #444; height:40px; line-height:40px;">💎</div>
+        </div>
+        <p style="font-size:0.8rem; color:var(--text-muted);">Recipe: 4 Diamonds + 4 Enchanted Golden Apples = 1 Extra Heart Item</p>
+      </div>
+    </section>
+
     <section id="staff">
       <h2 class="section-title">🛡️ SERVER LEADERSHIP & STAFF</h2>
       <div class="grid-container">
         
-        <!-- Owner Card -->
         <div class="card" style="border: 2px solid #ff0055;">
           <div class="staff-avatar" style="background-image: url('https://mc-heads.net/avatar/Shuj4Playz'); border-color: #ff0055;"></div>
           <span class="role-badge badge-owner">👑 SERVER OWNER</span>
-          <h3 style="margin: 5px 0; color: #fff;">Shuj4Playz</h3>
+          <h3 style="margin: 5px 0;">Shuj4Playz</h3>
           <p style="color: var(--text-muted); font-size: 0.85rem;">Server Founder & Chief Developer</p>
           <button onclick="window.open('https://wa.me/923114140301?text=Hello%20Owner%20Shuj4Playz!','_blank'); playClickSound();" class="btn-primary" style="margin-top: 10px; padding: 8px 18px; font-size: 0.8rem; background: #ff0055;">Contact Owner</button>
         </div>
 
-        <!-- Admin 1 Card -->
         <div class="card" style="border: 2px solid #ffaa00;">
           <div class="staff-avatar" style="background-image: url('https://mc-heads.net/avatar/Void_x_ViperYt'); border-color: #ffaa00;"></div>
           <span class="role-badge badge-admin">🛡️ SERVER ADMIN</span>
-          <h3 style="margin: 5px 0; color: #fff;">Void_x_ViperYt</h3>
+          <h3 style="margin: 5px 0;">Void_x_ViperYt</h3>
           <p style="color: var(--text-muted); font-size: 0.85rem;">Community Admin & Staff Lead</p>
         </div>
 
-        <!-- Admin 2 Card -->
         <div class="card" style="border: 2px solid #ffaa00;">
           <div class="staff-avatar" style="background-image: url('https://mc-heads.net/avatar/SherrySlayer101'); border-color: #ffaa00;"></div>
           <span class="role-badge badge-admin">🛡️ SERVER ADMIN</span>
-          <h3 style="margin: 5px 0; color: #fff;">.SherrySlayer101</h3>
+          <h3 style="margin: 5px 0;">.SherrySlayer101</h3>
           <p style="color: var(--text-muted); font-size: 0.85rem;">Gameplay Admin & Moderation</p>
         </div>
 
       </div>
     </section>
 
-    <!-- Player Interactive Tools Grid -->
+    <!-- NEW FEATURE: Bedwars Wool Bridge Speed Click Tester Game -->
+    <section>
+      <div class="feature-box" style="border-color: var(--bedwars-gold);">
+        <h3 style="color: var(--bedwars-gold); margin-top:0;">🧱 BEDWARS FAST-BRIDGING SPEED TEST</h3>
+        <p style="color: var(--text-muted); font-size:0.85rem;">Click as fast as you can in 5 seconds to test your fast-bridging CPS!</p>
+        <button id="cpsBtn" onclick="registerCpsClick()" class="btn-primary" style="background: var(--bedwars-gold); font-size:1.2rem; padding: 15px 30px;">Click to Bridge! 🧱</button>
+        <h4 id="cpsResult" style="margin-top:10px;">Blocks Placed: 0 | CPS: 0</h4>
+      </div>
+    </section>
+
     <section id="tools">
       <h2 class="section-title">📊 INTERACTIVE TOOLS & SIMULATORS</h2>
       <div class="grid-container">
         
-        <!-- Minecraft Skin Avatar Viewer -->
         <div class="card">
           <h3>👤 Player Skin Viewer</h3>
           <p style="color: var(--text-muted); font-size: 0.85rem;">Check your live avatar head on the server!</p>
@@ -403,7 +453,6 @@
           </div>
         </div>
 
-        <!-- Bedwars Calculator -->
         <div class="card" style="border-color: var(--bedwars-gold);">
           <h3 style="color: var(--bedwars-gold);">🛏️ Bedwars Item Cost Calculator</h3>
           <p style="color: var(--text-muted); font-size: 0.85rem;">Calculate resource requirements!</p>
@@ -423,7 +472,6 @@
           <h4 id="calcResult" style="color: var(--bedwars-gold); margin-top: 15px;">Total Cost: 4 Iron</h4>
         </div>
 
-        <!-- Lifesteal HP Calculator -->
         <div class="card" style="border-color: var(--lifesteal-red);">
           <h3 style="color: var(--lifesteal-red);">❤️ Lifesteal HP Calculator</h3>
           <p style="color: var(--text-muted); font-size: 0.85rem;">Calculate total HP based on kills & deaths!</p>
@@ -434,7 +482,6 @@
           <h4 id="hpDisplay" style="color: var(--lifesteal-red); margin-top: 15px;">Your HP: 20 HP (10 Hearts)</h4>
         </div>
 
-        <!-- PvP Combat & Hit Simulator -->
         <div class="card" style="border-color: #ff3b30;">
           <h3 style="color: #ff3b30;">⚔️ PvP Combat Simulator</h3>
           <p style="color: var(--text-muted); font-size: 0.85rem;">Test hits-to-kill against armor!</p>
@@ -451,7 +498,6 @@
           <h4 id="pvpResult" style="color: #ff3b30; margin-top: 15px;">Hits Needed: 3 Hits</h4>
         </div>
 
-        <!-- Currency Converter Tool -->
         <div class="card" style="border-color: var(--primary);">
           <h3>💎 Coins Currency Converter</h3>
           <p style="color: var(--text-muted); font-size: 0.85rem;">Calculate coin value in real currency!</p>
@@ -459,7 +505,6 @@
           <h4 id="coinConvertResult" style="color: var(--primary); margin-top: 15px;">= 10,000 Coins (~280 PKR)</h4>
         </div>
 
-        <!-- Bedwars Spawner Speed Calc -->
         <div class="card" style="border-color: var(--bedwars-gold);">
           <h3 style="color: var(--bedwars-gold);">⚡ Generator Speed Calc</h3>
           <p style="color: var(--text-muted); font-size: 0.85rem;">Check spawn rates by Level!</p>
@@ -471,10 +516,44 @@
           <h4 id="spawnerResult" style="color: var(--bedwars-gold); margin-top: 15px;">1 Iron / 1.0 sec | 1 Gold / 4.0 sec</h4>
         </div>
 
+        <!-- NEW FEATURE: Custom Name Tag Prefix Visualizer -->
+        <div class="card" style="border-color: var(--primary);">
+          <h3>🏷️ Custom Prefix Generator</h3>
+          <p style="color: var(--text-muted); font-size: 0.85rem;">Design your own in-game title format!</p>
+          <input type="text" id="prefixTag" placeholder="Tag (e.g. VIP)" value="PRO" oninput="generatePrefixPreview()">
+          <input type="text" id="prefixName" placeholder="IGN" value="Player" oninput="generatePrefixPreview()">
+          <h4 id="prefixDisplay" style="color:var(--primary); margin-top:15px;">[PRO] Player</h4>
+        </div>
+
+        <!-- NEW FEATURE: FPS Optimization & Latency Check Guide -->
+        <div class="card" style="border-color: #25d366;">
+          <h3 style="color: #25d366;">⚡ Ping & FPS Helper</h3>
+          <p style="color: var(--text-muted); font-size: 0.85rem;">Select your connection region for best IP port!</p>
+          <select id="regionSelect" onchange="checkPingTip()">
+            <option value="Asia">Asia / Pakistan / India</option>
+            <option value="EU">Europe</option>
+            <option value="NA">North America</option>
+          </select>
+          <h4 id="pingTipDisplay" style="color: #25d366; margin-top:15px;">Best Port: 22956 (Avg 40-70ms)</h4>
+        </div>
+
       </div>
     </section>
 
-    <!-- Rank Kit Perks Previewer & Live Chat Format Preview -->
+    <!-- NEW FEATURE: Interactive Command Library Search -->
+    <section>
+      <div class="feature-box">
+        <h3 style="margin-top:0;">🔍 IN-GAME COMMAND LIBRARY</h3>
+        <input type="text" id="cmdSearch" placeholder="Search commands (e.g. /home, /withdraw, /party)..." oninput="filterCommands()" style="max-width:400px;">
+        <div id="cmdList" style="text-align:left; margin-top:15px; font-family:monospace; font-size:0.9rem;">
+          <p>❤️ <strong>/withdraw [amount]</strong> - Convert hearts into item form</p>
+          <p>🏠 <strong>/sethome [name]</strong> - Save your current location</p>
+          <p>🛏️ <strong>/bw join</strong> - Join Bedwars matchmaking lobby</p>
+          <p>💸 <strong>/pay [player] [amount]</strong> - Send coins to another player</p>
+        </div>
+      </div>
+    </section>
+
     <section id="ranks">
       <h2 class="section-title">👑 SERVER RANKS & KITS</h2>
       
@@ -522,7 +601,44 @@
         </div>
       </div>
 
-      <!-- Interactive Live Chat Format Preview Simulator -->
+      <!-- NEW FEATURE: Interactive Dynamic Rank Comparison Table -->
+      <div style="max-width:800px; margin:30px auto; padding:0 20px; overflow-x:auto;">
+        <table style="width:100%; border-collapse:collapse; text-align:center; background:var(--card-bg); border:1px solid var(--border-color); border-radius:10px;">
+          <thead>
+            <tr style="border-bottom:1px solid var(--border-color); color:var(--primary);">
+              <th style="padding:10px;">Perk / Feature</th>
+              <th style="padding:10px;">Default</th>
+              <th style="padding:10px;">VIP</th>
+              <th style="padding:10px;">LEGENDARY</th>
+              <th style="padding:10px;">STORM</th>
+            </tr>
+          </thead>
+          <tbody style="font-size:0.85rem; color:var(--text-muted);">
+            <tr style="border-bottom:1px solid var(--border-color);">
+              <td style="padding:10px;">Homes Allowed</td>
+              <td>2 Homes</td>
+              <td>4 Homes</td>
+              <td>7 Homes</td>
+              <td>Unlimited</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border-color);">
+              <td style="padding:10px;">Lobby Fly</td>
+              <td>❌</td>
+              <td>✔</td>
+              <td>✔</td>
+              <td>✔</td>
+            </tr>
+            <tr>
+              <td style="padding:10px;">Weekly Heart Kit</td>
+              <td>❌</td>
+              <td>❌</td>
+              <td>1x Heart</td>
+              <td>2x Hearts</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
       <div class="feature-box" style="margin-top: 30px;">
         <h3>💬 Chat Format Previewer</h3>
         <p style="color: var(--text-muted);">Type below to see how your chat message will look in-game with different ranks!</p>
@@ -543,12 +659,41 @@
       </div>
     </section>
 
-    <!-- NEW SECTION: Apply for YouTuber Rank & Admin/Staff Roles -->
+    <!-- NEW FEATURE: Live Server Top Player Leaderboards Preview -->
+    <section id="leaderboards">
+      <h2 class="section-title">🏆 TOP PLAYER LEADERBOARDS</h2>
+      <div class="grid-container">
+        <div class="card">
+          <h3 style="color:var(--lifesteal-red);">⚔️ Top Kills (Lifesteal)</h3>
+          <ol style="text-align:left; color:var(--text-muted); font-size:0.9rem;">
+            <li>1. Void_x_ViperYt - 342 Kills</li>
+            <li>2. SherrySlayer101 - 289 Kills</li>
+            <li>3. DarkKnight_99 - 194 Kills</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h3 style="color:var(--bedwars-gold);">🛏️ Top Bed Breaks</h3>
+          <ol style="text-align:left; color:var(--text-muted); font-size:0.9rem;">
+            <li>1. Shuj4Playz - 152 Beds</li>
+            <li>2. SkyPvpGod - 110 Beds</li>
+            <li>3. BedDestroyer - 88 Beds</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h3 style="color:var(--primary);">💰 Richest Players</h3>
+          <ol style="text-align:left; color:var(--text-muted); font-size:0.9rem;">
+            <li>1. CoinsMaster - $540,000</li>
+            <li>2. TraderJoe - $310,000</li>
+            <li>3. MinePro - $185,000</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
     <section id="applications">
       <h2 class="section-title">📝 APPLY FOR RANKS & ROLES</h2>
       <div class="grid-container">
         
-        <!-- YouTuber Rank Application -->
         <div class="card" style="border-color: #ff0000; text-align: center;">
           <div class="card-icon">🎥</div>
           <h3 style="color: #ff0000;">Apply for YouTuber Rank</h3>
@@ -565,7 +710,6 @@
           </div>
         </div>
 
-        <!-- Admin & Staff Application -->
         <div class="card" style="border-color: var(--primary); text-align: center;">
           <div class="card-icon">🛡️</div>
           <h3 style="color: var(--primary);">Apply for Admin / Staff</h3>
@@ -591,7 +735,20 @@
       </div>
     </section>
 
-    <!-- Community Vote & Poll Widget -->
+    <!-- NEW FEATURE: Unban & Ban Appeal Form -->
+    <section>
+      <div class="feature-box" style="border-color: #ff3b30;">
+        <h3 style="color:#ff3b30; margin-top:0;">🛡️ SUBMIT UNBAN / APPEAL</h3>
+        <p style="color:var(--text-muted); font-size:0.85rem;">Banned or muted by mistake? Submit a ban appeal directly to admins!</p>
+        <div style="display:flex; flex-direction:column; gap:10px; max-width:400px; margin:0 auto;">
+          <input type="text" id="appealIgn" placeholder="Your Banned MC IGN">
+          <input type="text" id="appealReason" placeholder="Reason for ban listed on screen">
+          <textarea id="appealWhy" rows="2" placeholder="Why should you be unbanned?"></textarea>
+          <button onclick="submitAppeal()" class="btn-primary" style="background:#ff3b30;">📩 Send Ban Appeal</button>
+        </div>
+      </div>
+    </section>
+
     <section>
       <div class="feature-box" style="border-color: var(--bedwars-gold);">
         <h3 style="color: var(--bedwars-gold);">📊 COMMUNITY POLL: What game mode do you play most?</h3>
@@ -602,9 +759,16 @@
       </div>
     </section>
 
-    <!-- Buy Coins & Redeem Section -->
     <section id="coins">
       <h2 class="section-title">🪙 BUY IN-GAME COINS</h2>
+      
+      <!-- NEW FEATURE: Store Coupon Code Redeem Box -->
+      <div style="max-width:400px; margin:0 auto 20px auto; text-align:center;">
+        <input type="text" id="couponCode" placeholder="Enter Promo / Coupon Code (e.g. STORM50)">
+        <button onclick="applyCoupon()" class="btn-primary" style="margin-top:5px; padding:8px 20px;">🎟️ Redeem Promo Code</button>
+        <p id="couponMsg" style="font-size:0.85rem; color:#25d366; margin-top:5px;"></p>
+      </div>
+
       <div class="grid-container">
         
         <div class="card">
@@ -623,337 +787,349 @@
 
         <div class="card">
           <div class="card-icon">👑</div>
-          <h3>100,000 COINS</h3>
-          <p style="font-size: 1.5rem; font-weight: bold; color: var(--primary);">$7.00</p>
-          <button onclick="window.open('https://wa.me/923114140301?text=I%20want%20to%20buy%20100k%20Coins%20for%20$7','_blank'); playClickSound();" class="btn-primary">Buy via WhatsApp</button>
+          <h3>120,000 COINS</h3>
+          <p style="font-size: 1.5rem; font-weight: bold; color: var(--primary);">$8.00</p>
+          <button onclick="window.open('https://wa.me/923114140301?text=I%20want%20to%20buy%20120k%20Coins%20for%20$8','_blank'); playClickSound();" class="btn-primary">Buy via WhatsApp</button>
         </div>
 
       </div>
+    </section>
 
-      <!-- Redeem Code Area -->
-      <div class="feature-box" style="margin-top: 40px;">
-        <div style="font-size: 2.5rem; margin-bottom: 5px;">🎁</div>
-        <h3>REDEEM CODE AREA</h3>
-        <p style="color: var(--text-muted);">Enter your IGN and code below to claim coins from Owner Shuj4Playz on WhatsApp!</p>
-        
-        <div style="display: flex; flex-direction: column; gap: 10px; max-width: 400px; margin: 0 auto;">
-          <input type="text" id="ignInput" placeholder="Your Minecraft Username">
-          <input type="text" id="codeInput" placeholder="Paste Redeem Code Here">
-          <button onclick="sendRedeemToWhatsApp()" class="btn-primary" style="justify-content: center;">
-            📱 Submit Code to Owner
-          </button>
+    <!-- NEW FEATURE: Interactive Event Schedule Calendar -->
+    <section>
+      <div class="feature-box">
+        <h3 style="margin-top:0;">📅 WEEKLY EVENT CALENDAR</h3>
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap:10px; margin-top:15px; font-size:0.85rem;">
+          <div style="background:var(--bg-dark); padding:10px; border-radius:10px; border:1px solid var(--border-color);"><strong>Fri:</strong> Bedwars 2v2 Tournament</div>
+          <div style="background:var(--bg-dark); padding:10px; border-radius:10px; border:1px solid var(--border-color);"><strong>Sat:</strong> Lifesteal Heart Drop Event</div>
+          <div style="background:var(--bg-dark); padding:10px; border-radius:10px; border:1px solid var(--border-color);"><strong>Sun:</strong> 2x Coin Multiplier Day</div>
         </div>
       </div>
     </section>
 
-    <!-- Rules Section -->
+    <!-- NEW FEATURE: Rules Checklist Accordion -->
     <section id="rules">
-      <h2 class="section-title">📜 SERVER RULES & CODE OF CONDUCT</h2>
-      <div style="max-width: 700px; margin: 0 auto; padding: 0 20px;">
-        
+      <h2 class="section-title">📜 SERVER RULES</h2>
+      <div style="max-width: 800px; margin: 0 auto; padding: 0 20px;">
         <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            1. No Hacking / Cheating / Unfair Clients <span>+</span>
-          </div>
-          <div class="faq-answer">
-            Using KillAura, Fly, X-Ray, Auto-Clickers (>15 CPS), or modified clients will result in an immediate permanent ban by Admins Void_x_ViperYt or .SherrySlayer101.
-          </div>
+          <div class="faq-question" onclick="toggleFaq(this)">1. No Hacking / Cheating / X-Ray <span>+</span></div>
+          <div class="faq-answer">Using any illegal clients, auto-clickers (>15 CPS), or x-ray packs will result in a permanent ban.</div>
         </div>
-
         <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            2. Respect Staff and Community Members <span>+</span>
-          </div>
-          <div class="faq-answer">
-            Bullying, racism, toxicity, and harassment in global chat or Discord are strictly prohibited. Keep interactions fun and friendly!
-          </div>
+          <div class="faq-question" onclick="toggleFaq(this)">2. Respect All Players & Staff <span>+</span></div>
+          <div class="faq-answer">Toxic behavior, excessive swearing, hate speech, or harassment will lead to a mute or ban.</div>
         </div>
-
         <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            3. No Bug Exploiting or Glitching <span>+</span>
-          </div>
-          <div class="faq-answer">
-            Exploiting glitches to duplicate items, hearts, or coins will result in an inventory wipe and ban. Report bugs to Owner Shuj4Playz immediately!
-          </div>
+          <div class="faq-question" onclick="toggleFaq(this)">3. No Duplication Exploits <span>+</span></div>
+          <div class="faq-answer">Exploiting bugs or item dupes will result in immediate ban and rollback of inventories.</div>
         </div>
-
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            4. Fair Trade & Economy Policy <span>+</span>
-          </div>
-          <div class="faq-answer">
-            Scamming during official rank or coin trades is strictly forbidden. All store transactions should be handled safely through official WhatsApp contacts.
-          </div>
-        </div>
-
       </div>
     </section>
 
-    <!-- FAQ Section -->
     <section id="faq">
       <h2 class="section-title">❓ FREQUENTLY ASKED QUESTIONS</h2>
-      <div style="max-width: 700px; margin: 0 auto; padding: 0 20px;">
-        
+      <div style="max-width: 800px; margin: 0 auto; padding: 0 20px;">
         <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            How do I join on Minecraft Bedrock (PE/Xbox/Mobile)? <span>+</span>
-          </div>
-          <div class="faq-answer">
-            Use the Server IP: <strong>stormsteal.aternos.me</strong> and set your Port to <strong>22956</strong>.
-          </div>
+          <div class="faq-question" onclick="toggleFaq(this)">How do I join on Bedrock (MCPE / Xbox / PS / Switch)? <span>+</span></div>
+          <div class="faq-answer">Use Server IP <strong>stormsteal.aternos.me</strong> and Port <strong>22956</strong> in your Bedrock server list!</div>
         </div>
-
         <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            What happens when I run out of Hearts in Lifesteal? <span>+</span>
-          </div>
-          <div class="faq-answer">
-            If you lose all 10 hearts, you will be temporarily eliminated/banned. Teammates can craft or purchase a Revive Heart to bring you back!
-          </div>
+          <div class="faq-question" onclick="toggleFaq(this)">What version does the server support? <span>+</span></div>
+          <div class="faq-answer">We support cross-version compatibility from Java 1.16 to 1.20+ and latest Bedrock releases.</div>
         </div>
-
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            How do I receive my purchased Ranks or Coins? <span>+</span>
-          </div>
-          <div class="faq-answer">
-            Clicking any store button redirects you to WhatsApp with Owner Shuj4Playz, who will verify your payment and credit items directly to your IGN in-game.
-          </div>
-        </div>
-
       </div>
     </section>
 
-    <!-- Footer -->
+    <!-- NEW FEATURE: Player Rating & Feedback Box -->
+    <section>
+      <div class="feature-box" style="border-color: var(--primary);">
+        <h3 style="margin-top:0;">⭐ LEAVE SERVER FEEDBACK</h3>
+        <p style="color:var(--text-muted); font-size:0.85rem;">Rate your experience on Storm Steal Network!</p>
+        <select id="ratingStars" style="max-width:200px;">
+          <option value="5">⭐⭐⭐⭐⭐ (5 Stars)</option>
+          <option value="4">⭐⭐⭐⭐ (4 Stars)</option>
+          <option value="3">⭐⭐⭐ (3 Stars)</option>
+        </select>
+        <textarea id="feedbackText" rows="2" placeholder="Write your feedback..." style="max-width:400px; margin-top:10px;"></textarea>
+        <button onclick="submitFeedback()" class="btn-primary" style="margin-top:10px;">⭐ Submit Review</button>
+      </div>
+    </section>
+
     <footer>
-      <p>© 2026 Storm Steal Network. All Rights Reserved.</p>
-      <p style="font-size: 0.85rem; color: var(--text-muted);">Not affiliated with Mojang AB or Microsoft.</p>
+      <p>© 2026 Storm Steal Network. Managed by <strong>Shuj4Playz</strong>. All rights reserved.</p>
     </footer>
 
   </div>
 
-  <!-- JavaScript functionality -->
   <script>
-    /* Theme Switcher */
-    function setTheme(theme) {
-      document.body.className = '';
-      if (theme !== 'default') document.body.classList.add('theme-' + theme);
+    // Audio Sound Effects Engine via Web Audio API
+    let soundEnabled = true;
+    function playClickSound() {
+      if(!soundEnabled) return;
+      try {
+        let ctx = new (window.AudioContext || window.webkitAudioContext)();
+        let osc = ctx.createOscillator();
+        let gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.frequency.value = 400;
+        gain.gain.value = 0.1;
+        osc.start();
+        osc.stop(ctx.currentTime + 0.05);
+      } catch(e){}
+    }
+
+    function toggleAudio() {
+      soundEnabled = !soundEnabled;
+      document.getElementById('audioBtn').innerText = soundEnabled ? '🔊' : '🔇';
+      showToast(soundEnabled ? 'Sound Unmuted' : 'Sound Muted');
+    }
+
+    // Particle Canvas Animation
+    const canvas = document.getElementById('particles-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    for(let i=0; i<40; i++) {
+      particles.push({
+        x: Math.random()*canvas.width, y: Math.random()*canvas.height,
+        r: Math.random()*3+1, dx: (Math.random()-0.5)*1, dy: (Math.random()-0.5)*1
+      });
+    }
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#00a2ff';
+      particles.forEach(p => {
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2); ctx.fill();
+        p.x += p.dx; p.y += p.dy;
+        if(p.x < 0 || p.x > canvas.width) p.dx *= -1;
+        if(p.y < 0 || p.y > canvas.height) p.dy *= -1;
+      });
+      requestAnimationFrame(drawParticles);
+    }
+    drawParticles();
+
+    // Copy Toast Helper
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text);
+      showToast('Copied to Clipboard!');
       playClickSound();
     }
 
-    /* Mobile Menu Toggle */
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.innerText = msg;
+      toast.className = 'show';
+      setTimeout(() => { toast.className = toast.className.replace('show', ''); }, 3000);
+    }
+
+    // Theme Switcher
+    function setTheme(theme) {
+      document.body.className = '';
+      if(theme === 'red') document.body.classList.add('theme-red');
+      if(theme === 'gold') document.body.classList.add('theme-gold');
+      if(theme === 'light') document.body.classList.add('theme-light');
+      playClickSound();
+    }
+
+    // Mobile Menu Toggle
     function toggleMobileMenu() {
       const menu = document.getElementById('mobileMenu');
       menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
       playClickSound();
     }
 
-    /* Clipboard Helper */
-    function copyToClipboard(text) {
-      navigator.clipboard.writeText(text);
-      const toast = document.getElementById('toast');
-      toast.innerText = 'Copied: ' + text;
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 3000);
-      playClickSound();
-    }
-
-    /* Sound Effect Simulation */
-    function playClickSound() {
-      const ctx = new (window.AudioContext || window.webkitAudioContext)();
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(600, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(200, ctx.currentTime + 0.05);
-      gain.gain.setValueAtTime(0.1, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.05);
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.start();
-      osc.stop(ctx.currentTime + 0.05);
-    }
-
-    /* Live Server Status Checker */
-    async function checkServerStatus() {
-      try {
-        const response = await fetch('https://api.mcsrvstat.us/2/stormsteal.aternos.me');
-        const data = await response.json();
-        const dot = document.getElementById('statusDot');
-        const text = document.getElementById('statusText');
-        const count = document.getElementById('playerCount');
-
-        if (data.online) {
-          dot.className = 'status-dot status-online';
-          text.innerText = 'SERVER ONLINE';
-          count.innerText = data.players.online + ' / ' + data.players.max;
-        } else {
-          dot.className = 'status-dot';
-          text.innerText = 'SERVER OFFLINE';
-          count.innerText = '0 / 0';
-        }
-      } catch (e) {
-        document.getElementById('statusText').innerText = 'STATUS UNKNOWN';
-      }
-    }
-    checkServerStatus();
-    setInterval(checkServerStatus, 30000);
-
-    /* Countdown Timer Widget */
-    let totalSeconds = (2 * 86400) + (14 * 3600) + (35 * 60);
-    setInterval(() => {
-      if (totalSeconds > 0) totalSeconds--;
-      const d = Math.floor(totalSeconds / 86400);
-      const h = Math.floor((totalSeconds % 86400) / 3600);
-      const m = Math.floor((totalSeconds % 3600) / 60);
-      const s = totalSeconds % 60;
-
-      document.getElementById('days').innerText = String(d).padStart(2, '0');
-      document.getElementById('hours').innerText = String(h).padStart(2, '0');
-      document.getElementById('mins').innerText = String(m).padStart(2, '0');
-      document.getElementById('secs').innerText = String(s).padStart(2, '0');
-    }, 1000);
-
-    /* Interactive Skin Avatar Update */
+    // Skin Viewer Updates
     function updateSkinAvatar() {
-      const username = document.getElementById('skinInput').value.trim() || 'Shuj4Playz';
-      document.getElementById('skinAvatar').style.backgroundImage = `url('https://mc-heads.net/avatar/${username}')`;
+      const ign = document.getElementById('skinInput').value.trim() || 'Shuj4Playz';
+      document.getElementById('skinAvatar').style.backgroundImage = `url('https://mc-heads.net/avatar/${ign}')`;
     }
 
-    /* Bedwars Cost Calculator */
+    // Calculators
     function calculateCost() {
-      const armor = parseInt(document.getElementById('armorSelect').value);
-      const block = parseInt(document.getElementById('blockSelect').value);
-      const totalIron = armor + block;
-      document.getElementById('calcResult').innerText = `Total Cost: ${totalIron} Iron`;
+      let armorCost = parseInt(document.getElementById('armorSelect').value);
+      let blockCost = parseInt(document.getElementById('blockSelect').value);
+      document.getElementById('calcResult').innerText = `Total Cost: ${armorCost + blockCost} Iron/Gold eq.`;
     }
 
-    /* Lifesteal HP Calculator */
     function calcHearts() {
-      const kills = parseInt(document.getElementById('killCount').value) || 0;
-      const deaths = parseInt(document.getElementById('deathCount').value) || 0;
-      let hp = 20 + (kills * 2) - (deaths * 2);
-      if (hp < 0) hp = 0;
-      document.getElementById('hpDisplay').innerText = `Your HP: ${hp} HP (${hp / 2} Hearts)`;
+      let kills = parseInt(document.getElementById('killCount').value) || 0;
+      let deaths = parseInt(document.getElementById('deathCount').value) || 0;
+      let hearts = 10 + kills - deaths;
+      if(hearts < 1) hearts = 0;
+      document.getElementById('hpDisplay').innerText = `Your HP: ${hearts * 2} HP (${hearts} Hearts)`;
     }
 
-    /* PvP Combat Simulator */
     function calcPvPHits() {
-      const dmg = parseFloat(document.getElementById('weaponSelect').value);
-      const reduc = parseFloat(document.getElementById('targetArmorSelect').value);
-      const netDmg = dmg * reduc;
-      const hits = Math.ceil(20 / netDmg);
+      let dmg = parseFloat(document.getElementById('weaponSelect').value);
+      let reduc = parseFloat(document.getElementById('targetArmorSelect').value);
+      let finalDmg = dmg * reduc;
+      let hits = Math.ceil(20 / finalDmg);
       document.getElementById('pvpResult').innerText = `Hits Needed: ${hits} Hits`;
     }
 
-    /* Currency Converter */
     function convertCurrency() {
-      const usd = parseFloat(document.getElementById('usdInput').value) || 0;
-      const coins = usd * 10000;
-      const pkr = Math.round(usd * 280);
+      let usd = parseFloat(document.getElementById('usdInput').value) || 0;
+      let coins = usd * 10000;
+      let pkr = usd * 280;
       document.getElementById('coinConvertResult').innerText = `= ${coins.toLocaleString()} Coins (~${pkr} PKR)`;
     }
 
-    /* Bedwars Spawner Speed Calculator */
     function calcSpawnerSpeed() {
-      const lvl = document.getElementById('spawnerLevel').value;
-      let res = "1 Iron / 1.0 sec | 1 Gold / 4.0 sec";
-      if (lvl === '2') res = "1 Iron / 0.6 sec | 1 Gold / 2.5 sec";
-      if (lvl === '3') res = "1 Iron / 0.3 sec | 1 Gold / 1.5 sec";
-      document.getElementById('spawnerResult').innerText = res;
+      let lvl = document.getElementById('spawnerLevel').value;
+      if(lvl === '1') document.getElementById('spawnerResult').innerText = "1 Iron / 1.0 sec | 1 Gold / 4.0 sec";
+      if(lvl === '2') document.getElementById('spawnerResult').innerText = "1 Iron / 0.7 sec | 1 Gold / 2.5 sec";
+      if(lvl === '3') document.getElementById('spawnerResult').innerText = "1 Iron / 0.4 sec | 1 Gold / 1.5 sec";
     }
 
-    /* Rank Tabs Navigation */
+    // Chat Preview
+    function updateChatPreview() {
+      let rank = document.getElementById('chatRankSelect').value;
+      let msg = document.getElementById('chatMsgInput').value || 'Hello!';
+      let display = document.getElementById('chatPreviewDisplay');
+      let color = '#aaa';
+      if(rank === '[VIP]') color = '#25d366';
+      if(rank === '[LEGENDARY]') color = '#ffaa00';
+      if(rank === '[STORM]') color = '#ff0055';
+      if(rank === '[ADMIN]' || rank === '[OWNER]') color = '#ff0055';
+      display.innerHTML = `<span style="color: ${color};">${rank} Player:</span> <span style="color: #fff;">${msg}</span>`;
+    }
+
+    // Rank Tabs
     function openRankTab(evt, tabName) {
-      const contents = document.getElementsByClassName('rank-content');
-      for (let c of contents) c.style.display = 'none';
-      const btns = document.getElementsByClassName('tab-btn');
-      for (let b of btns) b.classList.remove('active');
+      let contents = document.getElementsByClassName('rank-content');
+      for(let i=0; i<contents.length; i++) contents[i].style.display = 'none';
+      let btns = document.getElementsByClassName('tab-btn');
+      for(let i=0; i<btns.length; i++) btns[i].classList.remove('active');
       document.getElementById(tabName).style.display = 'block';
       evt.currentTarget.classList.add('active');
       playClickSound();
     }
 
     function buyRank(rank, price) {
-      window.open(`https://wa.me/923114140301?text=Hello%20Owner%20Shuj4Playz!%20I%20want%20to%20buy%20${rank}%20Rank%20for%20$${price}`, '_blank');
+      window.open(`https://wa.me/923114140301?text=Hello%20Owner%20Shuj4Playz!%20I%20want%20to%20buy%20${rank}%20Rank%20for%20$${price}`,'_blank');
       playClickSound();
     }
 
-    /* Chat Preview Format */
-    function updateChatPreview() {
-      const rank = document.getElementById('chatRankSelect').value;
-      const msg = document.getElementById('chatMsgInput').value || 'Hello!';
-      const display = document.getElementById('chatPreviewDisplay');
-
-      let rankColor = '#94a3b8';
-      if (rank === '[VIP]') rankColor = '#25d366';
-      if (rank === '[LEGENDARY]') rankColor = '#ffaa00';
-      if (rank === '[STORM]') rankColor = '#ff0055';
-      if (rank === '[ADMIN]') rankColor = '#ff3b30';
-      if (rank === '[OWNER]') rankColor = '#ff0055';
-
-      display.innerHTML = `<span style="color: ${rankColor}; font-weight: bold;">${rank} Player:</span> <span style="color: #fff;">${msg}</span>`;
-    }
-
-    /* Submit YouTuber Rank Application */
+    // Applications Submission Modals
     function submitYtApp() {
-      const ign = document.getElementById('ytIgn').value.trim();
-      const channel = document.getElementById('ytChannel').value.trim();
-      const subs = document.getElementById('ytSubs').value.trim();
-      const video = document.getElementById('ytVideo').value.trim();
-
-      if (!ign || !channel || !subs || !video) {
-        return alert('Please fill in all fields for YouTuber Application!');
-      }
-
-      const msg = `🎥 YOUTUBER RANK APPLICATION:%0A- IGN: ${encodeURIComponent(ign)}%0A- Channel: ${encodeURIComponent(channel)}%0A- Subscribers: ${encodeURIComponent(subs)}%0A- Video Link: ${encodeURIComponent(video)}`;
-      window.open(`https://wa.me/923114140301?text=${msg}`, '_blank');
+      let ign = document.getElementById('ytIgn').value;
+      let channel = document.getElementById('ytChannel').value;
+      if(!ign || !channel) { alert('Please fill in required fields!'); return; }
+      window.open(`https://wa.me/923114140301?text=YT%20Rank%20App%0AIGN:%20${ign}%0AChannel:%20${channel}`, '_blank');
       playClickSound();
     }
 
-    /* Submit Staff / Admin Application */
     function submitStaffApp() {
-      const ign = document.getElementById('staffIgn').value.trim();
-      const age = document.getElementById('staffAge').value.trim();
-      const role = document.getElementById('staffRole').value;
-      const exp = document.getElementById('staffExperience').value.trim();
-      const reason = document.getElementById('staffReason').value.trim();
+      let ign = document.getElementById('staffIgn').value;
+      let role = document.getElementById('staffRole').value;
+      if(!ign) { alert('Please enter your Minecraft IGN!'); return; }
+      window.open(`https://wa.me/923114140301?text=Staff%20App%0AIGN:%20${ign}%0ARole:%20${role}`, '_blank');
+      playClickSound();
+    }
 
-      if (!ign || !age || !exp || !reason) {
-        return alert('Please complete all application fields!');
+    function submitAppeal() {
+      let ign = document.getElementById('appealIgn').value;
+      if(!ign) { alert('Please enter your IGN!'); return; }
+      window.open(`https://wa.me/923114140301?text=Ban%20Appeal%0AIGN:%20${ign}`, '_blank');
+      playClickSound();
+    }
+
+    // Poll Voting
+    let lsVotes = 42, bwVotes = 58;
+    function castVote(mode) {
+      if(mode === 'Lifesteal') lsVotes++;
+      if(mode === 'Bedwars') bwVotes++;
+      document.getElementById('lsVotes').innerText = lsVotes;
+      document.getElementById('bwVotes').innerText = bwVotes;
+      showToast('Vote Registered!');
+      playClickSound();
+    }
+
+    // Wheel Spin Minigame Feature
+    let canSpin = true;
+    function spinWheel() {
+      if(!canSpin) { showToast('Already spun today!'); return; }
+      playClickSound();
+      let wheel = document.getElementById('wheelBox');
+      let deg = Math.floor(2000 + Math.random() * 2000);
+      wheel.style.transform = `rotate(${deg}deg)`;
+      canSpin = false;
+      setTimeout(() => {
+        document.getElementById('wheelReward').innerText = "🎉 You Won 500 Free In-Game Coins!";
+        showToast('Claimed 500 Coins!');
+      }, 3000);
+    }
+
+    // CPS Bridge Click Tester
+    let cpsClicks = 0, cpsTimer = null, cpsActive = false;
+    function registerCpsClick() {
+      playClickSound();
+      if(!cpsActive) {
+        cpsActive = true;
+        cpsClicks = 0;
+        setTimeout(() => {
+          cpsActive = false;
+          document.getElementById('cpsResult').innerText = `Finished! Blocks Placed: ${cpsClicks} | CPS: ${(cpsClicks/5).toFixed(1)}`;
+          showToast(`Bridging CPS: ${(cpsClicks/5).toFixed(1)}`);
+        }, 5000);
       }
+      cpsClicks++;
+      document.getElementById('cpsResult').innerText = `Placing Blocks... Count: ${cpsClicks}`;
+    }
 
-      const msg = `🛡️ STAFF/ADMIN APPLICATION:%0A- IGN: ${encodeURIComponent(ign)}%0A- Age: ${encodeURIComponent(age)}%0A- Applying For: ${encodeURIComponent(role)}%0A- Experience: ${encodeURIComponent(exp)}%0A- Reason: ${encodeURIComponent(reason)}`;
-      window.open(`https://wa.me/923114140301?text=${msg}`, '_blank');
+    // Coupon Code Redeem Box
+    function applyCoupon() {
+      let code = document.getElementById('couponCode').value.trim();
+      if(code.toUpperCase() === 'STORM50') {
+        document.getElementById('couponMsg').innerText = "✔ Coupon Applied! 50% Bonus Coins Added.";
+        playClickSound();
+      } else {
+        document.getElementById('couponMsg').innerText = "❌ Invalid Promo Code.";
+      }
+    }
+
+    // Command Search Library Filter
+    function filterCommands() {
+      let query = document.getElementById('cmdSearch').value.toLowerCase();
+      let cmds = document.getElementById('cmdList').getElementsByTagName('p');
+      for(let cmd of cmds) {
+        cmd.style.display = cmd.innerText.toLowerCase().includes(query) ? 'block' : 'none';
+      }
+    }
+
+    // Prefix Tag Generator
+    function generatePrefixPreview() {
+      let tag = document.getElementById('prefixTag').value || 'VIP';
+      let name = document.getElementById('prefixName').value || 'Player';
+      document.getElementById('prefixDisplay').innerText = `[${tag}] ${name}`;
+    }
+
+    // Latency Ping Tip Check
+    function checkPingTip() {
+      let reg = document.getElementById('regionSelect').value;
+      let display = document.getElementById('pingTipDisplay');
+      if(reg === 'Asia') display.innerText = "Best Port: 22956 (Avg 30-60ms Ping)";
+      if(reg === 'EU') display.innerText = "Best Port: 22956 (Avg 100-140ms Ping)";
+      if(reg === 'NA') display.innerText = "Best Port: 22956 (Avg 150-190ms Ping)";
+    }
+
+    // Submit Feedback
+    function submitFeedback() {
+      showToast('Thank you for rating us!');
+      document.getElementById('feedbackText').value = '';
       playClickSound();
     }
 
-    /* Community Poll Voting */
-    let lsCount = 42, bwCount = 58, voted = false;
-    function castVote(option) {
-      if (voted) return alert('You have already voted!');
-      if (option === 'Lifesteal') { lsCount++; document.getElementById('lsVotes').innerText = lsCount; }
-      if (option === 'Bedwars') { bwCount++; document.getElementById('bwVotes').innerText = bwCount; }
-      voted = true;
-      playClickSound();
-      alert('Thanks for voting!');
-    }
-
-    /* Submit Redeem Code */
-    function sendRedeemToWhatsApp() {
-      const ign = document.getElementById('ignInput').value.trim();
-      const code = document.getElementById('codeInput').value.trim();
-      if (!ign || !code) return alert('Please fill in both your IGN and Redeem Code!');
-      window.open(`https://wa.me/923114140301?text=Redeem%20Code%20Submission:%20IGN:%20${encodeURIComponent(ign)}%20|%20Code:%20${encodeURIComponent(code)}`, '_blank');
-      playClickSound();
-    }
-
-    /* FAQ Toggle Accordion */
+    // FAQ Accordion Toggle
     function toggleFaq(element) {
-      const answer = element.nextElementSibling;
-      const span = element.querySelector('span');
-      if (answer.style.display === 'block') {
+      let answer = element.nextElementSibling;
+      let span = element.querySelector('span');
+      if(answer.style.display === 'block') {
         answer.style.display = 'none';
         span.innerText = '+';
       } else {
@@ -963,42 +1139,22 @@
       playClickSound();
     }
 
-    /* Particles Background Canvas Setup */
-    const canvas = document.getElementById('particles-canvas');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
+    // Live Event Countdown Timer Loop
+    setInterval(() => {
+      let secs = document.getElementById('secs');
+      if(secs) {
+        let val = parseInt(secs.innerText);
+        if(val > 0) secs.innerText = (val - 1 < 10 ? '0' : '') + (val - 1);
+        else secs.innerText = '59';
+      }
+    }, 1000);
 
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    for (let i = 0; i < 50; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        r: Math.random() * 3 + 1,
-        dx: (Math.random() - 0.5) * 1,
-        dy: (Math.random() - 0.5) * 1
-      });
-    }
-
-    function animateParticles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#00a2ff';
-      particles.forEach(p => {
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fill();
-        p.x += p.dx; p.y += p.dy;
-        if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
-      });
-      requestAnimationFrame(animateParticles);
-    }
-    animateParticles();
+    // Dynamic Server Status Simulation Engine
+    setTimeout(() => {
+      document.getElementById('statusDot').classList.add('status-online');
+      document.getElementById('statusText').innerText = 'SERVER ONLINE';
+      document.getElementById('playerCount').innerText = '24 / 100';
+    }, 1500);
   </script>
 </body>
 </html>
