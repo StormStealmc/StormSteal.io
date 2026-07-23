@@ -89,7 +89,8 @@
 
     .pulse-dot {
       display: inline-block;
-      width: 10px; height: 10px;
+      width: 100px; height: 10px;
+      width: 10px;
       border-radius: 50%;
       background: #25d366;
       box-shadow: 0 0 0 rgba(37, 211, 102, 0.7);
@@ -217,13 +218,6 @@
 
     .feature-box { background: var(--card-bg); border: 2px dashed var(--primary); border-radius: 20px; padding: 30px; max-width: 800px; margin: 30px auto; text-align: center; backdrop-filter: blur(10px); }
 
-    input, select, textarea {
-      width: 100%; padding: 12px 20px; border-radius: 50px; border: 1px solid var(--primary);
-      background: rgba(0,0,0,0.5); color: var(--text-light); font-size: 1rem; outline: none; text-align: center; margin: 8px 0;
-      font-family: inherit; transition: border-color 0.3s;
-    }
-    input:focus { border-color: var(--bedwars-gold); box-shadow: 0 0 10px var(--primary-glow); }
-
     .tab-buttons { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
     .tab-btn { background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-light); padding: 10px 22px; border-radius: 25px; cursor: pointer; font-weight: 600; transition: all 0.3s; }
     .tab-btn.active, .tab-btn:hover { background: var(--primary); border-color: var(--primary); color: #fff; box-shadow: 0 0 15px var(--primary-glow); }
@@ -314,8 +308,6 @@
         <li><a href="#home" onclick="playClickSound()">Home</a></li>
         <li><a href="#status" onclick="playClickSound()">Status</a></li>
         <li><a href="#wheel" onclick="playClickSound()">Wheel</a></li>
-        <li><a href="#skin-lookup" onclick="playClickSound()">Skin Viewer</a></li>
-        <li><a href="#calculator" onclick="playClickSound()">Calculator</a></li>
         <li><a href="#leaderboards" onclick="playClickSound()">Leaderboards</a></li>
         <li><a href="#modes" onclick="playClickSound()">Modes</a></li>
         <li><a href="#staff" onclick="playClickSound()">Staff</a></li>
@@ -338,8 +330,6 @@
       <a href="#home" onclick="toggleMobileMenu()">Home</a>
       <a href="#status" onclick="toggleMobileMenu()">Status</a>
       <a href="#wheel" onclick="toggleMobileMenu()">Daily Wheel</a>
-      <a href="#skin-lookup" onclick="toggleMobileMenu()">Skin Viewer</a>
-      <a href="#calculator" onclick="toggleMobileMenu()">Calculator</a>
       <a href="#leaderboards" onclick="toggleMobileMenu()">Leaderboards</a>
       <a href="#modes" onclick="toggleMobileMenu()">Modes</a>
       <a href="#staff" onclick="toggleMobileMenu()">Staff</a>
@@ -406,31 +396,6 @@
       </div>
     </section>
 
-    <!-- Skin Lookup Section -->
-    <section id="skin-lookup">
-      <h2 class="section-title">🔍 MINECRAFT SKIN LOOKUP</h2>
-      <div style="max-width: 500px; margin: 0 auto; padding: 0 20px;">
-        <div class="card">
-          <div id="skinAvatar" class="staff-avatar" style="background-image: url('https://mc-heads.net/avatar/Shuj4Playz'); width:100px; height:100px;"></div>
-          <input type="text" id="skinInput" placeholder="Enter Player Username..." value="Shuj4Playz">
-          <button onclick="updateSkinViewer()" class="btn-primary" style="margin-top: 10px; width: 100%;">View Skin</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Coin Calculator Section -->
-    <section id="calculator">
-      <h2 class="section-title">🪙 COIN CALCULATOR</h2>
-      <div style="max-width: 500px; margin: 0 auto; padding: 0 20px;">
-        <div class="card">
-          <p style="color: var(--text-muted); font-size: 0.9rem;">Calculate how many coins you get for your budget ($1 USD = 10,000 Coins)</p>
-          <input type="number" id="usdAmount" placeholder="Enter USD Amount ($)" value="5" oninput="calculateCoins()">
-          <h3 style="color: var(--bedwars-gold); margin-top: 15px;">You Get: <span id="coinResult">50,000</span> Coins</h3>
-          <button onclick="buyCalculatedCoins()" class="btn-primary" style="background: #25d366; width: 100%; margin-top: 10px;">Buy Coins via WhatsApp</button>
-        </div>
-      </div>
-    </section>
-
     <!-- Leaderboards Section -->
     <section id="leaderboards">
       <h2 class="section-title">🏆 LEADERBOARDS</h2>
@@ -438,17 +403,17 @@
         <div class="card">
           <h3 style="color: var(--lifesteal-red);">⚔️ Top Kills</h3>
           <ul class="leaderboard-list">
-            <li><span class="lb-rank">1.</span> <span class="lb-name">Shuj4Playz</span> <span class="lb-stat">412 Kills</span></li>
+            <li><span class="lb-rank">1.</span> <span class="lb-name">.SherrySlayer101</span> <span class="lb-stat">412 Kills</span></li>
             <li><span class="lb-rank">2.</span> <span class="lb-name">Void_x_ViperYt</span> <span class="lb-stat">320 Kills</span></li>
-            <li><span class="lb-rank">3.</span> <span class="lb-name">SherrySlayer101</span> <span class="lb-stat">289 Kills</span></li>
+            <li><span class="lb-rank">3.</span> <span class="lb-name">Shuj4Playz</span> <span class="lb-stat">289 Kills</span></li>
           </ul>
         </div>
         <div class="card">
           <h3 style="color: #25d366;">❤️ Top Hearts</h3>
           <ul class="leaderboard-list">
-            <li><span class="lb-rank">1.</span> <span class="lb-name">Shuj4Playz</span> <span class="lb-stat">30 Hearts</span></li>
-            <li><span class="lb-rank">2.</span> <span class="lb-name">SherrySlayer101</span> <span class="lb-stat">26 Hearts</span></li>
-            <li><span class="lb-rank">3.</span> <span class="lb-name">Void_x_ViperYt</span> <span class="lb-stat">22 Hearts</span></li>
+            <li><span class="lb-rank">1.</span> <span class="lb-name">.SherrySlayer101</span> <span class="lb-stat">30 Hearts</span></li>
+            <li><span class="lb-rank">2.</span> <span class="lb-name">Void_x_ViperYt</span> <span class="lb-stat">26 Hearts</span></li>
+            <li><span class="lb-rank">3.</span> <span class="lb-name">Shuj4Playz</span> <span class="lb-stat">22 Hearts</span></li>
           </ul>
         </div>
         <div class="card">
@@ -456,7 +421,7 @@
           <ul class="leaderboard-list">
             <li><span class="lb-rank">1.</span> <span class="lb-name">Void_x_ViperYt</span> <span class="lb-stat">154 Wins</span></li>
             <li><span class="lb-rank">2.</span> <span class="lb-name">Shuj4Playz</span> <span class="lb-stat">140 Wins</span></li>
-            <li><span class="lb-rank">3.</span> <span class="lb-name">SherrySlayer101</span> <span class="lb-stat">98 Wins</span></li>
+            <li><span class="lb-rank">3.</span> <span class="lb-name">.SherrySlayer101</span> <span class="lb-stat">98 Wins</span></li>
           </ul>
         </div>
       </div>
@@ -713,15 +678,6 @@
       }
     }
 
-    /* Interactive Skin Lookup */
-    function updateSkinViewer() {
-      playClickSound();
-      const username = document.getElementById('skinInput').value.trim();
-      if (!username) return;
-      const avatarDiv = document.getElementById('skinAvatar');
-      avatarDiv.style.backgroundImage = `url('https://mc-heads.net/avatar/${username}')`;
-    }
-
     /* Daily Wheel Spinner */
     let hasSpun = false;
     function spinWheel() {
@@ -740,20 +696,6 @@
         document.getElementById('wheelReward').innerText = `🎉 You Won: ${winner}!`;
         hasSpun = true;
       }, 3000);
-    }
-
-    /* Coin Calculator */
-    function calculateCoins() {
-      const usd = parseFloat(document.getElementById('usdAmount').value) || 0;
-      const coins = usd * 10000;
-      document.getElementById('coinResult').innerText = coins.toLocaleString();
-    }
-
-    function buyCalculatedCoins() {
-      playClickSound();
-      const usd = document.getElementById('usdAmount').value || "5";
-      const coins = document.getElementById('coinResult').innerText;
-      window.open(`https://wa.me/923114140301?text=Hello%20Shuj4Playz!%20I%20want%20to%20buy%20${coins}%20Coins%20for%20$${usd}%20USD`, '_blank');
     }
 
     /* Event Countdown Timer */
