@@ -1,739 +1,513 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Storm Steal | Lifesteal & Bedwars Network</title>
+  <link rel="icon" type="image/png" href="logo.png.png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- ========================================== -->
+  <!-- 🎨 ALL CSS STYLES (PASTED DIRECTLY IN HTML) -->
+  <!-- ========================================== -->
+  <style>
+    :root {
+      --primary: #00a2ff;
+      --primary-dark: #0051ff;
+      --lifesteal-red: #ff0055;
+      --bedwars-gold: #ffaa00;
+      --bg-dark: #0a0c10;
+      --card-bg: #11151c;
+      --border-color: #222936;
+      --text-light: #e2e8f0;
+      --text-muted: #94a3b8;
+    }
 
-<title>Storm Steal | Lifesteal & Bedwars SMP</title>
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
 
-<link rel="icon" type="image/png" href="logo.png.png">
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
 
-<link rel="stylesheet" href="style.css">
+    /* Announcement Banner */
+    .announcement-bar {
+      background: linear-gradient(90deg, #0051ff, #00a2ff);
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    /* Navigation Bar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 5%;
+      background: rgba(10, 12, 16, 0.95);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--border-color);
+    }
 
-<style>
-  /* Extra styling for custom elements */
-  .btn-primary {
-    background-color: #00a2ff;
-    color: #ffffff;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 10px rgba(0, 162, 255, 0.3);
-  }
+    .logo img { height: 45px; }
 
-  .btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 0 20px rgba(0, 162, 255, 0.7);
-  }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+    }
 
-  .faq-item {
-    background: #111;
-    border: 1px solid #222;
-    border-radius: 12px;
-    margin-bottom: 15px;
-    text-align: left;
-    overflow: hidden;
-  }
+    .nav-links a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
 
-  .faq-question {
-    padding: 18px 25px;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #fff;
-  }
+    .nav-links a:hover {
+      color: var(--primary);
+    }
 
-  .faq-answer {
-    padding: 0 25px 18px 25px;
-    color: #bbb;
-    display: none;
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
-</style>
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 70px 20px;
+      background: radial-gradient(circle at center, rgba(0, 162, 255, 0.15) 0%, transparent 70%);
+    }
 
+    .hero-logo { height: 110px; margin-bottom: 15px; }
+    .hero h1 { font-size: 3.2rem; font-weight: 900; margin: 0; color: #fff; text-shadow: 0 0 20px rgba(0,162,255,0.5); }
+    .hero p { font-size: 1.2rem; color: var(--text-muted); margin-top: 10px; }
+
+    /* Buttons */
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fff;
+      border: none;
+      padding: 12px 26px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 162, 255, 0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 25px rgba(0, 162, 255, 0.6);
+    }
+
+    /* Cards & Grids */
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      margin: 50px 0 30px 0;
+      color: #fff;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 15px;
+      padding: 25px;
+      text-align: center;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: var(--primary);
+    }
+
+    .card-icon { font-size: 2.5rem; margin-bottom: 12px; }
+
+    /* Custom Section Boxes */
+    .feature-box {
+      background: var(--card-bg);
+      border: 2px dashed var(--primary);
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 800px;
+      margin: 30px auto;
+      text-align: center;
+    }
+
+    /* Inputs & Selects */
+    input, select {
+      padding: 12px 20px;
+      border-radius: 50px;
+      border: 1px solid var(--primary);
+      background: #0a0c10;
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+      text-align: center;
+      margin: 5px 0;
+    }
+
+    /* FAQ Styles */
+    .faq-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      margin-bottom: 15px;
+      text-align: left;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 18px 25px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+    }
+
+    .faq-answer {
+      padding: 0 25px 18px 25px;
+      color: var(--text-muted);
+      display: none;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      border-top: 1px solid var(--border-color);
+      margin-top: 60px;
+      color: var(--text-muted);
+    }
+  </style>
 </head>
-
 
 <body>
 
-<!-- 📢 ANNOUNCEMENT BANNER -->
-<div style="background: linear-gradient(90deg, #0051ff, #00a2ff); color: #fff; text-align: center; padding: 10px; font-weight: 600; font-size: 0.95rem;">
-  🎉 SPECIAL EVENT: Get Bonus Coins on purchases! Contact Owner on WhatsApp to redeem!
-</div>
+  <!-- Announcement Header -->
+  <div class="announcement-bar">
+    🎉 SPECIAL EVENT: Play Bedwars & Get Bonus Coins on Store purchases! Contact Owner on WhatsApp!
+  </div>
 
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="logo.png.png" alt="Storm Steal Logo">
+    </div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#modes">Game Modes</a></li>
+      <li><a href="#ranks">Ranks</a></li>
+      <li><a href="#coins">Coins</a></li>
+      <li><a href="#tools">Calculator</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+  </nav>
 
-<nav class="navbar">
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <img src="logo.png.png" class="hero-logo" alt="Storm Steal Logo">
+    <h1>STORM STEAL</h1>
+    <p>The Ultimate Cross-Platform Lifesteal & Bedwars Experience</p>
 
-<div class="logo">
-<img src="logo.png.png" alt="Storm Steal Logo">
-</div>
+    <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 25px;">
+      <button onclick="copyToClipboard('stormsteal.aternos.me')" class="btn-primary">📋 Copy Java IP</button>
+      <button onclick="copyToClipboard('22956')" class="btn-primary">📱 Bedrock Port: 22956</button>
+      <button onclick="window.open('https://discord.gg/xtYvVqDqT','_blank')" class="btn-primary">💬 Join Discord</button>
+    </div>
+  </section>
 
-
-<ul class="nav-links">
-
-<li><a href="index.html">Home</a></li>
-<li><a href="about.html">About</a></li>
-<li><a href="rules.html">Rules</a></li>
-<li><a href="requirements.html">Requirements</a></li>
-<li><a href="store.html">Store</a></li>
-
-</ul>
-
-</nav>
-
-
-
-<section class="hero">
-
-
-<div class="hero-content">
-
-
-<img src="logo.png.png" class="hero-logo" alt="Storm Steal Logo">
-
-
-<h1>STORM STEAL</h1>
-
-
-<p>The Ultimate Lifesteal & Bedwars Minecraft Experience</p>
-
-
-
-<div class="buttons">
-
-
-<button onclick="copyIP()" class="btn-primary">
-📋 Copy Java IP
-</button>
-
-
-<button onclick="copyBedrock()" class="btn-primary">
-📱 Bedrock Port
-</button>
-
-
-<button onclick="window.open('https://discord.gg/xtYvVqDqT','_blank')" class="btn-primary">
-💬 Discord
-</button>
-
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-<!-- ATERNOS SERVER ACCESS / STARTUP AREA -->
-<section class="aternus-notice" style="margin: 40px auto; max-width: 800px; padding: 0 20px;">
-  <div style="background: rgba(0, 162, 255, 0.08); border: 2px dashed #00a2ff; border-radius: 20px; padding: 30px; text-align: center;">
+  <!-- Server Access/Aternos Notice -->
+  <div class="feature-box">
     <div style="font-size: 2.5rem; margin-bottom: 10px;">⚡</div>
-    <h3 style="font-size: 1.6rem; color: #fff; margin-bottom: 10px;">SERVER OFFLINE? NEED ACCESS TO TURN IT ON?</h3>
-    <p style="color: #ccc; font-size: 1rem; line-height: 1.6; max-width: 650px; margin: 0 auto 20px auto;">
-      Because our server runs on Aternos, it automatically turns off when no players are logged in. 
-      If you want to play right now, or if you want access to start the server yourself, contact the Owner!
+    <h3 style="font-size: 1.5rem; color: #fff; margin-top: 0;">SERVER OFFLINE? NEED IT TURNED ON?</h3>
+    <p style="color: var(--text-muted);">
+      Because our server runs on Aternos, it automatically turns off when no players are online. Message the owner to start it up or request turn-on access!
     </p>
-
-    <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
-      <button onclick="window.open('https://wa.me/923114140301?text=Hello%20Owner!%20Please%20turn%20on%20the%20Storm%20Steal%20server%20or%20give%20me%20Aternos%20access!','_blank')" class="btn-primary" style="background-color: #25d366; color: #fff;">
-        📱 Request Server Turn-On via WhatsApp
+    <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 20px;">
+      <button onclick="window.open('https://wa.me/923114140301?text=Hello%20Owner!%20Please%20turn%20on%20the%20Storm%20Steal%20server!','_blank')" class="btn-primary" style="background: #25d366;">
+        📱 Request Turn-On via WhatsApp
       </button>
-
       <button onclick="window.open('https://discord.gg/xtYvVqDqT','_blank')" class="btn-primary">
         💬 Request in Discord
       </button>
     </div>
   </div>
-</section>
 
-
-
-
-
-<section class="server">
-
-
-<h2>SERVER INFORMATION</h2>
-
-
-<div class="cards">
-
-
-<div class="card">
-<h3>🌐 Java IP</h3>
-<p>stormsteal.aternos.me</p>
-</div>
-
-
-<div class="card">
-<h3>📱 Bedrock Port</h3>
-<p>22956</p>
-</div>
-
-
-<div class="card">
-<h3>🎮 Version</h3>
-<p>1.21.11+</p>
-</div>
-
-
-<div class="card">
-<h3>🖥 Platform</h3>
-<p>Java & Bedrock</p>
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-<section class="features">
-
-
-<h2>FEATURES</h2>
-
-
-<div class="feature-grid">
-
-
-<div class="feature">
-❤️
-<h3>Lifesteal</h3>
-</div>
-
-
-<div class="feature">
-🛏️
-<h3>Bedwars</h3>
-</div>
-
-
-<div class="feature">
-💰
-<h3>Economy</h3>
-</div>
-
-
-<div class="feature">
-👥
-<h3>Teams</h3>
-</div>
-
-
-<div class="feature">
-⚔️
-<h3>PvP</h3>
-</div>
-
-
-<div class="feature">
-🎁
-<h3>Events</h3>
-</div>
-
-
-<div class="feature">
-🌎
-<h3>Cross Version</h3>
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-<section class="why">
-
-
-<h2>WHY PLAY STORM STEAL?</h2>
-
-
-<div class="why-grid">
-
-
-<div class="why-card">
-❤️
-<h3>Lifesteal</h3>
-<p>Fight players and steal hearts.</p>
-</div>
-
-
-<div class="why-card">
-🛏️
-<h3>Bedwars</h3>
-<p>Protect your bed, gear up, and destroy enemy bases.</p>
-</div>
-
-
-<div class="why-card">
-⚔️
-<h3>PvP</h3>
-<p>Become the strongest warrior.</p>
-</div>
-
-
-<div class="why-card">
-💰
-<h3>Economy</h3>
-<p>Trade and become rich.</p>
-</div>
-
-
-<div class="why-card">
-👥
-<h3>Teams</h3>
-<p>Create your own empire.</p>
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-<!-- 📜 RULES HIGHLIGHTS -->
-<section class="rules-preview" style="text-align: center; margin: 60px 0;">
-  <h2>📜 SERVER RULES HIGHLIGHTS</h2>
-  <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 30px;">
-    
-    <div class="card" style="max-width: 220px; width: 100%; text-align: center;">
-      <div style="font-size: 2rem; margin-bottom: 8px;">🚫</div>
-      <h3 style="font-size: 1.1rem;">No Cheating</h3>
-      <p style="font-size: 0.85rem; color: #aaa; margin-top: 5px;">X-Ray, hacks, or unfair mods will result in a permanent ban.</p>
-    </div>
-
-    <div class="card" style="max-width: 220px; width: 100%; text-align: center;">
-      <div style="font-size: 2rem; margin-bottom: 8px;">🤝</div>
-      <h3 style="font-size: 1.1rem;">Respect Others</h3>
-      <p style="font-size: 0.85rem; color: #aaa; margin-top: 5px;">Keep toxic behavior, hate speech, and spam out of chat.</p>
-    </div>
-
-    <div class="card" style="max-width: 220px; width: 100%; text-align: center;">
-      <div style="font-size: 2rem; margin-bottom: 8px;">⚔️</div>
-      <h3 style="font-size: 1.1rem;">Fair PvP</h3>
-      <p style="font-size: 0.85rem; color: #aaa; margin-top: 5px;">No combat logging or abusing exploits during combat.</p>
-    </div>
-
-    <div class="card" style="max-width: 220px; width: 100%; text-align: center;">
-      <div style="font-size: 2rem; margin-bottom: 8px;">⚠️</div>
-      <h3 style="font-size: 1.1rem;">No Duping</h3>
-      <p style="font-size: 0.85rem; color: #aaa; margin-top: 5px;">Duplicating items or exploiting glitches is forbidden.</p>
-    </div>
-
-  </div>
-</section>
-
-
-
-
-<section class="ranks">
-
-
-<h2>SERVER RANKS</h2>
-
-<div class="rank-list" style="display: flex; flex-direction: column; align-items: center; gap: 35px;">
-
-<div class="rank-item" style="text-align: center;">
-⚡
-<h3 style="margin: 5px 0;">STORM</h3>
-<p style="font-weight: bold; font-size: 1.2rem; margin: 5px 0;">$15.00</p>
-<p style="margin-bottom: 12px;">Ultimate premium rank with powerful perks.</p>
-<button onclick="window.open('https://wa.me/923114140301?text=I%20want%20to%20buy%20the%20STORM%20rank','_blank')" class="btn-primary">
-🛒 Buy STORM
-</button>
-</div>
-
-<div class="rank-item" style="text-align: center;">
-💎
-<h3 style="margin: 5px 0;">VIP</h3>
-<p style="font-weight: bold; font-size: 1.2rem; margin: 5px 0;">$5.00</p>
-<p style="margin-bottom: 12px;">Exclusive commands, cosmetics and rewards.</p>
-<button onclick="window.open('https://wa.me/923114140301?text=I%20want%20to%20buy%20the%20VIP%20rank','_blank')" class="btn-primary">
-🛒 Buy VIP
-</button>
-</div>
-
-<div class="rank-item" style="text-align: center;">
-👑
-<h3 style="margin: 5px 0;">LEGENDARY</h3>
-<p style="font-weight: bold; font-size: 1.2rem; margin: 5px 0;">$10.00</p>
-<p style="margin-bottom: 12px;">Elite rank with exclusive benefits.</p>
-<button onclick="window.open('https://wa.me/923114140301?text=I%20want%20to%20buy%20the%20LEGENDARY%20rank','_blank')" class="btn-primary">
-🛒 Buy LEGENDARY
-</button>
-</div>
-
-<div class="rank-item" style="text-align: center;">
-🎥
-<h3 style="margin: 5px 0;">YOUTUBER</h3>
-<p style="font-weight: bold; font-size: 1.2rem; margin: 5px 0;">FREE (Requirements)</p>
-<p style="margin-bottom: 12px;">Special rank for content creators. (Must upload 1 video every 3 days)</p>
-<button onclick="window.location.href='requirements.html'" class="btn-primary">
-📋 View Requirements
-</button>
-</div>
-
-<div class="rank-item" style="text-align: center;">
-🛡️
-<h3 style="margin: 5px 0;">ADMIN</h3>
-<p style="font-weight: bold; font-size: 1.2rem; margin: 5px 0;">Staff Only</p>
-<p style="margin-bottom: 12px;">Staff rank that helps manage the server.</p>
-<button onclick="window.open('https://discord.gg/xtYvVqDqT','_blank')" class="btn-primary">
-🛡️ Apply on Discord
-</button>
-</div>
-
-<div class="rank-item" style="text-align: center;">
-👤
-<h3 style="margin: 5px 0;">MEMBER</h3>
-<p style="font-weight: bold; font-size: 1.2rem; margin: 5px 0;">FREE</p>
-<p style="margin-bottom: 12px;">Default rank for all new players.</p>
-<button disabled style="background-color: #00a2ff; color: #ffffff; border: none; padding: 12px 30px; border-radius: 50px; font-weight: 600; font-size: 1rem; opacity: 0.5; cursor: default;">
-✅ Default Rank
-</button>
-</div>
-
-</div>
-
-</section>
-
-
-
-
-<!-- 🛡️ MEET OUR STAFF TEAM -->
-<section class="staff" style="text-align: center; margin: 60px 0;">
-  <h2>🛡️ MEET OUR STAFF TEAM</h2>
-  <p style="color: #bbb; margin-bottom: 30px;">Our dedicated team keeping Storm Steal safe & active.</p>
-
-  <div style="display: flex; justify-content: center; gap: 25px; flex-wrap: wrap;">
-    <div class="card" style="max-width: 250px; width: 100%; border-color: #00a2ff; text-align: center;">
-      <div style="font-size: 3rem; margin-bottom: 10px;">👑</div>
-      <h3 style="margin-bottom: 5px;">Shuj4Playz</h3>
-      <p style="color: #00a2ff; font-weight: bold; margin-bottom: 10px;">Server Owner</p>
-      <p style="font-size: 0.85rem; color: #aaa;">Discord: @Shuj4Playz</p>
-    </div>
-
-    <div class="card" style="max-width: 250px; width: 100%; text-align: center;">
-      <div style="font-size: 3rem; margin-bottom: 10px;">🛡️</div>
-      <h3 style="margin-bottom: 5px;">Admin Team</h3>
-      <p style="color: #00a2ff; font-weight: bold; margin-bottom: 10px;">Server Admins</p>
-      <p style="font-size: 0.85rem; color: #aaa;">Managing tickets & players</p>
-    </div>
-  </div>
-</section>
-
-
-
-
-
-
-
-<section class="community">
-
-
-<h2>JOIN OUR COMMUNITY</h2>
-
-
-<div class="community-buttons" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px;">
-
-
-<a href="https://discord.gg/xtYvVqDqT" target="_blank" style="background-color: #00a2ff; color: #ffffff; text-decoration: none; padding: 12px 30px; border-radius: 50px; font-weight: 600; font-size: 1rem;">
-💬 Discord
-</a>
-
-
-<a href="https://youtube.com/@Shuj4Playz" target="_blank" style="background-color: #00a2ff; color: #ffffff; text-decoration: none; padding: 12px 30px; border-radius: 50px; font-weight: 600; font-size: 1rem;">
-📺 YouTube
-</a>
-
-
-<a href="https://instagram.com/Shuj4Playz" target="_blank" style="background-color: #00a2ff; color: #ffffff; text-decoration: none; padding: 12px 30px; border-radius: 50px; font-weight: 600; font-size: 1rem;">
-📸 Instagram
-</a>
-
-
-<a href="https://whatsapp.com/channel/0029VbDaN9ULNSZvKFeRPX3a" target="_blank" style="background-color: #00a2ff; color: #ffffff; text-decoration: none; padding: 12px 30px; border-radius: 50px; font-weight: 600; font-size: 1rem;">
-💚 WhatsApp Channel
-</a>
-
-
-<a href="https://wa.me/923114140301" target="_blank" style="background-color: #00a2ff; color: #ffffff; text-decoration: none; padding: 12px 30px; border-radius: 50px; font-weight: 600; font-size: 1rem;">
-📱 Contact Owner
-</a>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-<section class="coins" style="text-align: center; margin: 50px 0;">
-
-  <h2>🪙 BUY IN-GAME COINS</h2>
-  <p style="color: #bbb; max-width: 600px; margin: 0 auto 30px auto; font-size: 1.1rem;">
-    Don't want to spend hours grinding or building farms? Instantly boost your balance! Contact the owner on WhatsApp to purchase coin redeem codes at super affordable rates.
-  </p>
-
-  <div class="coins-grid" style="display: flex; justify-content: center; gap: 25px; flex-wrap: wrap;">
-
-    <!-- Tier 1 -->
-    <div class="card" style="max-width: 280px; width: 100%; border-color: #00a2ff;">
-      <div style="font-size: 2.5rem; margin-bottom: 10px;">💰</div>
-      <h3>10,000 COINS</h3>
-      <p style="font-size: 1.5rem; font-weight: bold; color: #00a2ff; margin: 10px 0;">$1.00</p>
-      <p style="font-size: 0.9rem; color: #aaa; margin-bottom: 20px;">Perfect starter boost for armor & items.</p>
-      <button onclick="window.open('https://wa.me/923114140301?text=I%20want%20to%20buy%2010k%20Coins%20for%20$1','_blank')" class="btn-primary">
-        💬 Buy via WhatsApp
-      </button>
-    </div>
-
-    <!-- Tier 2 (Popular) -->
-    <div class="card" style="max-width: 280px; width: 100%; border: 2px solid #00a2ff; transform: scale(1.05);">
-      <div style="background: #00a2ff; color: #fff; font-weight: bold; font-size: 0.8rem; border-radius: 10px; padding: 3px 10px; display: inline-block; margin-bottom: 8px;">MOST POPULAR</div>
-      <div style="font-size: 2.5rem; margin-bottom: 10px;">💎</div>
-      <h3>50,000 COINS</h3>
-      <p style="font-size: 1.5rem; font-weight: bold; color: #00a2ff; margin: 10px 0;">$4.00</p>
-      <p style="font-size: 0.9rem; color: #aaa; margin-bottom: 20px;">Save $1.00! Perfect for top-tier gear.</p>
-      <button onclick="window.open('https://wa.me/923114140301?text=I%20want%20to%20buy%2050k%20Coins%20for%20$4','_blank')" class="btn-primary">
-        💬 Buy via WhatsApp
-      </button>
-    </div>
-
-    <!-- Tier 3 -->
-    <div class="card" style="max-width: 280px; width: 100%; border-color: #00a2ff;">
-      <div style="font-size: 2.5rem; margin-bottom: 10px;">👑</div>
-      <h3>100,000 COINS</h3>
-      <p style="font-size: 1.5rem; font-weight: bold; color: #00a2ff; margin: 10px 0;">$7.00</p>
-      <p style="font-size: 0.9rem; color: #aaa; margin-bottom: 20px;">Best deal! Dominate the server economy.</p>
-      <button onclick="window.open('https://wa.me/923114140301?text=I%20want%20to%20buy%20100k%20Coins%20for%20$7','_blank')" class="btn-primary">
-        💬 Buy via WhatsApp
-      </button>
-    </div>
-
-  </div>
-
-
-  <!-- REDEEM CODE AREA -->
-  <div style="margin-top: 50px; display: flex; justify-content: center;">
-    <div class="card" style="max-width: 500px; width: 90%; border: 2px dashed #00a2ff; padding: 30px; border-radius: 20px; background: rgba(0,0,0,0.3);">
-      <div style="font-size: 2.5rem; margin-bottom: 10px;">🎁</div>
-      <h3 style="font-size: 1.6rem; color: #fff;">REDEEM CODE AREA</h3>
-      <p style="color: #bbb; margin: 10px 0 20px 0; font-size: 0.95rem;">
-        Paste your redeem code below along with your In-Game Name, then send it with a payment screenshot (SS) to the owner on WhatsApp to get your coins!
-      </p>
-
-      <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
-        <input type="text" id="ignInput" placeholder="Your Minecraft Username" style="padding: 12px 20px; border-radius: 50px; border: 1px solid #00a2ff; background: #111; color: #fff; font-size: 1rem; outline: none; text-align: center;">
-        <input type="text" id="codeInput" placeholder="Paste Redeem Code Here" style="padding: 12px 20px; border-radius: 50px; border: 1px solid #00a2ff; background: #111; color: #fff; font-size: 1rem; outline: none; text-align: center;">
+  <!-- Game Modes Section -->
+  <section id="modes">
+    <h2 class="section-title">🎮 OUR GAME MODES</h2>
+    <div class="grid-container">
+      <div class="card" style="border-top: 4px solid var(--lifesteal-red);">
+        <div class="card-icon">❤️</div>
+        <h3 style="color: var(--lifesteal-red);">Lifesteal SMP</h3>
+        <p>Kill players in PvP to steal their hearts! Craft custom heart items, build bases, and conquer rival teams.</p>
       </div>
 
-      <button onclick="sendRedeemToWhatsApp()" class="btn-primary" style="width: 100%;">
-        📱 Submit Code & Send SS to Owner
-      </button>
-    </div>
-  </div>
-
-</section>
-
-<script>
-function sendRedeemToWhatsApp() {
-  var username = document.getElementById('ignInput').value.trim();
-  var code = document.getElementById('codeInput').value.trim();
-
-  if(!username || !code) {
-    alert("Please enter both your Minecraft Username and your Redeem Code!");
-    return;
-  }
-
-  var message = "Hello Owner! I want to redeem my code.%0A%0A🎮 Username: " + encodeURIComponent(username) + "%0A🔑 Redeem Code: " + encodeURIComponent(code) + "%0A%0A(I am attaching my payment SS below)";
-  window.open("https://wa.me/923114140301?text=" + message, "_blank");
-}
-</script>
-
-
-
-
-
-
-<!-- FREQUENTLY ASKED QUESTIONS (FAQ) -->
-<section class="faq" style="text-align: center; margin: 60px 0;">
-  <h2>❓ FREQUENTLY ASKED QUESTIONS</h2>
-  <div style="max-width: 700px; margin: 30px auto 0 auto; padding: 0 15px;">
-
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)">
-        What if the server is offline when I try to join? <span>+</span>
+      <div class="card" style="border-top: 4px solid var(--bedwars-gold);">
+        <div class="card-icon">🛏️</div>
+        <h3 style="color: var(--bedwars-gold);">Bedwars</h3>
+        <p>Defend your bed, collect iron & gold from spawners, buy upgraded gear, and destroy enemy beds in sky arenas!</p>
       </div>
-      <div class="faq-answer">
-        Simply message the Owner on WhatsApp or Discord! We can quickly turn on the server for you, or grant you Aternos access permission so you can turn it on whenever you want to play.
+
+      <div class="card" style="border-top: 4px solid var(--primary);">
+        <div class="card-icon">💰</div>
+        <h3>Server Economy</h3>
+        <p>Trade with players, build market shops, earn coins, and become the richest player on the leaderboard.</p>
       </div>
     </div>
+  </section>
 
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)">
-        How do I join on Bedrock Edition? <span>+</span>
+  <!-- Server Info Section -->
+  <section>
+    <h2 class="section-title">🌐 SERVER INFORMATION</h2>
+    <div class="grid-container">
+      <div class="card">
+        <div class="card-icon">💻</div>
+        <h3>Java IP</h3>
+        <p style="color: var(--primary); font-weight: bold;">stormsteal.aternos.me</p>
       </div>
-      <div class="faq-answer">
-        Open Minecraft Bedrock Edition, click Servers -> Add Server. Enter IP <strong>stormsteal.aternos.me</strong> and Port <strong>22956</strong>.
+      <div class="card">
+        <div class="card-icon">📱</div>
+        <h3>Bedrock Port</h3>
+        <p style="color: var(--primary); font-weight: bold;">22956</p>
       </div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)">
-        How does Lifesteal work? <span>+</span>
-      </div>
-      <div class="faq-answer">
-        When you eliminate a player in PvP, you steal one of their hearts! If you lose all your hearts, you get temporarily eliminated until someone revives you.
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)">
-        How do I play Bedwars on Storm Steal? <span>+</span>
-      </div>
-      <div class="faq-answer">
-        Once you join the server, use the main lobby menu or NPC/command to enter the Bedwars arena. Protect your bed, collect resources, upgrade gear, and eliminate opponent beds!
+      <div class="card">
+        <div class="card-icon">🎮</div>
+        <h3>Supported Versions</h3>
+        <p style="color: var(--primary); font-weight: bold;">1.21.11+ (Cross-Play)</p>
       </div>
     </div>
+  </section>
 
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)">
-        How do I claim my purchased ranks or coins? <span>+</span>
+  <!-- Interactive Bedwars Calculator -->
+  <section id="tools">
+    <h2 class="section-title">📊 INTERACTIVE TOOLS</h2>
+    <div class="feature-box" style="border-color: var(--bedwars-gold);">
+      <h3 style="color: var(--bedwars-gold);">🛏️ Bedwars Item Cost Calculator</h3>
+      <p style="color: var(--text-muted);">Calculate how much Iron you need to buy your rush loadout!</p>
+      
+      <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 15px;">
+        <div>
+          <label style="display: block;">Armor Set:</label>
+          <select id="armorSelect" onchange="calculateCost()">
+            <option value="0">Leather Armor (Free)</option>
+            <option value="40">Chainmail Armor (40 Iron)</option>
+            <option value="120">Iron Armor (12 Gold)</option>
+          </select>
+        </div>
+        <div>
+          <label style="display: block;">Blocks:</label>
+          <select id="blockSelect" onchange="calculateCost()">
+            <option value="4">16 Wool (4 Iron)</option>
+            <option value="12">48 Wool (12 Iron)</option>
+            <option value="24">12 Endstone (24 Iron)</option>
+          </select>
+        </div>
       </div>
-      <div class="faq-answer">
-        Contact the owner on WhatsApp or open a support ticket in our Support Discord server with your payment screenshot and Minecraft username.
+      <h3 id="calcResult" style="color: var(--bedwars-gold); margin-top: 20px;">Total Cost: 4 Iron</h3>
+    </div>
+  </section>
+
+  <!-- Ranks Section -->
+  <section id="ranks">
+    <h2 class="section-title">👑 SERVER RANKS</h2>
+    <div class="grid-container">
+      
+      <div class="card">
+        <div class="card-icon">💎</div>
+        <h3>VIP</h3>
+        <p style="font-size: 1.4rem; font-weight: bold; color: var(--primary);">$5.00</p>
+        <p style="color: var(--text-muted);">Exclusive commands, cosmetics & lobby perks.</p>
+        <button onclick="buyRank('VIP', 5)" class="btn-primary" style="margin-top: 10px;">🛒 Buy VIP</button>
       </div>
+
+      <div class="card" style="border-color: var(--primary);">
+        <div class="card-icon">👑</div>
+        <h3>LEGENDARY</h3>
+        <p style="font-size: 1.4rem; font-weight: bold; color: var(--primary);">$10.00</p>
+        <p style="color: var(--text-muted);">Elite rank with custom titles and extra kits.</p>
+        <button onclick="buyRank('LEGENDARY', 10)" class="btn-primary" style="margin-top: 10px;">🛒 Buy LEGENDARY</button>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">⚡</div>
+        <h3>STORM</h3>
+        <p style="font-size: 1.4rem; font-weight: bold; color: var(--primary);">$15.00</p>
+        <p style="color: var(--text-muted);">Ultimate rank with maximum perks and rewards.</p>
+        <button onclick="buyRank('STORM', 15)" class="btn-primary" style="margin-top: 10px;">🛒 Buy STORM</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Buy Coins & Redeem Section -->
+  <section id="coins">
+    <h2 class="section-title">🪙 BUY IN-GAME COINS</h2>
+    <div class="grid-container">
+      
+      <div class="card">
+        <div class="card-icon">💰</div>
+        <h3>10,000 COINS</h3>
+        <p style="font-size: 1.5rem; font-weight: bold; color: var(--primary);">$1.00</p>
+        <button onclick="window.open('https://wa.me/923114140301?text=I%20want%20to%20buy%2010k%20Coins%20for%20$1','_blank')" class="btn-primary">Buy via WhatsApp</button>
+      </div>
+
+      <div class="card" style="border: 2px solid var(--primary);">
+        <div class="card-icon">💎</div>
+        <h3>50,000 COINS</h3>
+        <p style="font-size: 1.5rem; font-weight: bold; color: var(--primary);">$4.00</p>
+        <button onclick="window.open('https://wa.me/923114140301?text=I%20want%20to%20buy%2050k%20Coins%20for%20$4','_blank')" class="btn-primary">Buy via WhatsApp</button>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">👑</div>
+        <h3>100,000 COINS</h3>
+        <p style="font-size: 1.5rem; font-weight: bold; color: var(--primary);">$7.00</p>
+        <button onclick="window.open('https://wa.me/923114140301?text=I%20want%20to%20buy%20100k%20Coins%20for%20$7','_blank')" class="btn-primary">Buy via WhatsApp</button>
+      </div>
+
     </div>
 
-  </div>
-</section>
+    <!-- Redeem Area -->
+    <div class="feature-box" style="margin-top: 40px;">
+      <div style="font-size: 2.5rem; margin-bottom: 5px;">🎁</div>
+      <h3>REDEEM CODE AREA</h3>
+      <p style="color: var(--text-muted);">Enter your IGN and code below to claim coins on WhatsApp!</p>
+      
+      <div style="display: flex; flex-direction: column; gap: 10px; max-width: 400px; margin: 0 auto;">
+        <input type="text" id="ignInput" placeholder="Your Minecraft Username">
+        <input type="text" id="codeInput" placeholder="Paste Redeem Code Here">
+        <button onclick="sendRedeemToWhatsApp()" class="btn-primary" style="justify-content: center;">
+          📱 Submit Code to Owner
+        </button>
+      </div>
+    </div>
+  </section>
 
-<script>
-function toggleFaq(element) {
-  var answer = element.nextElementSibling;
-  var icon = element.querySelector('span');
-  if (answer.style.display === "block") {
-    answer.style.display = "none";
-    icon.innerHTML = "+";
-  } else {
-    answer.style.display = "block";
-    icon.innerHTML = "−";
-  }
-}
-</script>
+  <!-- FAQ Section -->
+  <section id="faq">
+    <h2 class="section-title">❓ FREQUENTLY ASKED QUESTIONS</h2>
+    <div style="max-width: 700px; margin: 0 auto; padding: 0 20px;">
+      
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          How do I play Bedwars on Storm Steal? <span>+</span>
+        </div>
+        <div class="faq-answer">
+          Join the server using our IP address, head to the Bedwars lobby, and enter any active queue or game portal!
+        </div>
+      </div>
 
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          How do I join on Bedrock (Mobile/Console)? <span>+</span>
+        </div>
+        <div class="faq-answer">
+          Add Server in Bedrock menu. Enter IP <strong>stormsteal.aternos.me</strong> and Port <strong>22956</strong>.
+        </div>
+      </div>
 
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          What if the server is offline? <span>+</span>
+        </div>
+        <div class="faq-answer">
+          Simply message the owner on WhatsApp or Discord and we will turn the server on for you immediately!
+        </div>
+      </div>
 
+    </div>
+  </section>
 
+  <footer>
+    <h3>Storm Steal Network</h3>
+    <p>Java IP: stormsteal.aternos.me | Bedrock Port: 22956</p>
+    <p>© 2026 Storm Steal Network. All Rights Reserved.</p>
+  </footer>
 
+  <!-- ========================================== -->
+  <!-- ⚡ ALL JAVASCRIPT (PASTED DIRECTLY IN HTML) -->
+  <!-- ========================================== -->
+  <script>
+    // Copy IP Function
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text);
+      alert("Copied to clipboard: " + text);
+    }
 
+    // Rank Purchase Quick Prompt
+    function buyRank(rankName, price) {
+      var username = prompt("Enter your Minecraft Username:");
+      if (username) {
+        var msg = "Hello Owner! I want to buy " + rankName + " rank for $" + price + ". My Username is: " + encodeURIComponent(username);
+        window.open("https://wa.me/923114140301?text=" + msg, "_blank");
+      }
+    }
 
-<section class="support" style="text-align: center; margin: 40px 0;">
+    // Bedwars Calculator Function
+    function calculateCost() {
+      var armor = parseInt(document.getElementById('armorSelect').value);
+      var blocks = parseInt(document.getElementById('blockSelect').value);
+      var total = armor + blocks;
+      document.getElementById('calcResult').innerHTML = "Total Cost: " + total + " Iron / Resources";
+    }
 
+    // Send Redeem Code to WhatsApp
+    function sendRedeemToWhatsApp() {
+      var username = document.getElementById('ignInput').value.trim();
+      var code = document.getElementById('codeInput').value.trim();
 
-<h2>CUSTOMER SUPPORT</h2>
+      if (!username || !code) {
+        alert("Please enter both your Username and Redeem Code!");
+        return;
+      }
 
+      var message = "Hello Owner! I want to redeem my code.%0A%0A🎮 Username: " + encodeURIComponent(username) + "%0A🔑 Redeem Code: " + encodeURIComponent(code);
+      window.open("https://wa.me/923114140301?text=" + message, "_blank");
+    }
 
-<div class="support-cards" style="display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; margin-top: 20px; align-items: stretch;">
-
-
-<div class="support-card" style="max-width: 320px; width: 100%; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 30px;">
-<div>
-<h3>💬 Discord Ticket Support</h3>
-<p style="margin-top: 10px; margin-bottom: 20px;">Open a support ticket in our official Discord server for fast help.</p>
-</div>
-<button onclick="window.open('https://discord.gg/4hAXKeqe3','_blank')" style="background-color: #00a2ff; color: #ffffff; border: none; padding: 14px 20px; border-radius: 50px; font-weight: 600; font-size: 1rem; cursor: pointer; width: 85%; min-height: 52px; display: flex; align-items: center; justify-content: center;">
-💬 Open Discord Ticket
-</button>
-</div>
-
-
-<div class="support-card" style="max-width: 320px; width: 100%; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 30px;">
-<div>
-<h3>📱 Direct Owner Support</h3>
-<p style="margin-top: 10px; margin-bottom: 20px;">Have urgent payment questions or rank issues? Message the owner.</p>
-</div>
-<button onclick="window.open('https://wa.me/923114140301?text=I%20need%20help%20with%20Storm%20Steal%20Server','_blank')" style="background-color: #00a2ff; color: #ffffff; border: none; padding: 14px 20px; border-radius: 50px; font-weight: 600; font-size: 1rem; cursor: pointer; width: 85%; min-height: 52px; display: flex; align-items: center; justify-content: center;">
-📱 Contact Owner
-</button>
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-<footer>
-
-
-<h2>Storm Steal</h2>
-
-
-<p>WELCOME TO STORM STEAL</p>
-
-
-<p><strong>Java IP:</strong> stormsteal.aternos.me</p>
-
-
-<p><strong>Bedrock Port:</strong> 22956</p>
-
-
-<p><strong>Supports Java & Bedrock | All Versions Welcome</strong></p>
-
-
-</footer>
-
-
-
-
-<script src="script.js"></script>
-
+    // Accordion Toggle for FAQ
+    function toggleFaq(element) {
+      var answer = element.nextElementSibling;
+      var icon = element.querySelector('span');
+      if (answer.style.display === "block") {
+        answer.style.display = "none";
+        icon.innerHTML = "+";
+      } else {
+        answer.style.display = "block";
+        icon.innerHTML = "−";
+      }
+    }
+  </script>
 
 </body>
-
 </html>
