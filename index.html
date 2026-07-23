@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Storm Steal | Lifesteal & Bedwars Network</title>
+  <title>Storm Steal Network | Lifesteal & Bedwars</title>
   <link rel="icon" type="image/png" href="logo.png.png">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 
   <!-- ========================================== -->
-  <!-- 🎨 ALL CSS STYLES (PASTED DIRECTLY IN HTML) -->
+  <!-- 🎨 COMPLETE STYLES (PASTED DIRECTLY IN HTML) -->
   <!-- ========================================== -->
   <style>
     :root {
@@ -23,27 +23,46 @@
       --text-muted: #94a3b8;
     }
 
-    * {
-      box-sizing: border-box;
-      scroll-behavior: smooth;
+    /* Dynamic Themes */
+    body.theme-red {
+      --primary: #ff0055;
+      --primary-dark: #b3003b;
     }
+    body.theme-gold {
+      --primary: #ffaa00;
+      --primary-dark: #cc8800;
+    }
+
+    * { box-sizing: border-box; scroll-behavior: smooth; }
 
     body {
       background-color: var(--bg-dark);
       color: var(--text-light);
       font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
+      overflow-x: hidden;
+      transition: background-color 0.4s ease;
     }
 
-    /* Announcement Banner */
-    .announcement-bar {
-      background: linear-gradient(90deg, #0051ff, #00a2ff);
+    /* News Ticker Bar */
+    .ticker-bar {
+      background: linear-gradient(90deg, var(--primary-dark), var(--primary));
       color: #fff;
-      text-align: center;
-      padding: 10px;
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 8px 0;
       font-weight: 600;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
+    }
+
+    .ticker-content {
+      display: inline-block;
+      animation: ticker 25s linear infinite;
+    }
+
+    @keyframes ticker {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
     }
 
     /* Navigation Bar */
@@ -54,37 +73,39 @@
       padding: 15px 5%;
       background: rgba(10, 12, 16, 0.95);
       backdrop-filter: blur(10px);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      position: sticky; top: 0; z-index: 1000;
       border-bottom: 1px solid var(--border-color);
     }
 
     .logo img { height: 45px; }
 
     .nav-links {
-      display: flex;
-      list-style: none;
-      gap: 20px;
-      margin: 0;
-      padding: 0;
+      display: flex; list-style: none; gap: 20px;
+      margin: 0; padding: 0;
     }
 
     .nav-links a {
-      color: var(--text-light);
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.3s ease;
+      color: var(--text-light); text-decoration: none;
+      font-weight: 600; transition: color 0.3s ease;
     }
 
-    .nav-links a:hover {
-      color: var(--primary);
+    .nav-links a:hover { color: var(--primary); }
+
+    /* Theme Switcher Controls */
+    .theme-picker {
+      display: flex; gap: 6px; align-items: center;
     }
+    .theme-dot {
+      width: 18px; height: 18px; border-radius: 50%;
+      cursor: pointer; border: 2px solid #fff;
+      transition: transform 0.2s;
+    }
+    .theme-dot:hover { transform: scale(1.2); }
 
     /* Hero Section */
     .hero {
       text-align: center;
-      padding: 70px 20px;
+      padding: 60px 20px 40px 20px;
       background: radial-gradient(circle at center, rgba(0, 162, 255, 0.15) 0%, transparent 70%);
     }
 
@@ -92,22 +113,46 @@
     .hero h1 { font-size: 3.2rem; font-weight: 900; margin: 0; color: #fff; text-shadow: 0 0 20px rgba(0,162,255,0.5); }
     .hero p { font-size: 1.2rem; color: var(--text-muted); margin-top: 10px; }
 
+    /* Live Server Status Widget */
+    .status-box {
+      background: var(--card-bg);
+      border: 2px solid var(--primary);
+      border-radius: 20px; padding: 20px;
+      max-width: 500px; margin: 20px auto;
+      box-shadow: 0 0 25px rgba(0, 162, 255, 0.2);
+    }
+
+    .status-dot {
+      display: inline-block; width: 12px; height: 12px;
+      border-radius: 50%; background-color: #ff3b30; margin-right: 8px;
+    }
+
+    .status-online { background-color: #25d366; box-shadow: 0 0 10px #25d366; }
+
+    /* Countdown Timer */
+    .countdown-box {
+      background: linear-gradient(135deg, rgba(255,170,0,0.1), rgba(0,162,255,0.1));
+      border: 1px solid var(--bedwars-gold);
+      border-radius: 15px; padding: 15px;
+      max-width: 600px; margin: 20px auto; text-align: center;
+    }
+
+    .timer-units {
+      display: flex; justify-content: center; gap: 20px; margin-top: 10px;
+    }
+    .timer-unit {
+      background: var(--card-bg); padding: 10px 15px; border-radius: 10px; min-width: 70px;
+    }
+    .timer-val { font-size: 1.5rem; font-weight: 800; color: var(--bedwars-gold); }
+
     /* Buttons */
     .btn-primary {
       background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: #fff;
-      border: none;
-      padding: 12px 26px;
-      border-radius: 50px;
-      font-weight: 700;
-      font-size: 0.95rem;
-      cursor: pointer;
+      color: #fff; border: none; padding: 12px 26px; border-radius: 50px;
+      font-weight: 700; font-size: 0.95rem; cursor: pointer;
       transition: all 0.3s ease;
       box-shadow: 0 4px 15px rgba(0, 162, 255, 0.3);
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
     }
 
     .btn-primary:hover {
@@ -117,104 +162,103 @@
 
     /* Cards & Grids */
     .section-title {
-      text-align: center;
-      font-size: 2.2rem;
-      margin: 50px 0 30px 0;
-      color: #fff;
+      text-align: center; font-size: 2.2rem; margin: 50px 0 30px 0; color: #fff;
     }
 
     .grid-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
+      gap: 25px; max-width: 1200px; margin: 0 auto; padding: 0 20px;
     }
 
     .card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 15px;
-      padding: 25px;
-      text-align: center;
+      background: var(--card-bg); border: 1px solid var(--border-color);
+      border-radius: 15px; padding: 25px; text-align: center;
       transition: transform 0.3s ease, border-color 0.3s ease;
     }
 
-    .card:hover {
-      transform: translateY(-5px);
-      border-color: var(--primary);
-    }
-
+    .card:hover { transform: translateY(-5px); border-color: var(--primary); }
     .card-icon { font-size: 2.5rem; margin-bottom: 12px; }
 
     /* Custom Section Boxes */
     .feature-box {
-      background: var(--card-bg);
-      border: 2px dashed var(--primary);
-      border-radius: 20px;
-      padding: 30px;
-      max-width: 800px;
-      margin: 30px auto;
-      text-align: center;
+      background: var(--card-bg); border: 2px dashed var(--primary);
+      border-radius: 20px; padding: 30px; max-width: 800px;
+      margin: 30px auto; text-align: center;
     }
 
     /* Inputs & Selects */
     input, select {
-      padding: 12px 20px;
-      border-radius: 50px;
-      border: 1px solid var(--primary);
-      background: #0a0c10;
-      color: #fff;
-      font-size: 1rem;
-      outline: none;
-      text-align: center;
-      margin: 5px 0;
+      padding: 12px 20px; border-radius: 50px;
+      border: 1px solid var(--primary); background: #0a0c10;
+      color: #fff; font-size: 1rem; outline: none; text-align: center; margin: 5px 0;
+    }
+
+    /* Tabs Styling */
+    .tab-buttons { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
+    .tab-btn {
+      background: var(--card-bg); border: 1px solid var(--border-color);
+      color: #fff; padding: 10px 20px; border-radius: 25px;
+      cursor: pointer; font-weight: 600;
+    }
+    .tab-btn.active { background: var(--primary); border-color: var(--primary); }
+
+    /* Skin Preview Widget */
+    .skin-viewer {
+      display: flex; flex-direction: column; align-items: center;
+      background: var(--card-bg); border-radius: 15px; padding: 20px;
+      border: 1px solid var(--border-color); margin-top: 20px;
+    }
+    .skin-avatar {
+      width: 100px; height: 100px; border-radius: 10px;
+      background-size: cover; margin-bottom: 10px; border: 2px solid var(--primary);
     }
 
     /* FAQ Styles */
     .faq-item {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      margin-bottom: 15px;
-      text-align: left;
-      overflow: hidden;
+      background: var(--card-bg); border: 1px solid var(--border-color);
+      border-radius: 12px; margin-bottom: 15px; text-align: left; overflow: hidden;
     }
 
     .faq-question {
-      padding: 18px 25px;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: #fff;
+      padding: 18px 25px; font-weight: 600; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center; color: #fff;
     }
 
     .faq-answer {
-      padding: 0 25px 18px 25px;
-      color: var(--text-muted);
-      display: none;
-      font-size: 0.95rem;
-      line-height: 1.6;
+      padding: 0 25px 18px 25px; color: var(--text-muted); display: none;
+      font-size: 0.95rem; line-height: 1.6;
     }
 
+    /* Toast Notification */
+    #toast {
+      visibility: hidden; min-width: 250px; background-color: var(--primary);
+      color: #fff; text-align: center; border-radius: 50px; padding: 16px;
+      position: fixed; z-index: 2000; left: 50%; bottom: 30px;
+      transform: translateX(-50%); box-shadow: 0 5px 20px rgba(0,0,0,0.5); font-weight: bold;
+    }
+    #toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
+
+    @keyframes fadein { from { bottom: 0; opacity: 0; } to { bottom: 30px; opacity: 1; } }
+    @keyframes fadeout { from { bottom: 30px; opacity: 1; } to { bottom: 0; opacity: 0; } }
+
     footer {
-      text-align: center;
-      padding: 40px 20px;
-      border-top: 1px solid var(--border-color);
-      margin-top: 60px;
-      color: var(--text-muted);
+      text-align: center; padding: 40px 20px;
+      border-top: 1px solid var(--border-color); margin-top: 60px; color: var(--text-muted);
     }
   </style>
 </head>
 
 <body>
 
-  <!-- Announcement Header -->
-  <div class="announcement-bar">
-    🎉 SPECIAL EVENT: Play Bedwars & Get Bonus Coins on Store purchases! Contact Owner on WhatsApp!
+  <!-- Toast Bar -->
+  <div id="toast">Copied to Clipboard!</div>
+
+  <!-- News Ticker -->
+  <div class="ticker-bar">
+    <div class="ticker-content">
+      🎉 Welcome to Storm Steal Network! &nbsp;&nbsp;•&nbsp;&nbsp; 🛏️ Bedwars Game Mode Released! &nbsp;&nbsp;•&nbsp;&nbsp; 🪙 Buy In-Game Coins via WhatsApp & Direct Support! &nbsp;&nbsp;•&nbsp;&nbsp; ⚡ Support Java & Bedrock 1.21.11+
+    </div>
   </div>
 
   <!-- Navigation Bar -->
@@ -224,19 +268,27 @@
     </div>
     <ul class="nav-links">
       <li><a href="#home">Home</a></li>
-      <li><a href="#modes">Game Modes</a></li>
+      <li><a href="#status">Status</a></li>
+      <li><a href="#modes">Modes</a></li>
+      <li><a href="#tools">Tools</a></li>
       <li><a href="#ranks">Ranks</a></li>
       <li><a href="#coins">Coins</a></li>
-      <li><a href="#tools">Calculator</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
+
+    <!-- Dynamic Theme Switcher -->
+    <div class="theme-picker">
+      <div class="theme-dot" style="background: #00a2ff;" onclick="setTheme('default')" title="Blue Theme"></div>
+      <div class="theme-dot" style="background: #ff0055;" onclick="setTheme('red')" title="Lifesteal Red"></div>
+      <div class="theme-dot" style="background: #ffaa00;" onclick="setTheme('gold')" title="Bedwars Gold"></div>
+    </div>
   </nav>
 
   <!-- Hero Section -->
   <section id="home" class="hero">
     <img src="logo.png.png" class="hero-logo" alt="Storm Steal Logo">
     <h1>STORM STEAL</h1>
-    <p>The Ultimate Cross-Platform Lifesteal & Bedwars Experience</p>
+    <p>The Ultimate Cross-Platform Lifesteal & Bedwars Network</p>
 
     <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 25px;">
       <button onclick="copyToClipboard('stormsteal.aternos.me')" class="btn-primary">📋 Copy Java IP</button>
@@ -245,7 +297,39 @@
     </div>
   </section>
 
-  <!-- Server Access/Aternos Notice -->
+  <!-- LIVE Server Status Widget -->
+  <section id="status">
+    <div class="status-box">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="text-align: left;">
+          <h3 style="margin: 0; color: #fff;">
+            <span id="statusDot" class="status-dot"></span>
+            <span id="statusText">Checking Status...</span>
+          </h3>
+          <p style="margin: 5px 0 0 0; color: var(--text-muted); font-size: 0.85rem;" id="serverIPText">
+            IP: stormsteal.aternos.me
+          </p>
+        </div>
+        <div style="text-align: right;">
+          <p style="margin: 0; font-weight: bold; color: var(--primary);" id="playerCount">-- / --</p>
+          <p style="margin: 2px 0 0 0; color: var(--text-muted); font-size: 0.8rem;">Players Online</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Event Countdown Widget -->
+    <div class="countdown-box">
+      <h3 style="margin: 0; color: #fff;">🏆 NEXT SERVER EVENT IN:</h3>
+      <div class="timer-units">
+        <div class="timer-unit"><div class="timer-val" id="days">02</div><span>Days</span></div>
+        <div class="timer-unit"><div class="timer-val" id="hours">14</div><span>Hours</span></div>
+        <div class="timer-unit"><div class="timer-val" id="mins">35</div><span>Mins</span></div>
+        <div class="timer-unit"><div class="timer-val" id="secs">00</div><span>Secs</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Aternos Startup Helper -->
   <div class="feature-box">
     <div style="font-size: 2.5rem; margin-bottom: 10px;">⚡</div>
     <h3 style="font-size: 1.5rem; color: #fff; margin-top: 0;">SERVER OFFLINE? NEED IT TURNED ON?</h3>
@@ -286,86 +370,101 @@
     </div>
   </section>
 
-  <!-- Server Info Section -->
-  <section>
-    <h2 class="section-title">🌐 SERVER INFORMATION</h2>
-    <div class="grid-container">
-      <div class="card">
-        <div class="card-icon">💻</div>
-        <h3>Java IP</h3>
-        <p style="color: var(--primary); font-weight: bold;">stormsteal.aternos.me</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">📱</div>
-        <h3>Bedrock Port</h3>
-        <p style="color: var(--primary); font-weight: bold;">22956</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">🎮</div>
-        <h3>Supported Versions</h3>
-        <p style="color: var(--primary); font-weight: bold;">1.21.11+ (Cross-Play)</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Interactive Bedwars Calculator -->
+  <!-- Player Avatar Viewer & Interactive Tools -->
   <section id="tools">
     <h2 class="section-title">📊 INTERACTIVE TOOLS</h2>
-    <div class="feature-box" style="border-color: var(--bedwars-gold);">
-      <h3 style="color: var(--bedwars-gold);">🛏️ Bedwars Item Cost Calculator</h3>
-      <p style="color: var(--text-muted);">Calculate how much Iron you need to buy your rush loadout!</p>
+    <div class="grid-container">
       
-      <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 15px;">
-        <div>
-          <label style="display: block;">Armor Set:</label>
+      <!-- Minecraft Skin Avatar Viewer -->
+      <div class="card">
+        <h3>👤 Player Skin Viewer</h3>
+        <p style="color: var(--text-muted); font-size: 0.85rem;">Check your live avatar head on the server!</p>
+        <div class="skin-viewer">
+          <div id="skinAvatar" class="skin-avatar" style="background-image: url('https://mc-heads.net/avatar/Steve');"></div>
+          <input type="text" id="skinInput" placeholder="Enter MC Username" oninput="updateSkinAvatar()">
+        </div>
+      </div>
+
+      <!-- Bedwars Calculator -->
+      <div class="card" style="border-color: var(--bedwars-gold);">
+        <h3 style="color: var(--bedwars-gold);">🛏️ Bedwars Item Calculator</h3>
+        <p style="color: var(--text-muted); font-size: 0.85rem;">Calculate Iron cost for your rush gear!</p>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
           <select id="armorSelect" onchange="calculateCost()">
             <option value="0">Leather Armor (Free)</option>
             <option value="40">Chainmail Armor (40 Iron)</option>
-            <option value="120">Iron Armor (12 Gold)</option>
+            <option value="120">Iron Armor (12 Gold eq.)</option>
           </select>
-        </div>
-        <div>
-          <label style="display: block;">Blocks:</label>
+          
           <select id="blockSelect" onchange="calculateCost()">
             <option value="4">16 Wool (4 Iron)</option>
             <option value="12">48 Wool (12 Iron)</option>
             <option value="24">12 Endstone (24 Iron)</option>
           </select>
         </div>
+        <h4 id="calcResult" style="color: var(--bedwars-gold); margin-top: 15px;">Total Cost: 4 Iron</h4>
       </div>
-      <h3 id="calcResult" style="color: var(--bedwars-gold); margin-top: 20px;">Total Cost: 4 Iron</h3>
+
+      <!-- Lifesteal HP Calculator -->
+      <div class="card" style="border-color: var(--lifesteal-red);">
+        <h3 style="color: var(--lifesteal-red);">❤️ Lifesteal HP Calculator</h3>
+        <p style="color: var(--text-muted); font-size: 0.85rem;">Calculate total HP based on kills & deaths!</p>
+        <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
+          <input type="number" id="killCount" placeholder="Kills" value="0" style="width: 100px;" oninput="calcHearts()">
+          <input type="number" id="deathCount" placeholder="Deaths" value="0" style="width: 100px;" oninput="calcHearts()">
+        </div>
+        <h4 id="hpDisplay" style="color: var(--lifesteal-red); margin-top: 15px;">Your HP: 20 HP (10 Hearts)</h4>
+      </div>
+
     </div>
   </section>
 
-  <!-- Ranks Section -->
+  <!-- Interactive Rank Kit Perks Previewer -->
   <section id="ranks">
-    <h2 class="section-title">👑 SERVER RANKS</h2>
-    <div class="grid-container">
-      
-      <div class="card">
-        <div class="card-icon">💎</div>
-        <h3>VIP</h3>
-        <p style="font-size: 1.4rem; font-weight: bold; color: var(--primary);">$5.00</p>
-        <p style="color: var(--text-muted);">Exclusive commands, cosmetics & lobby perks.</p>
-        <button onclick="buyRank('VIP', 5)" class="btn-primary" style="margin-top: 10px;">🛒 Buy VIP</button>
+    <h2 class="section-title">👑 SERVER RANKS & KITS</h2>
+    
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="openRankTab(event, 'vipKit')">VIP Rank ($5)</button>
+      <button class="tab-btn" onclick="openRankTab(event, 'legendKit')">LEGENDARY ($10)</button>
+      <button class="tab-btn" onclick="openRankTab(event, 'stormKit')">STORM ($15)</button>
+    </div>
+
+    <div style="max-width: 800px; margin: 0 auto; padding: 0 20px;">
+      <div id="vipKit" class="rank-content card">
+        <h3 style="color: var(--primary);">💎 VIP Rank Details</h3>
+        <ul style="text-align: left; display: inline-block; color: var(--text-muted);">
+          <li>✔ Green [VIP] Prefix in Chat</li>
+          <li>✔ Access to /fly in Spawn & Lobby</li>
+          <li>✔ 1x VIP Weekly Kit (Diamond Gear + Hearts)</li>
+          <li>✔ +2 Extra Home Locations (/sethome)</li>
+        </ul>
+        <br><br>
+        <button onclick="buyRank('VIP', 5)" class="btn-primary">🛒 Buy VIP Rank ($5)</button>
       </div>
 
-      <div class="card" style="border-color: var(--primary);">
-        <div class="card-icon">👑</div>
-        <h3>LEGENDARY</h3>
-        <p style="font-size: 1.4rem; font-weight: bold; color: var(--primary);">$10.00</p>
-        <p style="color: var(--text-muted);">Elite rank with custom titles and extra kits.</p>
-        <button onclick="buyRank('LEGENDARY', 10)" class="btn-primary" style="margin-top: 10px;">🛒 Buy LEGENDARY</button>
+      <div id="legendKit" class="rank-content card" style="display:none;">
+        <h3 style="color: var(--bedwars-gold);">👑 LEGENDARY Rank Details</h3>
+        <ul style="text-align: left; display: inline-block; color: var(--text-muted);">
+          <li>✔ Gold [LEGENDARY] Prefix in Chat</li>
+          <li>✔ Priority Queue Access when full</li>
+          <li>✔ 1x Legendary Kit (Netherite Sword + Golden Apples)</li>
+          <li>✔ +5 Extra Home Locations (/sethome)</li>
+        </ul>
+        <br><br>
+        <button onclick="buyRank('LEGENDARY', 10)" class="btn-primary">🛒 Buy LEGENDARY Rank ($10)</button>
       </div>
 
-      <div class="card">
-        <div class="card-icon">⚡</div>
-        <h3>STORM</h3>
-        <p style="font-size: 1.4rem; font-weight: bold; color: var(--primary);">$15.00</p>
-        <p style="color: var(--text-muted);">Ultimate rank with maximum perks and rewards.</p>
-        <button onclick="buyRank('STORM', 15)" class="btn-primary" style="margin-top: 10px;">🛒 Buy STORM</button>
+      <div id="stormKit" class="rank-content card" style="display:none;">
+        <h3 style="color: var(--lifesteal-red);">⚡ STORM Ultimate Rank</h3>
+        <ul style="text-align: left; display: inline-block; color: var(--text-muted);">
+          <li>✔ Red Animated [STORM] Prefix in Chat</li>
+          <li>✔ All Perks from VIP & LEGENDARY</li>
+          <li>✔ 1x Ultimate Storm Kit + Free Revive Heart weekly</li>
+          <li>✔ Unlimited Home Locations + Custom Nickname Access</li>
+        </ul>
+        <br><br>
+        <button onclick="buyRank('STORM', 15)" class="btn-primary">🛒 Buy STORM Rank ($15)</button>
       </div>
-
     </div>
   </section>
 
@@ -413,6 +512,18 @@
     </div>
   </section>
 
+  <!-- Discord Banner Section -->
+  <section style="margin-top: 40px;">
+    <div class="feature-box" style="border-color: #5865F2; background: rgba(88, 101, 242, 0.05);">
+      <div style="font-size: 2.5rem;">💬</div>
+      <h3 style="color: #5865F2;">JOIN OUR DISCORD COMMUNITY</h3>
+      <p style="color: var(--text-muted);">Get server announcements, trade with players, report bugs, and chat with staff!</p>
+      <button onclick="window.open('https://discord.gg/xtYvVqDqT','_blank')" class="btn-primary" style="background: #5865F2;">
+        Join Discord Community
+      </button>
+    </div>
+  </section>
+
   <!-- FAQ Section -->
   <section id="faq">
     <h2 class="section-title">❓ FREQUENTLY ASKED QUESTIONS</h2>
@@ -455,16 +566,84 @@
   </footer>
 
   <!-- ========================================== -->
-  <!-- ⚡ ALL JAVASCRIPT (PASTED DIRECTLY IN HTML) -->
+  <!-- ⚡ ALL JAVASCRIPT LOGIC (PASTED DIRECTLY)  -->
   <!-- ========================================== -->
   <script>
-    // Copy IP Function
-    function copyToClipboard(text) {
-      navigator.clipboard.writeText(text);
-      alert("Copied to clipboard: " + text);
+    // Theme Switcher Logic
+    function setTheme(theme) {
+      document.body.className = '';
+      if (theme === 'red') document.body.classList.add('theme-red');
+      if (theme === 'gold') document.body.classList.add('theme-gold');
     }
 
-    // Rank Purchase Quick Prompt
+    // Dynamic Skin Head Viewer
+    function updateSkinAvatar() {
+      var username = document.getElementById('skinInput').value.trim();
+      var avatar = document.getElementById('skinAvatar');
+      if (username.length > 2) {
+        avatar.style.backgroundImage = "url('https://mc-heads.net/avatar/" + encodeURIComponent(username) + "')";
+      } else {
+        avatar.style.backgroundImage = "url('https://mc-heads.net/avatar/Steve')";
+      }
+    }
+
+    // Live Server Event Countdown Ticker
+    function startCountdown() {
+      var countDate = new Date().getTime() + (2 * 24 * 60 * 60 * 1000); // 2 Days Event
+      setInterval(function() {
+        var now = new Date().getTime();
+        var gap = countDate - now;
+
+        var d = Math.floor(gap / (1000 * 60 * 60 * 24));
+        var h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
+        var s = Math.floor((gap % (1000 * 60)) / 1000);
+
+        document.getElementById('days').innerText = d < 10 ? '0' + d : d;
+        document.getElementById('hours').innerText = h < 10 ? '0' + h : h;
+        document.getElementById('mins').innerText = m < 10 ? '0' + m : m;
+        document.getElementById('secs').innerText = s < 10 ? '0' + s : s;
+      }, 1000);
+    }
+    startCountdown();
+
+    // Live Server Status Fetcher from API
+    async function checkServerStatus() {
+      const statusText = document.getElementById('statusText');
+      const statusDot = document.getElementById('statusDot');
+      const playerCount = document.getElementById('playerCount');
+
+      try {
+        const response = await fetch('https://api.mcsrvstat.us/2/stormsteal.aternos.me');
+        const data = await response.json();
+
+        if (data.online) {
+          statusText.innerText = 'ONLINE';
+          statusDot.classList.add('status-online');
+          playerCount.innerText = data.players.online + ' / ' + data.players.max;
+        } else {
+          statusText.innerText = 'OFFLINE (Aternos)';
+          statusDot.classList.remove('status-online');
+          playerCount.innerText = '0 / --';
+        }
+      } catch (e) {
+        statusText.innerText = 'Aternos Server';
+        playerCount.innerText = 'Offline/Idle';
+      }
+    }
+    checkServerStatus();
+    setInterval(checkServerStatus, 60000);
+
+    // Toast Notification & Copy Function
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text);
+      var toast = document.getElementById("toast");
+      toast.innerText = "Copied to clipboard: " + text;
+      toast.className = "show";
+      setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
+    }
+
+    // Rank Purchase Prompt
     function buyRank(rankName, price) {
       var username = prompt("Enter your Minecraft Username:");
       if (username) {
@@ -473,12 +652,36 @@
       }
     }
 
-    // Bedwars Calculator Function
+    // Bedwars Calculator
     function calculateCost() {
       var armor = parseInt(document.getElementById('armorSelect').value);
       var blocks = parseInt(document.getElementById('blockSelect').value);
       var total = armor + blocks;
       document.getElementById('calcResult').innerHTML = "Total Cost: " + total + " Iron / Resources";
+    }
+
+    // Lifesteal Heart Calculator
+    function calcHearts() {
+      var kills = parseInt(document.getElementById('killCount').value) || 0;
+      var deaths = parseInt(document.getElementById('deathCount').value) || 0;
+      var totalHearts = 10 + kills - deaths;
+      if (totalHearts < 1) totalHearts = 0;
+      document.getElementById('hpDisplay').innerHTML = "Your HP: " + (totalHearts * 2) + " HP (" + totalHearts + " Hearts)";
+    }
+
+    // Rank Kit Tab Switcher
+    function openRankTab(evt, tabName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("rank-content");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tab-btn");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(tabName).style.display = "block";
+      evt.currentTarget.className += " active";
     }
 
     // Send Redeem Code to WhatsApp
