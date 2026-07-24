@@ -6,20 +6,16 @@
     <title>Store | Storm Steal Network</title>
     <!-- Font Awesome Icons & Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Space+Grotesk:wght@500;700;900&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-primary: #0a0a0f;
-            --bg-secondary: #12121c;
-            --bg-card: #1a1a28;
+            --bg-primary: #08080d;
+            --bg-secondary: #0f0f18;
+            --bg-card: #151522;
             --text-main: #f0f2f5;
             --text-muted: #8c90a4;
             --border-color: rgba(255, 255, 255, 0.1);
-            
-            /* Theme Colors */
-            --vip-gold: #ffd700;
-            --legendary-purple: #9d4edd;
             --coin-yellow: #f1c40f;
         }
 
@@ -37,6 +33,7 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            overflow-x: hidden;
         }
 
         /* Canvas particles */
@@ -54,7 +51,7 @@
         header {
             position: sticky;
             top: 0;
-            background: rgba(18, 18, 28, 0.9);
+            background: rgba(15, 15, 24, 0.95);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-color);
             z-index: 1000;
@@ -77,9 +74,9 @@
         }
 
         .logo i {
-            color: #ff2a5f;
+            color: #ff0055;
             font-size: 1.8rem;
-            filter: drop-shadow(0 0 8px #ff2a5f);
+            filter: drop-shadow(0 0 10px #ff0055);
         }
 
         nav a {
@@ -94,7 +91,7 @@
         }
 
         nav a:hover {
-            color: #ff2a5f;
+            color: #ff0055;
         }
 
         /* Store Hero */
@@ -104,11 +101,11 @@
         }
 
         .store-hero h1 {
-            font-size: 3rem;
+            font-size: 3.2rem;
             font-weight: 900;
             text-transform: uppercase;
             margin-bottom: 10px;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
         }
 
         .store-hero p {
@@ -120,7 +117,7 @@
 
         /* Container */
         .container {
-            max-width: 1200px;
+            max-width: 1250px;
             margin: 0 auto;
             padding: 10px 20px 60px;
             flex: 1;
@@ -129,117 +126,22 @@
         /* Section Titles */
         .section-title {
             text-align: center;
-            font-size: 1.8rem;
-            font-weight: 800;
+            font-size: 2rem;
+            font-weight: 900;
             text-transform: uppercase;
-            margin: 30px 0 20px;
-            letter-spacing: 1px;
+            margin: 40px 0 25px;
+            letter-spacing: 2px;
             color: #fff;
         }
 
-        /* Coins Grid */
-        .coins-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .coin-card {
-            background: var(--bg-card);
-            border: 2px solid var(--coin-yellow);
-            box-shadow: 0 0 15px rgba(241, 196, 15, 0.2);
-            border-radius: 16px;
-            padding: 25px 20px;
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .coin-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 25px rgba(241, 196, 15, 0.5);
-        }
-
-        .coin-icon {
-            font-size: 2.5rem;
-            color: var(--coin-yellow);
-            margin-bottom: 10px;
-        }
-
-        .coin-amount {
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: #fff;
-        }
-
-        .coin-price {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--coin-yellow);
-            margin: 10px 0 15px;
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        /* Ranks Grid */
-        .ranks-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 20px;
-        }
-
-        .rank-card {
-            background: var(--bg-card);
-            border-radius: 16px;
-            padding: 35px 25px;
-            text-align: center;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .rank-card:hover {
-            transform: translateY(-8px);
-        }
-
-        /* VIP Rank */
-        .rank-vip {
-            border: 2px solid var(--vip-gold);
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.15);
-        }
-        .rank-vip:hover {
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
-        }
-        .rank-vip .rank-title { color: var(--vip-gold); }
-        .rank-vip .btn-buy {
-            background: var(--vip-gold);
-            color: #000;
-        }
-
-        /* LEGENDARY Rank */
-        .rank-legendary {
-            border: 2px solid var(--legendary-purple);
-            box-shadow: 0 0 15px rgba(157, 78, 221, 0.25);
-        }
-        .rank-legendary:hover {
-            box-shadow: 0 0 30px rgba(157, 78, 221, 0.6);
-        }
-        .rank-legendary .rank-title { color: var(--legendary-purple); }
-        .rank-legendary .btn-buy {
-            background: var(--legendary-purple);
-            color: #fff;
-        }
-
-        /* ================= RAINBOW BORDER EFFECT ================= */
+        /* ================= ALL-CARD RAINBOW OUTLINE ================= */
         @keyframes rainbowGlow {
-            0% { border-color: #ff0055; box-shadow: 0 0 20px rgba(255, 0, 85, 0.5); }
-            20% { border-color: #ff9900; box-shadow: 0 0 20px rgba(255, 153, 0, 0.5); }
-            40% { border-color: #33ff00; box-shadow: 0 0 20px rgba(51, 255, 0, 0.5); }
-            60% { border-color: #00ffff; box-shadow: 0 0 20px rgba(0, 255, 255, 0.5); }
-            80% { border-color: #9900ff; box-shadow: 0 0 20px rgba(153, 0, 255, 0.5); }
-            100% { border-color: #ff0055; box-shadow: 0 0 20px rgba(255, 0, 85, 0.5); }
+            0% { border-color: #ff0055; box-shadow: 0 0 15px rgba(255, 0, 85, 0.4); }
+            20% { border-color: #ff9900; box-shadow: 0 0 15px rgba(255, 153, 0, 0.4); }
+            40% { border-color: #33ff00; box-shadow: 0 0 15px rgba(51, 255, 0, 0.4); }
+            60% { border-color: #00ffff; box-shadow: 0 0 15px rgba(0, 255, 255, 0.4); }
+            80% { border-color: #9900ff; box-shadow: 0 0 15px rgba(153, 0, 255, 0.4); }
+            100% { border-color: #ff0055; box-shadow: 0 0 15px rgba(255, 0, 85, 0.4); }
         }
 
         .rainbow-border {
@@ -261,28 +163,78 @@
             100% { background-position: 200% center; }
         }
 
-        .badge-best {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(90deg, #ff0055, #9900ff);
+        /* Coins Grid */
+        .coins-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .coin-card {
+            background: var(--bg-card);
+            border-radius: 18px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .coin-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .coin-icon {
+            font-size: 2.8rem;
+            color: var(--coin-yellow);
+            margin-bottom: 12px;
+            filter: drop-shadow(0 0 8px var(--coin-yellow));
+        }
+
+        .coin-amount {
+            font-size: 1.7rem;
+            font-weight: 800;
             color: #fff;
-            padding: 6px 16px;
+        }
+
+        .coin-price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--coin-yellow);
+            margin: 10px 0 18px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Ranks Grid */
+        .ranks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+            gap: 30px;
+            margin-top: 25px;
+            align-items: center;
+        }
+
+        .rank-card {
+            background: var(--bg-card);
             border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 0 10px rgba(255, 0, 85, 0.5);
+            padding: 35px 25px;
+            text-align: center;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s;
+        }
+
+        .rank-card:hover {
+            transform: translateY(-8px);
         }
 
         .rank-title {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
         .perks-list {
@@ -302,13 +254,13 @@
         }
 
         .perks-list li i {
-            color: #2ec4b6;
+            color: #00ffff;
         }
 
         .btn-buy {
             text-decoration: none;
             padding: 14px 20px;
-            border-radius: 10px;
+            border-radius: 12px;
             font-weight: 800;
             font-size: 1rem;
             text-transform: uppercase;
@@ -318,18 +270,105 @@
             justify-content: center;
             gap: 10px;
             transition: 0.3s;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .btn-buy:hover {
-            opacity: 0.9;
-            transform: scale(1.02);
+            transform: scale(1.03);
+            filter: brightness(1.2);
+        }
+
+        /* ================= ⚡ ULTIMATE 100000% GOD-TIER STORM RANK CSS ⚡ ================= */
+        @keyframes stormGodBorder {
+            0% {
+                border-color: #ff0055;
+                box-shadow: 0 0 25px #ff0055, 0 0 50px rgba(255, 0, 85, 0.6), inset 0 0 15px rgba(255, 0, 85, 0.3);
+            }
+            25% {
+                border-color: #00ffff;
+                box-shadow: 0 0 25px #00ffff, 0 0 50px rgba(0, 255, 255, 0.6), inset 0 0 15px rgba(0, 255, 255, 0.3);
+            }
+            50% {
+                border-color: #9900ff;
+                box-shadow: 0 0 35px #9900ff, 0 0 65px rgba(153, 0, 255, 0.8), inset 0 0 20px rgba(153, 0, 255, 0.4);
+            }
+            75% {
+                border-color: #ff9900;
+                box-shadow: 0 0 25px #ff9900, 0 0 50px rgba(255, 153, 0, 0.6), inset 0 0 15px rgba(255, 153, 0, 0.3);
+            }
+            100% {
+                border-color: #ff0055;
+                box-shadow: 0 0 25px #ff0055, 0 0 50px rgba(255, 0, 85, 0.6), inset 0 0 15px rgba(255, 0, 85, 0.3);
+            }
+        }
+
+        @keyframes stormPulse {
+            0%, 100% { transform: scale(1.05); }
+            50% { transform: scale(1.08); }
+        }
+
+        .rank-storm-god {
+            background: linear-gradient(145deg, #180928, #0d0614, #1d0720);
+            border: 3px solid #ff0055;
+            border-radius: 22px;
+            animation: stormGodBorder 2.5s linear infinite, stormPulse 4s ease-in-out infinite;
+            z-index: 10;
+            padding: 40px 28px;
+        }
+
+        .rank-storm-god:hover {
+            animation: stormGodBorder 1s linear infinite;
+            transform: scale(1.1) translateY(-10px) !important;
+        }
+
+        .badge-god {
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, #ff0055, #9900ff, #00ffff, #ff0055);
+            background-size: 300% 100%;
+            animation: rainbowText 2s linear infinite;
+            color: #fff;
+            padding: 8px 22px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 0 20px rgba(255, 0, 85, 0.8);
+            border: 1px solid #fff;
+            white-space: nowrap;
+        }
+
+        .storm-god-title {
+            font-size: 2.8rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            filter: drop-shadow(0 0 15px rgba(255, 0, 85, 0.8));
+        }
+
+        .btn-storm-god {
+            background: linear-gradient(90deg, #ff0055, #9900ff, #00ffff);
+            background-size: 200% auto;
+            animation: rainbowText 2s linear infinite;
+            color: #fff !important;
+            font-size: 1.1rem;
+            font-weight: 900;
+            padding: 16px;
+            box-shadow: 0 0 25px rgba(255, 0, 85, 0.6);
+            border: none;
+        }
+
+        .btn-storm-god:hover {
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.9);
         }
 
         /* Info Banner */
         .info-box {
             background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 25px;
             margin-top: 50px;
             display: flex;
@@ -377,31 +416,31 @@
         <div class="coins-grid">
             
             <!-- Pack 1 -->
-            <div class="coin-card">
+            <div class="coin-card rainbow-border">
                 <div class="coin-icon"><i class="fa-solid fa-coins"></i></div>
                 <div class="coin-amount">50,000 Coins</div>
                 <div class="coin-price">$1.00</div>
-                <a href="https://wa.me/923114140301?text=Hello!%20I%20want%20to%20buy%2050k%20Coins%20for%20$1%20on%20Storm%20Steal%20Network" target="_blank" class="btn-buy" style="background: var(--coin-yellow); color: #000;">
+                <a href="https://wa.me/923114140301?text=Hello!%20I%20want%20to%20buy%2050k%20Coins%20for%20$1%20on%20Storm%20Steal%20Network" target="_blank" class="btn-buy" style="background: var(--coin-yellow); color: #000; font-weight: 800;">
                     <i class="fa-brands fa-whatsapp"></i> Buy Coins
                 </a>
             </div>
 
             <!-- Pack 2 -->
-            <div class="coin-card">
+            <div class="coin-card rainbow-border">
                 <div class="coin-icon"><i class="fa-solid fa-coins"></i></div>
                 <div class="coin-amount">100,000 Coins</div>
                 <div class="coin-price">$2.00</div>
-                <a href="https://wa.me/923114140301?text=Hello!%20I%20want%20to%20buy%20100k%20Coins%20for%20$2%20on%20Storm%20Steal%20Network" target="_blank" class="btn-buy" style="background: var(--coin-yellow); color: #000;">
+                <a href="https://wa.me/923114140301?text=Hello!%20I%20want%20to%20buy%20100k%20Coins%20for%20$2%20on%20Storm%20Steal%20Network" target="_blank" class="btn-buy" style="background: var(--coin-yellow); color: #000; font-weight: 800;">
                     <i class="fa-brands fa-whatsapp"></i> Buy Coins
                 </a>
             </div>
 
             <!-- Pack 3 -->
-            <div class="coin-card">
+            <div class="coin-card rainbow-border">
                 <div class="coin-icon"><i class="fa-solid fa-coins"></i></div>
                 <div class="coin-amount">500,000 Coins</div>
                 <div class="coin-price">$10.00</div>
-                <a href="https://wa.me/923114140301?text=Hello!%20I%20want%20to%20buy%20500k%20Coins%20for%20$10%20on%20Storm%20Steal%20Network" target="_blank" class="btn-buy" style="background: var(--coin-yellow); color: #000;">
+                <a href="https://wa.me/923114140301?text=Hello!%20I%20want%20to%20buy%20500k%20Coins%20for%20$10%20on%20Storm%20Steal%20Network" target="_blank" class="btn-buy" style="background: var(--coin-yellow); color: #000; font-weight: 800;">
                     <i class="fa-brands fa-whatsapp"></i> Buy Coins
                 </a>
             </div>
@@ -413,9 +452,9 @@
         <div class="ranks-grid">
 
             <!-- VIP RANK -->
-            <div class="rank-card rank-vip">
+            <div class="rank-card rainbow-border">
                 <div>
-                    <h2 class="rank-title">VIP</h2>
+                    <h2 class="rank-title rainbow-title">VIP</h2>
                     <ul class="perks-list">
                         <li><i class="fa-solid fa-check"></i> Custom Name on Head</li>
                         <li><i class="fa-solid fa-check"></i> Custom Name on Chat</li>
@@ -423,15 +462,15 @@
                         <li><i class="fa-solid fa-shield-halved"></i> Access to Custom /kit VIP (Armor & Tools)</li>
                     </ul>
                 </div>
-                <a href="https://wa.me/923114140301?text=Hello!%20I%20want%20to%20buy%20the%20VIP%20Rank%20on%20Storm%20Steal%20Network" target="_blank" class="btn-buy">
+                <a href="https://wa.me/923114140301?text=Hello!%20I%20want%20to%20buy%20the%20VIP%20Rank%20on%20Storm%20Steal%20Network" target="_blank" class="btn-buy" style="background: #ffd700; color: #000;">
                     <i class="fa-brands fa-whatsapp"></i> Buy VIP Rank
                 </a>
             </div>
 
             <!-- LEGENDARY RANK -->
-            <div class="rank-card rank-legendary">
+            <div class="rank-card rainbow-border">
                 <div>
-                    <h2 class="rank-title">LEGENDARY</h2>
+                    <h2 class="rank-title rainbow-title">LEGENDARY</h2>
                     <ul class="perks-list">
                         <li><i class="fa-solid fa-check"></i> Custom Name on Head</li>
                         <li><i class="fa-solid fa-check"></i> Custom Name on Chat</li>
@@ -439,32 +478,32 @@
                         <li><i class="fa-solid fa-shield-halved"></i> Access to Custom /kit Legendary (Armor & Tools)</li>
                     </ul>
                 </div>
-                <a href="https://wa.me/923114140301?text=Hello!%20I%20want%20to%20buy%20the%20LEGENDARY%20Rank%20on%20Storm%20Steal%20Network" target="_blank" class="btn-buy">
+                <a href="https://wa.me/923114140301?text=Hello!%20I%20want%20to%20buy%20the%20LEGENDARY%20Rank%20on%20Storm%20Steal%20Network" target="_blank" class="btn-buy" style="background: #9d4edd; color: #fff;">
                     <i class="fa-brands fa-whatsapp"></i> Buy Legendary
                 </a>
             </div>
 
-            <!-- STORM RANK WITH ANIMATED RAINBOW BORDER -->
-            <div class="rank-card rainbow-border">
-                <div class="badge-best">Ultimate Rank</div>
+            <!-- ⚡ GOD-TIER STORM RANK ⚡ -->
+            <div class="rank-card rank-storm-god">
+                <div class="badge-god">⚡ ULTIMATE RANK ⚡</div>
                 <div>
-                    <h2 class="rank-title rainbow-title">STORM</h2>
+                    <h2 class="rank-title rainbow-title storm-god-title">STORM</h2>
                     <ul class="perks-list">
-                        <li><i class="fa-solid fa-check"></i> Custom Name on Head</li>
-                        <li><i class="fa-solid fa-check"></i> Custom Name on Chat</li>
-                        <li><i class="fa-solid fa-check"></i> Custom Name on Tab</li>
-                        <li><i class="fa-solid fa-shield-halved"></i> Access to Custom /kit Storm (Armor & Tools)</li>
+                        <li><i class="fa-solid fa-bolt" style="color: #ff0055;"></i> Custom Name on Head</li>
+                        <li><i class="fa-solid fa-bolt" style="color: #ff0055;"></i> Custom Name on Chat</li>
+                        <li><i class="fa-solid fa-bolt" style="color: #ff0055;"></i> Custom Name on Tab</li>
+                        <li><i class="fa-solid fa-shield-halved" style="color: #00ffff;"></i> Access to Custom /kit Storm (Armor & Tools)</li>
                     </ul>
                 </div>
-                <a href="https://wa.me/923114140301?text=Hello!%20I%20want%20to%20buy%20the%20STORM%20Rank%20on%20Storm%20Steal%20Network" target="_blank" class="btn-buy" style="background: linear-gradient(90deg, #ff0055, #9900ff); color: #fff;">
-                    <i class="fa-brands fa-whatsapp"></i> Buy STORM Rank
+                <a href="https://wa.me/923114140301?text=Hello!%20I%20want%20to%20buy%20the%20STORM%20Rank%20on%20Storm%20Steal%20Network" target="_blank" class="btn-buy btn-storm-god">
+                    <i class="fa-brands fa-whatsapp"></i> BUY STORM RANK
                 </a>
             </div>
 
         </div>
 
         <!-- WhatsApp Info Box -->
-        <div class="info-box">
+        <div class="info-box rainbow-border">
             <div>
                 <h3 style="font-size:1.2rem; margin-bottom:5px;"><i class="fa-brands fa-whatsapp" style="color:#25d366;"></i> Instant WhatsApp Delivery</h3>
                 <p style="color:var(--text-muted); font-size:0.9rem;">Clicking buy will open WhatsApp with our team (`+923114140301`). Send your Minecraft IGN to activate items!</p>
@@ -486,13 +525,13 @@
         canvas.height = window.innerHeight;
 
         const particles = [];
-        for (let i = 0; i < 30; i++) {
+        for (let i = 0; i < 40; i++) {
             particles.push({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
-                radius: Math.random() * 2 + 1,
-                color: Math.random() > 0.5 ? '#9d4edd' : '#ff2a5f',
-                speedY: Math.random() * 0.4 + 0.1
+                radius: Math.random() * 2.5 + 1,
+                color: Math.random() > 0.5 ? '#9d4edd' : '#ff0055',
+                speedY: Math.random() * 0.5 + 0.1
             });
         }
 
@@ -502,7 +541,7 @@
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
                 ctx.fillStyle = p.color;
-                ctx.shadowBlur = 8;
+                ctx.shadowBlur = 10;
                 ctx.shadowColor = p.color;
                 ctx.fill();
 
