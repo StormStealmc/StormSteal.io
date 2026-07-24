@@ -196,9 +196,9 @@
             color: #fff;
         }
 
-        .coin-price {
+        .price-tag {
             font-size: 1.4rem;
-            font-weight: 700;
+            font-weight: 800;
             color: var(--coin-yellow);
             margin: 10px 0 18px;
             font-family: 'Space Grotesk', sans-serif;
@@ -234,7 +234,14 @@
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 15px;
+            margin-bottom: 5px;
+        }
+
+        .rank-price {
+            font-size: 1.5rem;
+            font-weight: 800;
+            font-family: 'Space Grotesk', sans-serif;
+            margin-bottom: 20px;
         }
 
         .perks-list {
@@ -349,6 +356,13 @@
             filter: drop-shadow(0 0 15px rgba(255, 0, 85, 0.8));
         }
 
+        .storm-god-price {
+            font-size: 1.8rem;
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff;
+            margin-bottom: 20px;
+        }
+
         .btn-storm-god {
             background: linear-gradient(90deg, #ff0055, #9900ff, #00ffff);
             background-size: 200% auto;
@@ -419,7 +433,7 @@
             <div class="coin-card rainbow-border">
                 <div class="coin-icon"><i class="fa-solid fa-coins"></i></div>
                 <div class="coin-amount">50,000 Coins</div>
-                <div class="coin-price">$1.00</div>
+                <div class="price-tag">$1.00</div>
                 <a href="https://wa.me/923114140301?text=Hello!%20I%20want%20to%20buy%2050k%20Coins%20for%20$1%20on%20Storm%20Steal%20Network" target="_blank" class="btn-buy" style="background: var(--coin-yellow); color: #000; font-weight: 800;">
                     <i class="fa-brands fa-whatsapp"></i> Buy Coins
                 </a>
@@ -429,7 +443,7 @@
             <div class="coin-card rainbow-border">
                 <div class="coin-icon"><i class="fa-solid fa-coins"></i></div>
                 <div class="coin-amount">100,000 Coins</div>
-                <div class="coin-price">$2.00</div>
+                <div class="price-tag">$2.00</div>
                 <a href="https://wa.me/923114140301?text=Hello!%20I%20want%20to%20buy%20100k%20Coins%20for%20$2%20on%20Storm%20Steal%20Network" target="_blank" class="btn-buy" style="background: var(--coin-yellow); color: #000; font-weight: 800;">
                     <i class="fa-brands fa-whatsapp"></i> Buy Coins
                 </a>
@@ -439,7 +453,7 @@
             <div class="coin-card rainbow-border">
                 <div class="coin-icon"><i class="fa-solid fa-coins"></i></div>
                 <div class="coin-amount">500,000 Coins</div>
-                <div class="coin-price">$10.00</div>
+                <div class="price-tag">$10.00</div>
                 <a href="https://wa.me/923114140301?text=Hello!%20I%20want%20to%20buy%20500k%20Coins%20for%20$10%20on%20Storm%20Steal%20Network" target="_blank" class="btn-buy" style="background: var(--coin-yellow); color: #000; font-weight: 800;">
                     <i class="fa-brands fa-whatsapp"></i> Buy Coins
                 </a>
@@ -455,6 +469,7 @@
             <div class="rank-card rainbow-border">
                 <div>
                     <h2 class="rank-title rainbow-title">VIP</h2>
+                    <div class="rank-price" style="color: #ffd700;">$3.00</div>
                     <ul class="perks-list">
                         <li><i class="fa-solid fa-check"></i> Custom Name on Head</li>
                         <li><i class="fa-solid fa-check"></i> Custom Name on Chat</li>
@@ -462,7 +477,7 @@
                         <li><i class="fa-solid fa-shield-halved"></i> Access to Custom /kit VIP (Armor & Tools)</li>
                     </ul>
                 </div>
-                <a href="https://wa.me/923114140301?text=Hello!%20I%20want%20to%20buy%20the%20VIP%20Rank%20on%20Storm%20Steal%20Network" target="_blank" class="btn-buy" style="background: #ffd700; color: #000;">
+                <a href="https://wa.me/923114140301?text=Hello!%20I%20want%20to%20buy%20the%20VIP%20Rank%20for%20$3%20on%20Storm%20Steal%20Network" target="_blank" class="btn-buy" style="background: #ffd700; color: #000;">
                     <i class="fa-brands fa-whatsapp"></i> Buy VIP Rank
                 </a>
             </div>
@@ -471,6 +486,7 @@
             <div class="rank-card rainbow-border">
                 <div>
                     <h2 class="rank-title rainbow-title">LEGENDARY</h2>
+                    <div class="rank-price" style="color: #9d4edd;">$5.00</div>
                     <ul class="perks-list">
                         <li><i class="fa-solid fa-check"></i> Custom Name on Head</li>
                         <li><i class="fa-solid fa-check"></i> Custom Name on Chat</li>
@@ -478,7 +494,7 @@
                         <li><i class="fa-solid fa-shield-halved"></i> Access to Custom /kit Legendary (Armor & Tools)</li>
                     </ul>
                 </div>
-                <a href="https://wa.me/923114140301?text=Hello!%20I%20want%20to%20buy%20the%20LEGENDARY%20Rank%20on%20Storm%20Steal%20Network" target="_blank" class="btn-buy" style="background: #9d4edd; color: #fff;">
+                <a href="https://wa.me/923114140301?text=Hello!%20I%20want%20to%20buy%20the%20LEGENDARY%20Rank%20for%20$5%20on%20Storm%20Steal%20Network" target="_blank" class="btn-buy" style="background: #9d4edd; color: #fff;">
                     <i class="fa-brands fa-whatsapp"></i> Buy Legendary
                 </a>
             </div>
@@ -488,6 +504,7 @@
                 <div class="badge-god">⚡ ULTIMATE RANK ⚡</div>
                 <div>
                     <h2 class="rank-title rainbow-title storm-god-title">STORM</h2>
+                    <div class="rank-price storm-god-price">$10.00</div>
                     <ul class="perks-list">
                         <li><i class="fa-solid fa-bolt" style="color: #ff0055;"></i> Custom Name on Head</li>
                         <li><i class="fa-solid fa-bolt" style="color: #ff0055;"></i> Custom Name on Chat</li>
@@ -495,7 +512,7 @@
                         <li><i class="fa-solid fa-shield-halved" style="color: #00ffff;"></i> Access to Custom /kit Storm (Armor & Tools)</li>
                     </ul>
                 </div>
-                <a href="https://wa.me/923114140301?text=Hello!%20I%20want%20to%20buy%20the%20STORM%20Rank%20on%20Storm%20Steal%20Network" target="_blank" class="btn-buy btn-storm-god">
+                <a href="https://wa.me/923114140301?text=Hello!%20I%20want%20to%20buy%20the%20STORM%20Rank%20for%20$10%20on%20Storm%20Steal%20Network" target="_blank" class="btn-buy btn-storm-god">
                     <i class="fa-brands fa-whatsapp"></i> BUY STORM RANK
                 </a>
             </div>
