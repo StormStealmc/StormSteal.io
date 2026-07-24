@@ -1,1 +1,434 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store | Storm Steal Network</title>
+    <!-- Font Awesome Icons & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121c;
+            --bg-card: #1a1a28;
+            --text-main: #f0f2f5;
+            --text-muted: #8c90a4;
+            --border-color: rgba(255, 255, 255, 0.1);
+            
+            /* Custom Rank Colors */
+            --vip-gold: #ffd700;
+            --legendary-purple: #6a0dad;
+            --storm-red: #8b0000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Canvas particles */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Header / Navbar */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(18, 18, 28, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .logo i {
+            color: #ff2a5f;
+            font-size: 1.8rem;
+            filter: drop-shadow(0 0 8px #ff2a5f);
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        nav a:hover {
+            color: #ff2a5f;
+        }
+
+        /* Store Hero */
+        .store-hero {
+            text-align: center;
+            padding: 60px 20px 40px;
+        }
+
+        .store-hero h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .store-hero p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 20px 80px;
+            flex: 1;
+        }
+
+        /* Ranks Grid */
+        .ranks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .rank-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 35px 25px;
+            text-align: center;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .rank-card:hover {
+            transform: translateY(-8px);
+        }
+
+        /* VIP Rank - Golden Yellow */
+        .rank-vip {
+            border: 2px solid var(--vip-gold);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.15);
+        }
+        .rank-vip:hover {
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+        }
+        .rank-vip .rank-title { color: var(--vip-gold); }
+        .rank-vip .btn-buy {
+            background: var(--vip-gold);
+            color: #000;
+        }
+
+        /* LEGENDARY Rank - Dark Purple */
+        .rank-legendary {
+            border: 2px solid var(--legendary-purple);
+            box-shadow: 0 0 15px rgba(106, 13, 173, 0.25);
+        }
+        .rank-legendary:hover {
+            box-shadow: 0 0 30px rgba(106, 13, 173, 0.6);
+        }
+        .rank-legendary .rank-title { color: #b366ff; }
+        .rank-legendary .btn-buy {
+            background: var(--legendary-purple);
+            color: #fff;
+        }
+
+        /* STORM Rank - Dark Red (Best Rank) */
+        .rank-storm {
+            border: 2px solid var(--storm-red);
+            box-shadow: 0 0 20px rgba(139, 0, 0, 0.4);
+            transform: scale(1.03);
+        }
+        .rank-storm:hover {
+            transform: scale(1.03) translateY(-8px);
+            box-shadow: 0 0 35px rgba(139, 0, 0, 0.8);
+        }
+        .rank-storm .rank-title { color: #ff4d4d; }
+        .rank-storm .btn-buy {
+            background: var(--storm-red);
+            color: #fff;
+        }
+
+        /* Best Value Badge */
+        .badge-best {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--storm-red);
+            color: #fff;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid #ff4d4d;
+        }
+
+        .rank-title {
+            font-size: 2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .rank-price {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .perks-list {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .perks-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.95rem;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .perks-list li i {
+            color: #2ec4b6;
+        }
+
+        .btn-buy {
+            text-decoration: none;
+            padding: 14px 20px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: 0.3s;
+        }
+
+        .btn-buy:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+
+        /* Info Banner */
+        .info-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 50px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 30px 5%;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Navigation Header -->
+    <header>
+        <a href="index.html" class="logo">
+            <i class="fa-solid fa-heart-pulse"></i>
+            <span>Storm Steal</span>
+        </a>
+        <nav>
+            <a href="index.html"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+        </nav>
+    </header>
+
+    <div class="store-hero">
+        <h1>Server <span>Store</span></h1>
+        <p>Choose a rank below to upgrade your stats, unlock powerful kits, and dominate Storm Steal SMP!</p>
+    </div>
+
+    <div class="container">
+        <div class="ranks-grid">
+
+            <!-- VIP RANK -->
+            <div class="rank-card rank-vip">
+                <div>
+                    <h2 class="rank-title">VIP</h2>
+                    <div class="rank-price">$5.00 <span style="font-size:0.9rem; color:var(--text-muted); font-weight:normal;">/ Lifetime</span></div>
+                    <ul class="perks-list">
+                        <li><i class="fa-solid fa-check"></i> VIP Prefix in Chat & Tab</li>
+                        <li><i class="fa-solid fa-check"></i> 5+ Extra Hearts Grace Bonus</li>
+                        <li><i class="fa-solid fa-check"></i> Access to /kit VIP (24h cooldown)</li>
+                        <li><i class="fa-solid fa-check"></i> /enderchest command anywhere</li>
+                        <li><i class="fa-solid fa-check"></i> Priority Server Queue Access</li>
+                    </ul>
+                </div>
+                <a href="https://wa.me/923114140301?text=Hello!%20I%20want%20to%20buy%20the%20VIP%20Rank%20on%20Storm%20Steal%20Network" target="_blank" class="btn-buy">
+                    <i class="fa-brands fa-whatsapp"></i> Buy VIP Rank
+                </a>
+            </div>
+
+            <!-- LEGENDARY RANK -->
+            <div class="rank-card rank-legendary">
+                <div>
+                    <h2 class="rank-title">LEGENDARY</h2>
+                    <div class="rank-price">$12.00 <span style="font-size:0.9rem; color:var(--text-muted); font-weight:normal;">/ Lifetime</span></div>
+                    <ul class="perks-list">
+                        <li><i class="fa-solid fa-check"></i> LEGENDARY Prefix with Custom Glow</li>
+                        <li><i class="fa-solid fa-check"></i> 10+ Extra Hearts Grace Bonus</li>
+                        <li><i class="fa-solid fa-check"></i> Access to /kit Legendary & /kit VIP</li>
+                        <li><i class="fa-solid fa-check"></i> /fly in Spawn & Claimed Bases</li>
+                        <li><i class="fa-solid fa-check"></i> /craft and /feed commands</li>
+                        <li><i class="fa-solid fa-check"></i> 2x Claim Land Blocks</li>
+                    </ul>
+                </div>
+                <a href="https://wa.me/923114140301?text=Hello!%20I%20want%20to%20buy%20the%20LEGENDARY%20Rank%20on%20Storm%20Steal%20Network" target="_blank" class="btn-buy">
+                    <i class="fa-brands fa-whatsapp"></i> Buy Legendary
+                </a>
+            </div>
+
+            <!-- STORM RANK (BEST) -->
+            <div class="rank-card rank-storm">
+                <div class="badge-best">Ultimate Rank</div>
+                <div>
+                    <h2 class="rank-title">STORM</h2>
+                    <div class="rank-price">$25.00 <span style="font-size:0.9rem; color:var(--text-muted); font-weight:normal;">/ Lifetime</span></div>
+                    <ul class="perks-list">
+                        <li><i class="fa-solid fa-check"></i> Animated STORM Prefix & Chat Effect</li>
+                        <li><i class="fa-solid fa-check"></i> Max Starting Heart Cap (30 Hearts)</li>
+                        <li><i class="fa-solid fa-check"></i> Access to ALL Kits (/kit Storm)</li>
+                        <li><i class="fa-solid fa-check"></i> Free Revive Beacon Every Week</li>
+                        <li><i class="fa-solid fa-check"></i> /fly, /heal, /fix all, /nick commands</li>
+                        <li><i class="fa-solid fa-check"></i> Custom Cosmetic Trails & Wings</li>
+                    </ul>
+                </div>
+                <a href="https://wa.me/923114140301?text=Hello!%20I%20want%20to%20buy%20the%20STORM%20Rank%20on%20Storm%20Steal%20Network" target="_blank" class="btn-buy">
+                    <i class="fa-brands fa-whatsapp"></i> Buy STORM Rank
+                </a>
+            </div>
+
+        </div>
+
+        <!-- WhatsApp Payment Info -->
+        <div class="info-box">
+            <div>
+                <h3 style="font-size:1.2rem; margin-bottom:5px;"><i class="fa-brands fa-whatsapp" style="color:#25d366;"></i> Instant WhatsApp Delivery</h3>
+                <p style="color:var(--text-muted); font-size:0.9rem;">Clicking buy will open WhatsApp with our team (`+923114140301`). Send your Minecraft IGN to activate ranks instantly!</p>
+            </div>
+            <a href="https://wa.me/923114140301" target="_blank" style="color: #25d366; font-weight: 700; text-decoration: none;">
+                Contact Admin <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Storm Steal Network Store. All payments processed directly via WhatsApp support.</p>
+    </footer>
+
+    <script>
+        // Particle Background
+        const canvas = document.getElementById("bg-canvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particles = [];
+        for (let i = 0; i < 30; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 2 + 1,
+                color: Math.random() > 0.5 ? '#6a0dad' : '#8b0000',
+                speedY: Math.random() * 0.4 + 0.1
+            });
+        }
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.shadowBlur = 8;
+                ctx.shadowColor = p.color;
+                ctx.fill();
+
+                p.y -= p.speedY;
+                if (p.y < 0) p.y = canvas.height;
+            });
+            requestAnimationFrame(animateCanvas);
+        }
+        animateCanvas();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
