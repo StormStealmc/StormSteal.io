@@ -398,7 +398,7 @@
         /* Staff Section */
         .staff-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 20px;
         }
 
@@ -412,17 +412,26 @@
             overflow: hidden;
         }
 
+        .staff-card.owner-card {
+            border: 2px solid var(--accent-red);
+            box-shadow: var(--glow);
+        }
+
         .staff-badge {
             position: absolute;
             top: 10px;
             right: 10px;
-            background: var(--accent-red);
+            background: var(--accent-purple);
             color: #fff;
             font-size: 0.65rem;
             padding: 3px 8px;
             border-radius: 10px;
             font-weight: 800;
             text-transform: uppercase;
+        }
+
+        .staff-badge.owner-badge {
+            background: var(--accent-red);
         }
 
         .staff-head {
@@ -552,7 +561,6 @@
             <a href="#home" class="active"><i class="fa-solid fa-house"></i> Home</a>
             <a href="#leaderboards"><i class="fa-solid fa-trophy"></i> Leaderboards</a>
             <a href="#guide"><i class="fa-solid fa-book"></i> SMP Guide</a>
-            <!-- LINK TO DEDICATED STORE PAGE -->
             <a href="shop.html"><i class="fa-solid fa-cart-shopping"></i> Store</a>
             <a href="#staff"><i class="fa-solid fa-shield-halved"></i> Staff</a>
             <a href="#vote"><i class="fa-solid fa-check-to-slot"></i> Vote</a>
@@ -625,8 +633,8 @@
                         <td><span class="rank-badge rank-1">1</span></td>
                         <td>
                             <div class="player-cell">
-                                <img src="https://mc-heads.net/avatar/GlitchBloom/32" class="player-head" alt="GlitchBloom">
-                                GlitchBloom <span style="font-size:0.7rem; background: var(--accent-red); padding: 2px 6px; border-radius:4px;">ADMIN</span>
+                                <img src="https://mc-heads.net/avatar/SherrySlayer101/32" class="player-head" alt="SherrySlayer101">
+                                .SherrySlayer101
                             </div>
                         </td>
                         <td style="color:#ff2a5f; font-weight:800;">30 ❤️</td>
@@ -639,7 +647,7 @@
                         <td>
                             <div class="player-cell">
                                 <img src="https://mc-heads.net/avatar/Void_X_ViperYt/32" class="player-head" alt="Void_X_ViperYt">
-                                Void_X_ViperYt
+                                Void_X_ViperYt <span style="font-size:0.7rem; background: var(--accent-purple); padding: 2px 6px; border-radius:4px;">ADMIN</span>
                             </div>
                         </td>
                         <td style="color:#ff2a5f; font-weight:800;">26 ❤️</td>
@@ -652,26 +660,26 @@
                         <td>
                             <div class="player-cell">
                                 <img src="https://mc-heads.net/avatar/Shuj4Playz/32" class="player-head" alt="Shuj4Playz">
-                                Shuj4Playz
+                                Shuj4Playz <span style="font-size:0.7rem; background: var(--accent-red); padding: 2px 6px; border-radius:4px;">OWNER</span>
                             </div>
                         </td>
                         <td style="color:#ff2a5f; font-weight:800;">22 ❤️</td>
                         <td>210</td>
                         <td>6.2</td>
-                        <td><span style="color:var(--text-muted);">Offline</span></td>
+                        <td><span style="color:#2ec4b6;">Online</span></td>
                     </tr>
                     <tr>
                         <td>4</td>
                         <td>
                             <div class="player-cell">
-                                <img src="https://mc-heads.net/avatar/StormRider99/32" class="player-head" alt="StormRider99">
-                                StormRider99
+                                <img src="https://mc-heads.net/avatar/GlitchBloom/32" class="player-head" alt="GlitchBloom">
+                                GlitchBloom <span style="font-size:0.7rem; background: var(--accent-purple); padding: 2px 6px; border-radius:4px;">ADMIN</span>
                             </div>
                         </td>
                         <td style="color:#ff2a5f; font-weight:800;">18 ❤️</td>
                         <td>154</td>
                         <td>4.1</td>
-                        <td><span style="color:#2ec4b6;">Online</span></td>
+                        <td><span style="color:var(--text-muted);">Offline</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -688,10 +696,10 @@
                     <button class="btn-copy-ip" onclick="lookupPlayer()">Search</button>
                 </div>
                 <div class="lookup-display" id="lookupResult">
-                    <img id="lookupHead" src="https://mc-heads.net/avatar/GlitchBloom/64" style="width:64px; height:64px; border-radius:8px;">
+                    <img id="lookupHead" src="https://mc-heads.net/avatar/Shuj4Playz/64" style="width:64px; height:64px; border-radius:8px;">
                     <div>
-                        <h4 id="lookupPlayerName" style="font-size:1.3rem;">GlitchBloom</h4>
-                        <p id="lookupDetails" style="color: var(--text-muted); font-size:0.9rem;">Hearts: 30 | Kills: 412 | Status: Admin</p>
+                        <h4 id="lookupPlayerName" style="font-size:1.3rem;">Shuj4Playz</h4>
+                        <p id="lookupDetails" style="color: var(--text-muted); font-size:0.9rem;">Hearts: 22 | Kills: 210 | Status: Owner & Developer</p>
                     </div>
                 </div>
             </div>
@@ -711,7 +719,7 @@
                 <div class="card">
                     <i class="fa-solid fa-hammer card-icon"></i>
                     <h3>Crafting Hearts</h3>
-                    <p>Combine Netherite Ingots, Totems of Undying, and Diamond Blocks in a crafting table to forge extra Heart Containers (Cap: 30 Hearts).</p>
+                    <p>Combine Netherite Ingots, Totems of Undying, and Diamond Blocks in a crafting table to forge extra Heart Containers.</p>
                 </div>
                 <div class="card">
                     <i class="fa-solid fa-wand-magic-sparkles card-icon"></i>
@@ -729,26 +737,29 @@
         <!-- Staff Section -->
         <section id="staff" style="margin-top: 80px;">
             <h2 class="section-title">Server Staff</h2>
-            <p class="section-subtitle">The team keeping Storm Steal Network safe and fair</p>
+            <p class="section-subtitle">The team leading and managing Storm Steal Network</p>
 
             <div class="staff-grid">
-                <div class="staff-card">
-                    <span class="staff-badge">Owner / Admin</span>
-                    <img src="https://mc-heads.net/avatar/GlitchBloom/80" class="staff-head" alt="GlitchBloom">
-                    <h3 style="font-size: 1.1rem;">GlitchBloom</h3>
-                    <p style="color: var(--text-muted); font-size:0.85rem; margin-top:5px;">Server Administrator & Lead Developer</p>
-                </div>
-                <div class="staff-card">
-                    <span class="staff-badge" style="background:var(--accent-purple);">Head Mod</span>
-                    <img src="https://mc-heads.net/avatar/Void_X_ViperYt/80" class="staff-head" alt="Void_X_ViperYt">
-                    <h3 style="font-size: 1.1rem;">Void_X_ViperYt</h3>
-                    <p style="color: var(--text-muted); font-size:0.85rem; margin-top:5px;">Community Lead & Manager</p>
-                </div>
-                <div class="staff-card">
-                    <span class="staff-badge" style="background:#2ec4b6;">Developer</span>
+                <!-- OWNER -->
+                <div class="staff-card owner-card">
+                    <span class="staff-badge owner-badge">Owner</span>
                     <img src="https://mc-heads.net/avatar/Shuj4Playz/80" class="staff-head" alt="Shuj4Playz">
                     <h3 style="font-size: 1.1rem;">Shuj4Playz</h3>
-                    <p style="color: var(--text-muted); font-size:0.85rem; margin-top:5px;">Website & Plugin Developer</p>
+                    <p style="color: var(--text-muted); font-size:0.85rem; margin-top:5px;">Server Owner, Plugin & Command Developer</p>
+                </div>
+                <!-- ADMIN 1 -->
+                <div class="staff-card">
+                    <span class="staff-badge">Admin</span>
+                    <img src="https://mc-heads.net/avatar/Void_X_ViperYt/80" class="staff-head" alt="Void_X_ViperYt">
+                    <h3 style="font-size: 1.1rem;">Azyan (Void_X_ViperYt)</h3>
+                    <p style="color: var(--text-muted); font-size:0.85rem; margin-top:5px;">Server Administrator</p>
+                </div>
+                <!-- ADMIN 2 -->
+                <div class="staff-card">
+                    <span class="staff-badge">Admin</span>
+                    <img src="https://mc-heads.net/avatar/GlitchBloom/80" class="staff-head" alt="GlitchBloom">
+                    <h3 style="font-size: 1.1rem;">GlitchBloom</h3>
+                    <p style="color: var(--text-muted); font-size:0.85rem; margin-top:5px;">Server Administrator</p>
                 </div>
             </div>
         </section>
@@ -785,8 +796,8 @@
                     <div class="faq-answer">No. Unfair modifications like X-Ray, Killaura, Fly, and Baritone will lead to a permanent ban. Minimaps and FPS boosters are allowed.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">Who is the main Admin of the server? <i class="fa-solid fa-chevron-down"></i></div>
-                    <div class="faq-answer"><strong>GlitchBloom</strong> is the primary Server Administrator and Owner. Contact them or staff via Discord for support.</div>
+                    <div class="faq-question" onclick="toggleFAQ(this)">Who owns and manages the server? <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="faq-answer"><strong>Shuj4Playz</strong> is the Owner and Plugin/Command Developer. <strong>Azyan (Void_X_ViperYT)</strong> and <strong>GlitchBloom</strong> are the Server Administrators.</div>
                 </div>
             </div>
         </section>
@@ -837,12 +848,12 @@
             document.getElementById("lookupHead").src = `https://mc-heads.net/avatar/${name}/64`;
             document.getElementById("lookupPlayerName").innerText = name;
             
-            if(name.toLowerCase() === 'glitchbloom') {
-                document.getElementById("lookupDetails").innerText = "Hearts: 30 | Kills: 412 | Status: Admin (Owner)";
-            } else if(name.toLowerCase() === 'shuj4playz') {
-                document.getElementById("lookupDetails").innerText = "Hearts: 22 | Kills: 210 | Status: Developer";
-            } else if(name.toLowerCase() === 'void_x_viperyt') {
-                document.getElementById("lookupDetails").innerText = "Hearts: 26 | Kills: 289 | Status: Head Mod";
+            if(name.toLowerCase() === 'shuj4playz') {
+                document.getElementById("lookupDetails").innerText = "Hearts: 22 | Kills: 210 | Status: Owner & Developer";
+            } else if(name.toLowerCase() === 'void_x_viperyt' || name.toLowerCase() === 'azyan') {
+                document.getElementById("lookupDetails").innerText = "Hearts: 26 | Kills: 289 | Status: Server Admin";
+            } else if(name.toLowerCase() === 'glitchbloom') {
+                document.getElementById("lookupDetails").innerText = "Hearts: 18 | Kills: 154 | Status: Server Admin";
             } else {
                 document.getElementById("lookupDetails").innerText = "Hearts: 10 | Kills: 15 | Status: Player";
             }
