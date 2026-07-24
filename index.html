@@ -21,6 +21,11 @@
             --bg-card: #12121e;
             --accent-red: #ff2a5f;
             --accent-purple: #9d4edd;
+            --rank-storm: #8b0000;
+            --rank-storm-glow: #ff003c;
+            --rank-legendary: #7b2cbf;
+            --rank-vip: #ffd700;
+            --rank-yt: #ff0000;
             --text-main: #f0f2f5;
             --text-muted: #8c90a4;
             --border-color: rgba(255, 42, 95, 0.2);
@@ -121,6 +126,7 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+            text-decoration: none;
         }
 
         .btn-copy-ip:hover {
@@ -265,6 +271,199 @@
             margin-bottom: 40px;
         }
 
+        /* Neon Lightning Border System */
+        @keyframes rotateGlow {
+            0% { --angle: 0deg; }
+            100% { --angle: 360deg; }
+        }
+
+        .neon-border {
+            position: relative;
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 2px;
+            isolation: isolate;
+        }
+
+        .neon-border.pill-radius {
+            border-radius: 50px;
+        }
+
+        .neon-border::before,
+        .neon-border::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 18px;
+            background: conic-gradient(
+                from var(--angle),
+                transparent 60%,
+                var(--accent-red) 85%,
+                #ffffff 94%,
+                var(--accent-purple) 100%
+            );
+            animation: rotateGlow 2.5s linear infinite;
+            z-index: -2;
+        }
+
+        .neon-border.pill-radius::before,
+        .neon-border.pill-radius::after {
+            border-radius: 50px;
+        }
+
+        .neon-border::after {
+            filter: blur(12px);
+            opacity: 0.85;
+            z-index: -3;
+        }
+
+        .card-inner {
+            background: var(--bg-card);
+            border-radius: 14px;
+            padding: 22px;
+            height: 100%;
+            width: 100%;
+        }
+
+        /* STORE SECTION & RANK CARDS */
+        .ranks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .rank-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            text-align: center;
+        }
+
+        .rank-header {
+            padding: 15px 10px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            font-family: 'Space Grotesk', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .rank-title {
+            font-size: 1.6rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .rank-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            opacity: 0.9;
+        }
+
+        /* Rank Color Schemes */
+        .rank-storm-bg {
+            background: linear-gradient(135deg, #ff003c, #8b0000);
+            color: #fff;
+            box-shadow: 0 0 15px rgba(255, 0, 60, 0.5);
+        }
+
+        .neon-border.storm-rank::before,
+        .neon-border.storm-rank::after {
+            background: conic-gradient(
+                from var(--angle),
+                transparent 40%,
+                #8b0000 70%,
+                #ffffff 90%,
+                #ff003c 100%
+            );
+        }
+
+        .rank-legendary-bg {
+            background: linear-gradient(135deg, #7b2cbf, #3c096c);
+            color: #fff;
+            box-shadow: 0 0 15px rgba(123, 44, 191, 0.5);
+        }
+
+        .neon-border.legendary-rank::before,
+        .neon-border.legendary-rank::after {
+            background: conic-gradient(
+                from var(--angle),
+                transparent 40%,
+                #3c096c 70%,
+                #ffffff 90%,
+                #9d4edd 100%
+            );
+        }
+
+        .rank-vip-bg {
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            color: #000;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        .neon-border.vip-rank::before,
+        .neon-border.vip-rank::after {
+            background: conic-gradient(
+                from var(--angle),
+                transparent 40%,
+                #ff8c00 70%,
+                #ffffff 90%,
+                #ffd700 100%
+            );
+        }
+
+        .rank-yt-bg {
+            background: linear-gradient(135deg, #ff0000, #cc0000);
+            color: #fff;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+        }
+
+        .neon-border.yt-rank::before,
+        .neon-border.yt-rank::after {
+            background: conic-gradient(
+                from var(--angle),
+                transparent 40%,
+                #990000 70%,
+                #ffffff 90%,
+                #ff0000 100%
+            );
+        }
+
+        .rank-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .rank-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rank-features li i {
+            color: #2ec4b6;
+        }
+
+        .btn-buy {
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+            border-radius: 8px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .btn-storm { background: linear-gradient(135deg, #ff003c, #8b0000); }
+        .btn-legendary { background: linear-gradient(135deg, #7b2cbf, #3c096c); }
+        .btn-vip { background: linear-gradient(135deg, #ffd700, #ff8c00); color: #000; }
+        .btn-yt { background: linear-gradient(135deg, #ff0000, #990000); }
+
         /* Leaderboards Section */
         .lb-controls {
             display: flex;
@@ -364,78 +563,6 @@
         .rank-1 { background: gold; color: #000; }
         .rank-2 { background: silver; color: #000; }
         .rank-3 { background: #cd7f32; color: #000; }
-
-        /* Neon Lightning Border System */
-        @keyframes rotateGlow {
-            0% { --angle: 0deg; }
-            100% { --angle: 360deg; }
-        }
-
-        .neon-border {
-            position: relative;
-            background: var(--bg-card);
-            border-radius: 16px;
-            padding: 2px;
-            isolation: isolate;
-        }
-
-        .neon-border.pill-radius {
-            border-radius: 50px;
-        }
-
-        .neon-border::before,
-        .neon-border::after {
-            content: '';
-            position: absolute;
-            inset: -2px;
-            border-radius: 18px;
-            background: conic-gradient(
-                from var(--angle),
-                transparent 60%,
-                var(--accent-red) 85%,
-                #ffffff 94%,
-                var(--accent-purple) 100%
-            );
-            animation: rotateGlow 2.5s linear infinite;
-            z-index: -2;
-        }
-
-        .neon-border.pill-radius::before,
-        .neon-border.pill-radius::after {
-            border-radius: 50px;
-        }
-
-        .neon-border::after {
-            filter: blur(12px);
-            opacity: 0.85;
-            z-index: -3;
-        }
-
-        /* Owner Neon Border */
-        .neon-border.owner-neon::before,
-        .neon-border.owner-neon::after {
-            background: conic-gradient(
-                from var(--angle),
-                transparent 50%,
-                #ff003c 80%,
-                #ffffff 92%,
-                #ff2a5f 100%
-            );
-            animation: rotateGlow 1.8s linear infinite;
-        }
-
-        .neon-border.owner-neon::after {
-            filter: blur(16px);
-            opacity: 1;
-        }
-
-        .card-inner {
-            background: var(--bg-card);
-            border-radius: 14px;
-            padding: 22px;
-            height: 100%;
-            width: 100%;
-        }
 
         /* Guide Cards Grid */
         .guide-grid {
@@ -630,6 +757,7 @@
         </a>
         <nav>
             <a href="#home" class="active"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="#store"><i class="fa-solid fa-cart-shopping"></i> Store</a>
             <a href="#leaderboards"><i class="fa-solid fa-trophy"></i> Leaderboards</a>
             <a href="#guide"><i class="fa-solid fa-book"></i> SMP Guide</a>
             <a href="#staff"><i class="fa-solid fa-shield-halved"></i> Staff</a>
@@ -651,9 +779,9 @@
         
         <!-- Hero Action Buttons -->
         <div class="hero-action-btns">
-            <button class="btn-copy-ip" onclick="copyIP('play.stormsteal.net')">
-                <i class="fa-solid fa-gamepad"></i> Join Java Server
-            </button>
+            <a href="#store" class="btn-copy-ip">
+                <i class="fa-solid fa-cart-shopping"></i> View Server Ranks
+            </a>
             <button class="btn-copy-ip btn-secondary" onclick="copyIP('play.stormsteal.net', '19132')">
                 <i class="fa-solid fa-mobile-screen-button"></i> Join Bedrock / PE
             </button>
@@ -672,30 +800,111 @@
                 </div>
             </div>
         </div>
-
-        <!-- Event Countdown Banner -->
-        <div class="event-banner-wrapper">
-            <div class="neon-border owner-neon">
-                <div class="event-banner-inner">
-                    <div>
-                        <i class="fa-solid fa-fire-flame-curated" style="color: var(--accent-red);"></i>
-                        <strong>NEXT KIT RESET & ENDER DRAGON EVENT</strong>
-                    </div>
-                    <div class="timer-boxes">
-                        <div class="timer-box"><span id="days">02</span><span>Days</span></div>
-                        <div class="timer-box"><span id="hours">14</span><span>Hours</span></div>
-                        <div class="timer-box"><span id="mins">35</span><span>Mins</span></div>
-                        <div class="timer-box"><span id="secs">10</span><span>Secs</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
 
     <div class="container">
 
+        <!-- STORE / SHOP SECTION -->
+        <section id="store">
+            <h2 class="section-title">Server Ranks & Shop</h2>
+            <p class="section-subtitle">Support the server and unlock exclusive kits, custom gear, and permissions!</p>
+
+            <div class="ranks-grid">
+                
+                <!-- STORM RANK (ULTIMATE / BEST) -->
+                <div class="neon-border storm-rank">
+                    <div class="card-inner rank-card">
+                        <div>
+                            <div class="rank-header rank-storm-bg">
+                                <div class="rank-title">STORM</div>
+                                <div class="rank-tag">THE ULTIMATE RANK</div>
+                            </div>
+                            <ul class="rank-features">
+                                <li><i class="fa-solid fa-check"></i> <strong>Custom Dark Red Armor & Tools</strong></li>
+                                <li><i class="fa-solid fa-check"></i> Exclusive Storm Kit Access</li>
+                                <li><i class="fa-solid fa-check"></i> Max Set Homes Limit (15 Homes)</li>
+                                <li><i class="fa-solid fa-check"></i> Dark Red Prefix & Chat Color</li>
+                                <li><i class="fa-solid fa-check"></i> Priority Server Queue Access</li>
+                                <li><i class="fa-solid fa-check"></i> Exclusive /fly in Spawn</li>
+                            </ul>
+                        </div>
+                        <a href="https://discord.gg/xtYvVqDqT" target="_blank" class="btn-copy-ip btn-buy btn-storm">
+                            <i class="fa-solid fa-cart-shopping"></i> Buy STORM Rank
+                        </a>
+                    </div>
+                </div>
+
+                <!-- LEGENDARY RANK -->
+                <div class="neon-border legendary-rank">
+                    <div class="card-inner rank-card">
+                        <div>
+                            <div class="rank-header rank-legendary-bg">
+                                <div class="rank-title">LEGENDARY</div>
+                                <div class="rank-tag">HIGH TIER RANK</div>
+                            </div>
+                            <ul class="rank-features">
+                                <li><i class="fa-solid fa-check"></i> <strong>Legendary Armor & Tools</strong></li>
+                                <li><i class="fa-solid fa-check"></i> Access to Legendary Kit</li>
+                                <li><i class="fa-solid fa-check"></i> Set Homes Limit (10 Homes)</li>
+                                <li><i class="fa-solid fa-check"></i> Dark Purple Prefix & Tag</li>
+                                <li><i class="fa-solid fa-check"></i> Portable Ender Chest (/enderchest)</li>
+                            </ul>
+                        </div>
+                        <a href="https://discord.gg/xtYvVqDqT" target="_blank" class="btn-copy-ip btn-buy btn-legendary">
+                            <i class="fa-solid fa-cart-shopping"></i> Buy LEGENDARY
+                        </a>
+                    </div>
+                </div>
+
+                <!-- VIP RANK -->
+                <div class="neon-border vip-rank">
+                    <div class="card-inner rank-card">
+                        <div>
+                            <div class="rank-header rank-vip-bg">
+                                <div class="rank-title">VIP</div>
+                                <div class="rank-tag">STARTER DONATOR</div>
+                            </div>
+                            <ul class="rank-features">
+                                <li><i class="fa-solid fa-check"></i> <strong>Bright Yellow VIP Rank Title</strong></li>
+                                <li><i class="fa-solid fa-check"></i> Access to VIP Kit & Starter Gear</li>
+                                <li><i class="fa-solid fa-check"></i> Set Homes Limit (5 Homes)</li>
+                                <li><i class="fa-solid fa-check"></i> Portable Crafting Table (/workbench)</li>
+                                <li><i class="fa-solid fa-check"></i> Discord VIP Role</li>
+                            </ul>
+                        </div>
+                        <a href="https://discord.gg/xtYvVqDqT" target="_blank" class="btn-copy-ip btn-buy btn-vip">
+                            <i class="fa-solid fa-cart-shopping"></i> Buy VIP Rank
+                        </a>
+                    </div>
+                </div>
+
+                <!-- YOUTUBER RANK -->
+                <div class="neon-border yt-rank">
+                    <div class="card-inner rank-card">
+                        <div>
+                            <div class="rank-header rank-yt-bg">
+                                <div class="rank-title">YOUTUBER</div>
+                                <div class="rank-tag">MEDIA / CREATOR</div>
+                            </div>
+                            <ul class="rank-features">
+                                <li><i class="fa-solid fa-star"></i> <strong>Requirements:</strong> 150+ Subs or 200+ Views on Storm Steal videos</li>
+                                <li><i class="fa-solid fa-check"></i> Red [MEDIA/YT] Prefix</li>
+                                <li><i class="fa-solid fa-check"></i> Custom /nick permissions</li>
+                                <li><i class="fa-solid fa-check"></i> Automatic Live Stream Alerts in Discord</li>
+                                <li><i class="fa-solid fa-check"></i> Free Media Kit & Gear</li>
+                            </ul>
+                        </div>
+                        <a href="https://discord.gg/xtYvVqDqT" target="_blank" class="btn-copy-ip btn-buy btn-yt">
+                            <i class="fa-brands fa-discord"></i> Apply Now
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
         <!-- Leaderboards Section -->
-        <section id="leaderboards">
+        <section id="leaderboards" style="margin-top: 80px;">
             <h2 class="section-title">Community Leaderboards</h2>
             <p class="section-subtitle">Real-time stats of top heart holders and ruthless killers</p>
 
@@ -758,19 +967,6 @@
                         <td>210</td>
                         <td>6.2</td>
                         <td><span style="color:#2ec4b6;">Online</span></td>
-                    </tr>
-                    <tr data-hearts="18" data-kills="154">
-                        <td>4</td>
-                        <td>
-                            <div class="player-cell">
-                                <img src="https://mc-heads.net/avatar/GlitchBloom/32" class="player-head" alt="GlitchBloom">
-                                GlitchBloom <span style="font-size:0.7rem; background: var(--accent-purple); padding: 2px 6px; border-radius:4px;">ADMIN</span>
-                            </div>
-                        </td>
-                        <td style="color:#ff2a5f; font-weight:800;">18 ❤️</td>
-                        <td>154</td>
-                        <td>4.1</td>
-                        <td><span style="color:var(--text-muted);">Offline</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -841,8 +1037,7 @@
             <p class="section-subtitle">The team leading and managing Storm Steal Network</p>
 
             <div class="staff-grid">
-                <!-- OWNER -->
-                <div class="neon-border owner-neon">
+                <div class="neon-border storm-rank">
                     <div class="card-inner staff-card-content">
                         <span class="staff-badge owner-badge">Owner</span>
                         <img src="https://mc-heads.net/avatar/Shuj4Playz/80" class="staff-head" alt="Shuj4Playz">
@@ -851,17 +1046,15 @@
                     </div>
                 </div>
 
-                <!-- ADMIN 1 -->
                 <div class="neon-border">
                     <div class="card-inner staff-card-content">
                         <span class="staff-badge">Admin</span>
                         <img src="https://mc-heads.net/avatar/Void_X_ViperYt/80" class="staff-head" alt="Void_X_ViperYt">
-                        <h3 style="font-size: 1.1rem;">Azyan (Void_X_ViperYt)</h3>
+                        <h3 style="font-size: 1.1rem;">Void_X_ViperYt</h3>
                         <p style="color: var(--text-muted); font-size:0.85rem; margin-top:5px;">Server Administrator</p>
                     </div>
                 </div>
 
-                <!-- ADMIN 2 -->
                 <div class="neon-border">
                     <div class="card-inner staff-card-content">
                         <span class="staff-badge">Admin</span>
@@ -903,14 +1096,6 @@
                         </div>
                     </div>
                 </a>
-                <a href="javascript:void(0)" onclick="copyIP('play.stormsteal.net', '19132')" class="vote-card">
-                    <div class="neon-border">
-                        <div class="card-inner">
-                            <i class="fa-solid fa-mobile-screen" style="font-size:2rem; margin-bottom:8px; display:block; color:var(--accent-purple);"></i> 
-                            Copy Bedrock Port
-                        </div>
-                    </div>
-                </a>
             </div>
         </section>
 
@@ -921,31 +1106,21 @@
 
             <div class="faq-item">
                 <div class="faq-question" onclick="toggleFAQ(this)">
-                    <span>How do I join on Minecraft Bedrock / PE / Mobile / Xbox?</span>
+                    <span>How do I purchase a rank or custom kit?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Click the "Buy Rank" or "Apply Now" buttons under the Store section to join our Discord server and open a ticket with staff!
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>How do I join on Minecraft Bedrock / PE / Mobile?</span>
                     <i class="fa-solid fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
                     Enter the Server IP as <strong>play.stormsteal.net</strong> and set the Port to <strong>19132</strong>.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFAQ(this)">
-                    <span>What happens when I lose all my hearts?</span>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    When your heart count reaches zero, you enter spectator mode until a teammate uses a Revive Beacon on you!
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFAQ(this)">
-                    <span>Is hacking or dupe allowed?</span>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    No! Unfair advantage hacks, X-Ray, or illegal item duplication will result in an immediate permanent ban.
                 </div>
             </div>
         </section>
@@ -956,6 +1131,7 @@
     <footer>
         <div class="footer-links">
             <a href="#home">Home</a>
+            <a href="#store">Store</a>
             <a href="#leaderboards">Leaderboards</a>
             <a href="#guide">Guide</a>
             <a href="#staff">Staff</a>
@@ -966,11 +1142,9 @@
 
     <!-- JavaScript Script Logic -->
     <script>
-        // 1. Copy IP & Port Function
         function copyIP(ip, port = null) {
             let textToCopy = ip;
             let msg = `Server IP (${ip}) copied to clipboard!`;
-            
             if (port) {
                 textToCopy = `${ip}:${port}`;
                 msg = `Bedrock Info (${ip} Port: ${port}) copied!`;
@@ -984,22 +1158,6 @@
             setTimeout(() => toast.classList.remove('show'), 3000);
         }
 
-        // 2. Countdown Timer Logic
-        let eventDate = new Date().getTime() + (2 * 24 * 60 * 60 * 1000) + (14 * 60 * 60 * 1000); // 2 days 14 hours from now
-        
-        setInterval(() => {
-            const now = new Date().getTime();
-            const diff = eventDate - now;
-
-            if (diff > 0) {
-                document.getElementById('days').innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
-                document.getElementById('hours').innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-                document.getElementById('mins').innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-                document.getElementById('secs').innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
-            }
-        }, 1000);
-
-        // 3. Leaderboard Filtering & Search
         function searchLeaderboard() {
             let input = document.getElementById('lbSearch').value.toLowerCase();
             let rows = document.querySelectorAll('#lb-body tr');
@@ -1026,7 +1184,6 @@
             rows.forEach(row => tbody.appendChild(row));
         }
 
-        // 4. Player Stats Lookup
         function lookupPlayer() {
             let name = document.getElementById('lookupName').value.trim();
             if (!name) return;
@@ -1036,12 +1193,11 @@
             document.getElementById('lookupDetails').innerText = `Hearts: Searching... | Kills: Active Player`;
         }
 
-        // 5. FAQ Toggle
         function toggleFAQ(element) {
             element.parentElement.classList.toggle('open');
         }
 
-        // 6. Particle Canvas Background
+        // Particle Canvas Background
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
