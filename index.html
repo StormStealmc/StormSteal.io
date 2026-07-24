@@ -772,7 +772,7 @@
             <p class="section-subtitle">Connect with other players, get server updates, and join giveaways!</p>
 
             <div class="vote-grid">
-                <a href="https://discord.gg" target="_blank" class="vote-card">
+                <a href="https://discord.gg/xtYvVqDqT" target="_blank" class="vote-card">
                     <i class="fa-brands fa-discord" style="font-size:2rem; margin-bottom:8px; display:block; color:#5865F2;"></i> 
                     Discord Server
                 </a>
@@ -780,9 +780,9 @@
                     <i class="fa-solid fa-gamepad" style="font-size:2rem; margin-bottom:8px; display:block; color:var(--accent-red);"></i> 
                     Copy Server IP
                 </a>
-                <a href="https://youtube.com" target="_blank" class="vote-card">
+                <a href="https://www.youtube.com/@SHUJ4PLAYZ" target="_blank" class="vote-card">
                     <i class="fa-brands fa-youtube" style="font-size:2rem; margin-bottom:8px; display:block; color:#FF0000;"></i> 
-                    YouTube
+                    YouTube Channel
                 </a>
                 <a href="shop.html" class="vote-card">
                     <i class="fa-solid fa-cart-shopping" style="font-size:2rem; margin-bottom:8px; display:block; color:var(--accent-purple);"></i> 
@@ -825,7 +825,8 @@
             <a href="#leaderboards">Leaderboards</a>
             <a href="shop.html">Store</a>
             <a href="#staff">Staff</a>
-            <a href="https://discord.gg" target="_blank">Discord Community</a>
+            <a href="https://discord.gg/xtYvVqDqT" target="_blank">Discord Community</a>
+            <a href="https://www.youtube.com/@SHUJ4PLAYZ" target="_blank">YouTube Channel</a>
         </div>
         <p>&copy; 2026 Storm Steal Network. Not affiliated with Mojang Studios.</p>
     </footer>
@@ -869,68 +870,14 @@
             } else if(name.toLowerCase() === 'glitchbloom') {
                 document.getElementById("lookupDetails").innerText = "Hearts: 18 | Kills: 154 | Status: Server Admin";
             } else {
-                document.getElementById("lookupDetails").innerText = "Hearts: 10 | Kills: 15 | Status: Player";
+                document.getElementById("lookupDetails").innerText = "Hearts: 10 | Kills: 0 | Status: Member";
             }
         }
 
         // FAQ Toggle
         function toggleFAQ(element) {
-            const parent = element.parentElement;
-            parent.classList.toggle("open");
+            element.parentElement.classList.toggle("open");
         }
-
-        // Live Event Timer Count Down
-        const targetDate = new Date().getTime() + (2 * 24 * 60 * 60 * 1000);
-        setInterval(() => {
-            const now = new Date().getTime();
-            const diff = targetDate - now;
-
-            if (diff > 0) {
-                document.getElementById("days").innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
-                document.getElementById("hours").innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-                document.getElementById("mins").innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-                document.getElementById("secs").innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
-            }
-        }, 1000);
-
-        // Canvas Particles Background
-        const canvas = document.getElementById("bg-canvas");
-        const ctx = canvas.getContext("2d");
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const particles = [];
-        for (let i = 0; i < 40; i++) {
-            particles.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                radius: Math.random() * 2 + 1,
-                color: Math.random() > 0.5 ? '#ff2a5f' : '#9d4edd',
-                speedY: Math.random() * 0.5 + 0.2
-            });
-        }
-
-        function animateCanvas() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                ctx.fillStyle = p.color;
-                ctx.shadowBlur = 10;
-                ctx.shadowColor = p.color;
-                ctx.fill();
-
-                p.y -= p.speedY;
-                if (p.y < 0) p.y = canvas.height;
-            });
-            requestAnimationFrame(animateCanvas);
-        }
-        animateCanvas();
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
     </script>
 </body>
 </html>
