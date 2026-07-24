@@ -9,10 +9,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     
     <style>
+        @property --angle {
+            syntax: '<angle>';
+            initial-value: 0deg;
+            inherits: false;
+        }
+
         :root {
             --bg-primary: #0a0a0f;
             --bg-secondary: #12121c;
-            --bg-card: #1a1a28;
+            --bg-card: #12121e;
             --accent-red: #ff2a5f;
             --accent-purple: #9d4edd;
             --text-main: #f0f2f5;
@@ -334,25 +340,76 @@
         .rank-2 { background: silver; color: #000; }
         .rank-3 { background: #cd7f32; color: #000; }
 
-        /* Lifesteal Guide Cards */
+        /* ==============================================
+           ANIMATED NEON LIGHTNING BORDER SYSTEM
+        ============================================== */
+        @keyframes rotateGlow {
+            0% { --angle: 0deg; }
+            100% { --angle: 360deg; }
+        }
+
+        .neon-border {
+            position: relative;
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 2px; /* Border thickness */
+            isolation: isolate;
+        }
+
+        .neon-border::before,
+        .neon-border::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 18px;
+            background: conic-gradient(
+                from var(--angle),
+                transparent 70%,
+                var(--accent-red) 88%,
+                #ffffff 95%,
+                var(--accent-purple) 100%
+            );
+            animation: rotateGlow 3s linear infinite;
+            z-index: -2;
+        }
+
+        .neon-border::after {
+            filter: blur(12px);
+            opacity: 0.8;
+            z-index: -3;
+        }
+
+        /* OWNER SPECIAL INTENSE RED NEON BORDER */
+        .neon-border.owner-neon::before,
+        .neon-border.owner-neon::after {
+            background: conic-gradient(
+                from var(--angle),
+                transparent 60%,
+                #ff003c 85%,
+                #ffffff 94%,
+                #ff2a5f 100%
+            );
+            animation: rotateGlow 2s linear infinite;
+        }
+
+        .neon-border.owner-neon::after {
+            filter: blur(16px);
+            opacity: 1;
+        }
+
+        .card-inner {
+            background: var(--bg-card);
+            border-radius: 14px;
+            padding: 22px;
+            height: 100%;
+            width: 100%;
+        }
+
+        /* Lifesteal Guide Cards Grid */
         .guide-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
-        }
-
-        .card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            padding: 25px;
-            border-radius: 12px;
-            transition: 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-red);
-            box-shadow: var(--glow);
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
         }
 
         .card-icon {
@@ -361,12 +418,12 @@
             margin-bottom: 15px;
         }
 
-        .card h3 {
+        .guide-grid h3 {
             margin-bottom: 10px;
             font-size: 1.25rem;
         }
 
-        .card p {
+        .guide-grid p {
             color: var(--text-muted);
             font-size: 0.95rem;
             line-height: 1.5;
@@ -398,29 +455,19 @@
         /* Staff Section */
         .staff-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
         }
 
-        .staff-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            padding: 20px;
-            border-radius: 12px;
+        .staff-card-content {
             text-align: center;
             position: relative;
-            overflow: hidden;
-        }
-
-        .staff-card.owner-card {
-            border: 2px solid var(--accent-red);
-            box-shadow: var(--glow);
         }
 
         .staff-badge {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 0;
+            right: 0;
             background: var(--accent-purple);
             color: #fff;
             font-size: 0.65rem;
@@ -432,6 +479,7 @@
 
         .staff-badge.owner-badge {
             background: var(--accent-red);
+            box-shadow: 0 0 10px var(--accent-red);
         }
 
         .staff-head {
@@ -474,26 +522,16 @@
         /* Community / Voting Links Grid */
         .vote-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
         }
 
         .vote-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            padding: 22px;
-            border-radius: 10px;
-            text-align: center;
             text-decoration: none;
             color: #fff;
-            transition: 0.3s;
             font-weight: 700;
-        }
-
-        .vote-card:hover {
-            border-color: var(--accent-purple);
-            transform: translateY(-3px);
-            box-shadow: 0 0 15px rgba(157, 78, 221, 0.3);
+            text-align: center;
+            display: block;
         }
 
         /* Toast Notification */
@@ -713,25 +751,33 @@
             <p class="section-subtitle">Master the rules of heart stealing and revival</p>
 
             <div class="guide-grid">
-                <div class="card">
-                    <i class="fa-solid fa-heart-crack card-icon"></i>
-                    <h3>Heart Stealing</h3>
-                    <p>Eliminate players in PvP to steal 1 heart container. Lose all your hearts, and you will be temporarily banned or put in spectator mode!</p>
+                <div class="neon-border">
+                    <div class="card-inner">
+                        <i class="fa-solid fa-heart-crack card-icon"></i>
+                        <h3>Heart Stealing</h3>
+                        <p>Eliminate players in PvP to steal 1 heart container. Lose all your hearts, and you will be temporarily banned or put in spectator mode!</p>
+                    </div>
                 </div>
-                <div class="card">
-                    <i class="fa-solid fa-hammer card-icon"></i>
-                    <h3>Crafting Hearts</h3>
-                    <p>Combine Netherite Ingots, Totems of Undying, and Diamond Blocks in a crafting table to forge extra Heart Containers.</p>
+                <div class="neon-border">
+                    <div class="card-inner">
+                        <i class="fa-solid fa-hammer card-icon"></i>
+                        <h3>Crafting Hearts</h3>
+                        <p>Combine Netherite Ingots, Totems of Undying, and Diamond Blocks in a crafting table to forge extra Heart Containers.</p>
+                    </div>
                 </div>
-                <div class="card">
-                    <i class="fa-solid fa-wand-magic-sparkles card-icon"></i>
-                    <h3>Revive Beacons</h3>
-                    <p>Craft a Revive Beacon to bring back eliminated teammates who have reached zero hearts and lost access to the SMP.</p>
+                <div class="neon-border">
+                    <div class="card-inner">
+                        <i class="fa-solid fa-wand-magic-sparkles card-icon"></i>
+                        <h3>Revive Beacons</h3>
+                        <p>Craft a Revive Beacon to bring back eliminated teammates who have reached zero hearts and lost access to the SMP.</p>
+                    </div>
                 </div>
-                <div class="card">
-                    <i class="fa-solid fa-shield-virus card-icon"></i>
-                    <h3>Grace Period</h3>
-                    <p>New players receive a 60-minute PvP protection grace period to build a starter base and equip basic gear before entering combat.</p>
+                <div class="neon-border">
+                    <div class="card-inner">
+                        <i class="fa-solid fa-shield-virus card-icon"></i>
+                        <h3>Grace Period</h3>
+                        <p>New players receive a 60-minute PvP protection grace period to build a starter base and equip basic gear before entering combat.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -742,26 +788,34 @@
             <p class="section-subtitle">The team leading and managing Storm Steal Network</p>
 
             <div class="staff-grid">
-                <!-- OWNER -->
-                <div class="staff-card owner-card">
-                    <span class="staff-badge owner-badge">Owner</span>
-                    <img src="https://mc-heads.net/avatar/Shuj4Playz/80" class="staff-head" alt="Shuj4Playz">
-                    <h3 style="font-size: 1.1rem;">Shuj4Playz</h3>
-                    <p style="color: var(--text-muted); font-size:0.85rem; margin-top:5px;">Server Owner, Plugin & Command Developer</p>
+                <!-- OWNER (INTENSE RED NEON BORDER) -->
+                <div class="neon-border owner-neon">
+                    <div class="card-inner staff-card-content">
+                        <span class="staff-badge owner-badge">Owner</span>
+                        <img src="https://mc-heads.net/avatar/Shuj4Playz/80" class="staff-head" alt="Shuj4Playz">
+                        <h3 style="font-size: 1.1rem;">Shuj4Playz</h3>
+                        <p style="color: var(--text-muted); font-size:0.85rem; margin-top:5px;">Server Owner, Plugin & Command Developer</p>
+                    </div>
                 </div>
+
                 <!-- ADMIN 1 -->
-                <div class="staff-card">
-                    <span class="staff-badge">Admin</span>
-                    <img src="https://mc-heads.net/avatar/Void_X_ViperYt/80" class="staff-head" alt="Void_X_ViperYt">
-                    <h3 style="font-size: 1.1rem;">Azyan (Void_X_ViperYt)</h3>
-                    <p style="color: var(--text-muted); font-size:0.85rem; margin-top:5px;">Server Administrator</p>
+                <div class="neon-border">
+                    <div class="card-inner staff-card-content">
+                        <span class="staff-badge">Admin</span>
+                        <img src="https://mc-heads.net/avatar/Void_X_ViperYt/80" class="staff-head" alt="Void_X_ViperYt">
+                        <h3 style="font-size: 1.1rem;">Azyan (Void_X_ViperYt)</h3>
+                        <p style="color: var(--text-muted); font-size:0.85rem; margin-top:5px;">Server Administrator</p>
+                    </div>
                 </div>
+
                 <!-- ADMIN 2 -->
-                <div class="staff-card">
-                    <span class="staff-badge">Admin</span>
-                    <img src="https://mc-heads.net/avatar/GlitchBloom/80" class="staff-head" alt="GlitchBloom">
-                    <h3 style="font-size: 1.1rem;">GlitchBloom</h3>
-                    <p style="color: var(--text-muted); font-size:0.85rem; margin-top:5px;">Server Administrator</p>
+                <div class="neon-border">
+                    <div class="card-inner staff-card-content">
+                        <span class="staff-badge">Admin</span>
+                        <img src="https://mc-heads.net/avatar/GlitchBloom/80" class="staff-head" alt="GlitchBloom">
+                        <h3 style="font-size: 1.1rem;">GlitchBloom</h3>
+                        <p style="color: var(--text-muted); font-size:0.85rem; margin-top:5px;">Server Administrator</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -773,20 +827,36 @@
 
             <div class="vote-grid">
                 <a href="https://discord.gg/xtYvVqDqT" target="_blank" class="vote-card">
-                    <i class="fa-brands fa-discord" style="font-size:2rem; margin-bottom:8px; display:block; color:#5865F2;"></i> 
-                    Discord Server
+                    <div class="neon-border">
+                        <div class="card-inner">
+                            <i class="fa-brands fa-discord" style="font-size:2rem; margin-bottom:8px; display:block; color:#5865F2;"></i> 
+                            Discord Server
+                        </div>
+                    </div>
                 </a>
                 <a href="javascript:void(0)" onclick="copyIP()" class="vote-card">
-                    <i class="fa-solid fa-gamepad" style="font-size:2rem; margin-bottom:8px; display:block; color:var(--accent-red);"></i> 
-                    Copy Server IP
+                    <div class="neon-border">
+                        <div class="card-inner">
+                            <i class="fa-solid fa-gamepad" style="font-size:2rem; margin-bottom:8px; display:block; color:var(--accent-red);"></i> 
+                            Copy Server IP
+                        </div>
+                    </div>
                 </a>
                 <a href="https://www.youtube.com/@SHUJ4PLAYZ" target="_blank" class="vote-card">
-                    <i class="fa-brands fa-youtube" style="font-size:2rem; margin-bottom:8px; display:block; color:#FF0000;"></i> 
-                    YouTube Channel
+                    <div class="neon-border">
+                        <div class="card-inner">
+                            <i class="fa-brands fa-youtube" style="font-size:2rem; margin-bottom:8px; display:block; color:#FF0000;"></i> 
+                            YouTube Channel
+                        </div>
+                    </div>
                 </a>
                 <a href="shop.html" class="vote-card">
-                    <i class="fa-solid fa-cart-shopping" style="font-size:2rem; margin-bottom:8px; display:block; color:var(--accent-purple);"></i> 
-                    Server Store
+                    <div class="neon-border">
+                        <div class="card-inner">
+                            <i class="fa-solid fa-cart-shopping" style="font-size:2rem; margin-bottom:8px; display:block; color:var(--accent-purple);"></i> 
+                            Server Store
+                        </div>
+                    </div>
                 </a>
             </div>
         </section>
@@ -833,6 +903,52 @@
 
     <!-- Interactive JavaScript -->
     <script>
+        // Particle Canvas Background Animation
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.color = Math.random() > 0.5 ? '#ff2a5f' : '#9d4edd';
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 60; i++) particles.push(new Particle());
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
         // Copy IP function with Toast Notification
         function copyIP() {
             const ip = "play.stormsteal.net";
