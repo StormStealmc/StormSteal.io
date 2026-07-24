@@ -471,27 +471,29 @@
             display: block;
         }
 
-        /* Voting Links */
+        /* Community / Voting Links Grid */
         .vote-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
         }
 
         .vote-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
-            padding: 20px;
+            padding: 22px;
             border-radius: 10px;
             text-align: center;
             text-decoration: none;
             color: #fff;
             transition: 0.3s;
+            font-weight: 700;
         }
 
         .vote-card:hover {
-            background: var(--accent-purple);
+            border-color: var(--accent-purple);
             transform: translateY(-3px);
+            box-shadow: 0 0 15px rgba(157, 78, 221, 0.3);
         }
 
         /* Toast Notification */
@@ -563,7 +565,7 @@
             <a href="#guide"><i class="fa-solid fa-book"></i> SMP Guide</a>
             <a href="shop.html"><i class="fa-solid fa-cart-shopping"></i> Store</a>
             <a href="#staff"><i class="fa-solid fa-shield-halved"></i> Staff</a>
-            <a href="#vote"><i class="fa-solid fa-check-to-slot"></i> Vote</a>
+            <a href="#community"><i class="fa-solid fa-users"></i> Community</a>
             <a href="#faq"><i class="fa-solid fa-circle-question"></i> FAQ</a>
         </nav>
         <button class="btn-copy-ip" onclick="copyIP()">
@@ -764,16 +766,28 @@
             </div>
         </section>
 
-        <!-- Voting Section -->
-        <section id="vote" style="margin-top: 80px;">
-            <h2 class="section-title">Vote For Rewards</h2>
-            <p class="section-subtitle">Support the server daily to receive free key keys and heart fragments</p>
+        <!-- Community Section -->
+        <section id="community" style="margin-top: 80px;">
+            <h2 class="section-title">Join Our Community</h2>
+            <p class="section-subtitle">Connect with other players, get server updates, and join giveaways!</p>
 
             <div class="vote-grid">
-                <a href="#" class="vote-card"><i class="fa-solid fa-check-circle" style="font-size:1.5rem; margin-bottom:8px; display:block; color:var(--accent-red);"></i> Vote Site 1</a>
-                <a href="#" class="vote-card"><i class="fa-solid fa-check-circle" style="font-size:1.5rem; margin-bottom:8px; display:block; color:var(--accent-red);"></i> Vote Site 2</a>
-                <a href="#" class="vote-card"><i class="fa-solid fa-check-circle" style="font-size:1.5rem; margin-bottom:8px; display:block; color:var(--accent-red);"></i> Vote Site 3</a>
-                <a href="#" class="vote-card"><i class="fa-solid fa-check-circle" style="font-size:1.5rem; margin-bottom:8px; display:block; color:var(--accent-red);"></i> Vote Site 4</a>
+                <a href="https://discord.gg" target="_blank" class="vote-card">
+                    <i class="fa-brands fa-discord" style="font-size:2rem; margin-bottom:8px; display:block; color:#5865F2;"></i> 
+                    Discord Server
+                </a>
+                <a href="javascript:void(0)" onclick="copyIP()" class="vote-card">
+                    <i class="fa-solid fa-gamepad" style="font-size:2rem; margin-bottom:8px; display:block; color:var(--accent-red);"></i> 
+                    Copy Server IP
+                </a>
+                <a href="https://youtube.com" target="_blank" class="vote-card">
+                    <i class="fa-brands fa-youtube" style="font-size:2rem; margin-bottom:8px; display:block; color:#FF0000;"></i> 
+                    YouTube
+                </a>
+                <a href="shop.html" class="vote-card">
+                    <i class="fa-solid fa-cart-shopping" style="font-size:2rem; margin-bottom:8px; display:block; color:var(--accent-purple);"></i> 
+                    Server Store
+                </a>
             </div>
         </section>
 
