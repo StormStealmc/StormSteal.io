@@ -35,7 +35,7 @@
             overflow-x: hidden;
         }
 
-        /* Particle Background Canvas */
+        /* Particle Canvas Background */
         #bg-canvas {
             position: fixed;
             top: 0;
@@ -70,6 +70,7 @@
             color: #fff;
             text-transform: uppercase;
             letter-spacing: 1px;
+            text-decoration: none;
         }
 
         .logo i {
@@ -349,7 +350,6 @@
         }
 
         .card:hover {
-            transform: translateY(-50px);
             transform: translateY(-5px);
             border-color: var(--accent-red);
             box-shadow: var(--glow);
@@ -544,15 +544,16 @@
 
     <!-- Header Navigation -->
     <header>
-        <div class="logo">
+        <a href="index.html" class="logo">
             <i class="fa-solid fa-heart-pulse"></i>
             <span>Storm Steal</span>
-        </div>
+        </a>
         <nav>
             <a href="#home" class="active"><i class="fa-solid fa-house"></i> Home</a>
             <a href="#leaderboards"><i class="fa-solid fa-trophy"></i> Leaderboards</a>
             <a href="#guide"><i class="fa-solid fa-book"></i> SMP Guide</a>
-            <a href="#store"><i class="fa-solid fa-cart-shopping"></i> Store</a>
+            <!-- LINK TO DEDICATED STORE PAGE -->
+            <a href="shop.html"><i class="fa-solid fa-cart-shopping"></i> Store</a>
             <a href="#staff"><i class="fa-solid fa-shield-halved"></i> Staff</a>
             <a href="#vote"><i class="fa-solid fa-check-to-slot"></i> Vote</a>
             <a href="#faq"><i class="fa-solid fa-circle-question"></i> FAQ</a>
@@ -797,7 +798,7 @@
         <div class="footer-links">
             <a href="#home">Home</a>
             <a href="#leaderboards">Leaderboards</a>
-            <a href="#store">Store</a>
+            <a href="shop.html">Store</a>
             <a href="#staff">Staff</a>
             <a href="https://discord.gg" target="_blank">Discord Community</a>
         </div>
@@ -828,7 +829,7 @@
             }
         }
 
-        // Player Lookup Mock Function
+        // Player Lookup Function
         function lookupPlayer() {
             const name = document.getElementById("lookupName").value.trim();
             if(!name) return;
@@ -854,7 +855,7 @@
         }
 
         // Live Event Timer Count Down
-        const targetDate = new Date().getTime() + (2 * 24 * 60 * 60 * 1000); // 2 Days from now
+        const targetDate = new Date().getTime() + (2 * 24 * 60 * 60 * 1000);
         setInterval(() => {
             const now = new Date().getTime();
             const diff = targetDate - now;
