@@ -20,7 +20,6 @@
             /* Theme Colors */
             --vip-gold: #ffd700;
             --legendary-purple: #9d4edd;
-            --storm-red: #ff2a5f;
             --coin-yellow: #f1c40f;
         }
 
@@ -78,9 +77,9 @@
         }
 
         .logo i {
-            color: var(--storm-red);
+            color: #ff2a5f;
             font-size: 1.8rem;
-            filter: drop-shadow(0 0 8px var(--storm-red));
+            filter: drop-shadow(0 0 8px #ff2a5f);
         }
 
         nav a {
@@ -95,7 +94,7 @@
         }
 
         nav a:hover {
-            color: var(--storm-red);
+            color: #ff2a5f;
         }
 
         /* Store Hero */
@@ -149,7 +148,7 @@
         .coin-card {
             background: var(--bg-card);
             border: 2px solid var(--coin-yellow);
-            box-shadow: 0 0 15px rgba(241, 196, 15, 0.15);
+            box-shadow: 0 0 15px rgba(241, 196, 15, 0.2);
             border-radius: 16px;
             padding: 25px 20px;
             text-align: center;
@@ -158,7 +157,7 @@
 
         .coin-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0 25px rgba(241, 196, 15, 0.4);
+            box-shadow: 0 0 25px rgba(241, 196, 15, 0.5);
         }
 
         .coin-icon {
@@ -184,7 +183,7 @@
         /* Ranks Grid */
         .ranks-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin-top: 20px;
         }
@@ -233,20 +232,33 @@
             color: #fff;
         }
 
-        /* STORM Rank */
-        .rank-storm {
-            border: 2px solid var(--storm-red);
-            box-shadow: 0 0 20px rgba(255, 42, 95, 0.3);
-            transform: scale(1.03);
+        /* ================= RAINBOW BORDER EFFECT ================= */
+        @keyframes rainbowGlow {
+            0% { border-color: #ff0055; box-shadow: 0 0 20px rgba(255, 0, 85, 0.5); }
+            20% { border-color: #ff9900; box-shadow: 0 0 20px rgba(255, 153, 0, 0.5); }
+            40% { border-color: #33ff00; box-shadow: 0 0 20px rgba(51, 255, 0, 0.5); }
+            60% { border-color: #00ffff; box-shadow: 0 0 20px rgba(0, 255, 255, 0.5); }
+            80% { border-color: #9900ff; box-shadow: 0 0 20px rgba(153, 0, 255, 0.5); }
+            100% { border-color: #ff0055; box-shadow: 0 0 20px rgba(255, 0, 85, 0.5); }
         }
-        .rank-storm:hover {
-            transform: scale(1.03) translateY(-8px);
-            box-shadow: 0 0 35px rgba(255, 42, 95, 0.7);
+
+        .rainbow-border {
+            border: 2px solid #ff0055;
+            animation: rainbowGlow 4s linear infinite;
         }
-        .rank-storm .rank-title { color: var(--storm-red); }
-        .rank-storm .btn-buy {
-            background: var(--storm-red);
-            color: #fff;
+
+        .rainbow-title {
+            background: linear-gradient(90deg, #ff0055, #ff9900, #33ff00, #00ffff, #9900ff, #ff0055);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: rainbowText 3s linear infinite;
+        }
+
+        @keyframes rainbowText {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
         }
 
         .badge-best {
@@ -254,7 +266,7 @@
             top: -15px;
             left: 50%;
             transform: translateX(-50%);
-            background: var(--storm-red);
+            background: linear-gradient(90deg, #ff0055, #9900ff);
             color: #fff;
             padding: 6px 16px;
             border-radius: 20px;
@@ -262,7 +274,7 @@
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 1px;
-            border: 1px solid var(--storm-red);
+            box-shadow: 0 0 10px rgba(255, 0, 85, 0.5);
         }
 
         .rank-title {
@@ -432,11 +444,11 @@
                 </a>
             </div>
 
-            <!-- STORM RANK -->
-            <div class="rank-card rank-storm">
+            <!-- STORM RANK WITH ANIMATED RAINBOW BORDER -->
+            <div class="rank-card rainbow-border">
                 <div class="badge-best">Ultimate Rank</div>
                 <div>
-                    <h2 class="rank-title">STORM</h2>
+                    <h2 class="rank-title rainbow-title">STORM</h2>
                     <ul class="perks-list">
                         <li><i class="fa-solid fa-check"></i> Custom Name on Head</li>
                         <li><i class="fa-solid fa-check"></i> Custom Name on Chat</li>
@@ -444,7 +456,7 @@
                         <li><i class="fa-solid fa-shield-halved"></i> Access to Custom /kit Storm (Armor & Tools)</li>
                     </ul>
                 </div>
-                <a href="https://wa.me/923114140301?text=Hello!%20I%20want%20to%20buy%20the%20STORM%20Rank%20on%20Storm%20Steal%20Network" target="_blank" class="btn-buy">
+                <a href="https://wa.me/923114140301?text=Hello!%20I%20want%20to%20buy%20the%20STORM%20Rank%20on%20Storm%20Steal%20Network" target="_blank" class="btn-buy" style="background: linear-gradient(90deg, #ff0055, #9900ff); color: #fff;">
                     <i class="fa-brands fa-whatsapp"></i> Buy STORM Rank
                 </a>
             </div>
