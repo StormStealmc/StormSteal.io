@@ -117,14 +117,24 @@
             cursor: pointer;
             box-shadow: var(--glow);
             transition: 0.3s;
-            display: flex;
+            display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
         }
 
         .btn-copy-ip:hover {
             transform: translateY(-2px);
             box-shadow: 0 0 30px rgba(255, 42, 95, 0.7);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 42, 95, 0.2);
         }
 
         /* Hero Section */
@@ -155,6 +165,14 @@
             margin: 0 auto 30px;
         }
 
+        .hero-action-btns {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
         /* Server Status Bar */
         .status-bar-wrapper {
             display: inline-block;
@@ -168,6 +186,8 @@
             background: var(--bg-card);
             padding: 12px 28px;
             border-radius: 50px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .status-dot {
@@ -345,9 +365,7 @@
         .rank-2 { background: silver; color: #000; }
         .rank-3 { background: #cd7f32; color: #000; }
 
-        /* ==============================================
-           ANIMATED NEON LIGHTNING BORDER SYSTEM
-        ============================================== */
+        /* Neon Lightning Border System */
         @keyframes rotateGlow {
             0% { --angle: 0deg; }
             100% { --angle: 360deg; }
@@ -357,7 +375,7 @@
             position: relative;
             background: var(--bg-card);
             border-radius: 16px;
-            padding: 2px; /* Border thickness */
+            padding: 2px;
             isolation: isolate;
         }
 
@@ -393,7 +411,7 @@
             z-index: -3;
         }
 
-        /* OWNER SPECIAL INTENSE RED NEON BORDER */
+        /* Owner Neon Border */
         .neon-border.owner-neon::before,
         .neon-border.owner-neon::after {
             background: conic-gradient(
@@ -419,7 +437,7 @@
             width: 100%;
         }
 
-        /* Lifesteal Guide Cards Grid */
+        /* Guide Cards Grid */
         .guide-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -443,7 +461,7 @@
             line-height: 1.5;
         }
 
-        /* Player Lookup Tool */
+        /* Lookup Tool */
         .lookup-inner {
             display: flex;
             gap: 30px;
@@ -532,7 +550,7 @@
             display: block;
         }
 
-        /* Community / Voting Links Grid */
+        /* Voting Links Grid */
         .vote-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -601,7 +619,7 @@
 </head>
 <body>
 
-    <!-- Dynamic Canvas Animation -->
+    <!-- Canvas Animation -->
     <canvas id="bg-canvas"></canvas>
 
     <!-- Header Navigation -->
@@ -614,12 +632,11 @@
             <a href="#home" class="active"><i class="fa-solid fa-house"></i> Home</a>
             <a href="#leaderboards"><i class="fa-solid fa-trophy"></i> Leaderboards</a>
             <a href="#guide"><i class="fa-solid fa-book"></i> SMP Guide</a>
-            <a href="shop.html"><i class="fa-solid fa-cart-shopping"></i> Store</a>
             <a href="#staff"><i class="fa-solid fa-shield-halved"></i> Staff</a>
             <a href="#community"><i class="fa-solid fa-users"></i> Community</a>
             <a href="#faq"><i class="fa-solid fa-circle-question"></i> FAQ</a>
         </nav>
-        <button class="btn-copy-ip" onclick="copyIP()">
+        <button class="btn-copy-ip" onclick="copyIP('play.stormsteal.net')">
             <i class="fa-solid fa-copy"></i> Copy IP
         </button>
     </header>
@@ -632,7 +649,17 @@
         <h1>Ultimate <span>Lifesteal</span> Experience</h1>
         <p>Kill players to steal their hearts. Craft revive beacons, dominate the leaderboards, and rule the realm on Storm Steal Network!</p>
         
-        <!-- Status Bar with Neon Border -->
+        <!-- Hero Action Buttons -->
+        <div class="hero-action-btns">
+            <button class="btn-copy-ip" onclick="copyIP('play.stormsteal.net')">
+                <i class="fa-solid fa-gamepad"></i> Join Java Server
+            </button>
+            <button class="btn-copy-ip btn-secondary" onclick="copyIP('play.stormsteal.net', '19132')">
+                <i class="fa-solid fa-mobile-screen-button"></i> Join Bedrock / PE
+            </button>
+        </div>
+
+        <!-- Status Bar -->
         <div class="status-bar-wrapper">
             <div class="neon-border pill-radius">
                 <div class="status-bar-inner">
@@ -640,11 +667,13 @@
                     <span><strong>Server Online:</strong> <span id="player-count">34</span> / 100 Players</span>
                     <span style="color: var(--border-color);">|</span>
                     <span style="color: var(--text-muted); font-size: 0.9rem;">IP: play.stormsteal.net</span>
+                    <span style="color: var(--border-color);">|</span>
+                    <span style="color: var(--text-muted); font-size: 0.9rem;">Bedrock Port: 19132</span>
                 </div>
             </div>
         </div>
 
-        <!-- Event Countdown Banner with Neon Border -->
+        <!-- Event Countdown Banner -->
         <div class="event-banner-wrapper">
             <div class="neon-border owner-neon">
                 <div class="event-banner-inner">
@@ -691,7 +720,7 @@
                     </tr>
                 </thead>
                 <tbody id="lb-body">
-                    <tr>
+                    <tr data-hearts="30" data-kills="412">
                         <td><span class="rank-badge rank-1">1</span></td>
                         <td>
                             <div class="player-cell">
@@ -704,7 +733,7 @@
                         <td>12.8</td>
                         <td><span style="color:#2ec4b6;">Online</span></td>
                     </tr>
-                    <tr>
+                    <tr data-hearts="26" data-kills="289">
                         <td><span class="rank-badge rank-2">2</span></td>
                         <td>
                             <div class="player-cell">
@@ -717,7 +746,7 @@
                         <td>8.4</td>
                         <td><span style="color:#2ec4b6;">Online</span></td>
                     </tr>
-                    <tr>
+                    <tr data-hearts="22" data-kills="210">
                         <td><span class="rank-badge rank-3">3</span></td>
                         <td>
                             <div class="player-cell">
@@ -730,7 +759,7 @@
                         <td>6.2</td>
                         <td><span style="color:#2ec4b6;">Online</span></td>
                     </tr>
-                    <tr>
+                    <tr data-hearts="18" data-kills="154">
                         <td>4</td>
                         <td>
                             <div class="player-cell">
@@ -747,7 +776,7 @@
             </table>
         </section>
 
-        <!-- Player Stats Lookup Tool with Neon Border -->
+        <!-- Player Stats Lookup Tool -->
         <section style="margin-top: 80px;">
             <h2 class="section-title">Player Stats Lookup</h2>
             <p class="section-subtitle">Check heart status and kill count of any server member</p>
@@ -812,7 +841,7 @@
             <p class="section-subtitle">The team leading and managing Storm Steal Network</p>
 
             <div class="staff-grid">
-                <!-- OWNER (INTENSE RED NEON BORDER) -->
+                <!-- OWNER -->
                 <div class="neon-border owner-neon">
                     <div class="card-inner staff-card-content">
                         <span class="staff-badge owner-badge">Owner</span>
@@ -858,11 +887,11 @@
                         </div>
                     </div>
                 </a>
-                <a href="javascript:void(0)" onclick="copyIP()" class="vote-card">
+                <a href="javascript:void(0)" onclick="copyIP('play.stormsteal.net')" class="vote-card">
                     <div class="neon-border">
                         <div class="card-inner">
                             <i class="fa-solid fa-gamepad" style="font-size:2rem; margin-bottom:8px; display:block; color:var(--accent-red);"></i> 
-                            Copy Server IP
+                            Copy Java IP
                         </div>
                     </div>
                 </a>
@@ -874,38 +903,49 @@
                         </div>
                     </div>
                 </a>
-                <a href="shop.html" class="vote-card">
+                <a href="javascript:void(0)" onclick="copyIP('play.stormsteal.net', '19132')" class="vote-card">
                     <div class="neon-border">
                         <div class="card-inner">
-                            <i class="fa-solid fa-cart-shopping" style="font-size:2rem; margin-bottom:8px; display:block; color:var(--accent-purple);"></i> 
-                            Server Store
+                            <i class="fa-solid fa-mobile-screen" style="font-size:2rem; margin-bottom:8px; display:block; color:var(--accent-purple);"></i> 
+                            Copy Bedrock Port
                         </div>
                     </div>
                 </a>
             </div>
         </section>
 
-        <!-- FAQ Section -->
+        <!-- FAQ Accordion Section -->
         <section id="faq" style="margin-top: 80px;">
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Everything you need to know about playing on Storm Steal</p>
 
-            <div style="max-width: 800px; margin: 0 auto;">
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">What is the server IP and Port? <i class="fa-solid fa-chevron-down"></i></div>
-                    <div class="faq-answer">Java IP: <code>play.stormsteal.net</code> | Bedrock IP: <code>play.stormsteal.net</code> Port: <code>19132</code>.</div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>How do I join on Minecraft Bedrock / PE / Mobile / Xbox?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
                 </div>
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">What happens when I run out of hearts? <i class="fa-solid fa-chevron-down"></i></div>
-                    <div class="faq-answer">When you lose all hearts, you are temporarily temp-banned for 24 hours unless a teammate uses a Revive Beacon to bring you back earlier.</div>
+                <div class="faq-answer">
+                    Enter the Server IP as <strong>play.stormsteal.net</strong> and set the Port to <strong>19132</strong>.
                 </div>
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">Are mods or client hacks allowed? <i class="fa-solid fa-chevron-down"></i></div>
-                    <div class="faq-answer">No. Unfair modifications like X-Ray, Killaura, Fly, and Baritone will lead to a permanent ban. Minimaps and FPS boosters are allowed.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>What happens when I lose all my hearts?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
                 </div>
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">Who owns and manages the server? <i class="fa-solid fa-chevron-down"></i></div>
-                    <div class="faq-answer"><strong>Shuj4Playz</strong> is the Owner and Plugin/Command Developer. <strong>Azyan (Void_X_ViperYT)</strong> and <strong>GlitchBloom</strong> are the Server Administrators.</div>
+                <div class="faq-answer">
+                    When your heart count reaches zero, you enter spectator mode until a teammate uses a Revive Beacon on you!
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Is hacking or dupe allowed?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    No! Unfair advantage hacks, X-Ray, or illegal item duplication will result in an immediate permanent ban.
                 </div>
             </div>
         </section>
@@ -917,17 +957,91 @@
         <div class="footer-links">
             <a href="#home">Home</a>
             <a href="#leaderboards">Leaderboards</a>
-            <a href="shop.html">Store</a>
+            <a href="#guide">Guide</a>
             <a href="#staff">Staff</a>
-            <a href="https://discord.gg/xtYvVqDqT" target="_blank">Discord Community</a>
-            <a href="https://www.youtube.com/@SHUJ4PLAYZ" target="_blank">YouTube Channel</a>
+            <a href="https://discord.gg/xtYvVqDqT" target="_blank">Discord</a>
         </div>
         <p>&copy; 2026 Storm Steal Network. Not affiliated with Mojang Studios.</p>
     </footer>
 
-    <!-- Interactive JavaScript -->
+    <!-- JavaScript Script Logic -->
     <script>
-        // Particle Canvas Background Animation
+        // 1. Copy IP & Port Function
+        function copyIP(ip, port = null) {
+            let textToCopy = ip;
+            let msg = `Server IP (${ip}) copied to clipboard!`;
+            
+            if (port) {
+                textToCopy = `${ip}:${port}`;
+                msg = `Bedrock Info (${ip} Port: ${port}) copied!`;
+            }
+
+            navigator.clipboard.writeText(textToCopy);
+
+            const toast = document.getElementById('toast');
+            toast.innerText = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // 2. Countdown Timer Logic
+        let eventDate = new Date().getTime() + (2 * 24 * 60 * 60 * 1000) + (14 * 60 * 60 * 1000); // 2 days 14 hours from now
+        
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = eventDate - now;
+
+            if (diff > 0) {
+                document.getElementById('days').innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
+                document.getElementById('hours').innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+                document.getElementById('mins').innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+                document.getElementById('secs').innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+            }
+        }, 1000);
+
+        // 3. Leaderboard Filtering & Search
+        function searchLeaderboard() {
+            let input = document.getElementById('lbSearch').value.toLowerCase();
+            let rows = document.querySelectorAll('#lb-body tr');
+
+            rows.forEach(row => {
+                let text = row.innerText.toLowerCase();
+                row.style.display = text.includes(input) ? '' : 'none';
+            });
+        }
+
+        function filterLB(type) {
+            let btns = document.querySelectorAll('.tab-btn');
+            btns.forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+
+            let tbody = document.getElementById('lb-body');
+            let rows = Array.from(tbody.querySelectorAll('tr'));
+
+            if (type === 'hearts') {
+                rows.sort((a, b) => parseInt(b.dataset.hearts) - parseInt(a.dataset.hearts));
+            } else if (type === 'kills') {
+                rows.sort((a, b) => parseInt(b.dataset.kills) - parseInt(a.dataset.kills));
+            }
+            rows.forEach(row => tbody.appendChild(row));
+        }
+
+        // 4. Player Stats Lookup
+        function lookupPlayer() {
+            let name = document.getElementById('lookupName').value.trim();
+            if (!name) return;
+
+            document.getElementById('lookupHead').src = `https://mc-heads.net/avatar/${name}/64`;
+            document.getElementById('lookupPlayerName').innerText = name;
+            document.getElementById('lookupDetails').innerText = `Hearts: Searching... | Kills: Active Player`;
+        }
+
+        // 5. FAQ Toggle
+        function toggleFAQ(element) {
+            element.parentElement.classList.toggle('open');
+        }
+
+        // 6. Particle Canvas Background
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -944,80 +1058,35 @@
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
                 this.size = Math.random() * 2 + 1;
-                this.speedX = (Math.random() - 0.5) * 0.5;
-                this.speedY = (Math.random() - 0.5) * 0.5;
-                this.color = Math.random() > 0.5 ? '#ff2a5f' : '#9d4edd';
+                this.speedY = Math.random() * -0.8 - 0.2;
+                this.opacity = Math.random() * 0.5 + 0.2;
             }
             update() {
-                this.x += this.speedX;
                 this.y += this.speedY;
-                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+                if (this.y < 0) {
+                    this.y = canvas.height;
+                    this.x = Math.random() * canvas.width;
+                }
             }
             draw() {
-                ctx.fillStyle = this.color;
-                ctx.shadowBlur = 10;
-                ctx.shadowColor = this.color;
+                ctx.fillStyle = `rgba(255, 42, 95, ${this.opacity})`;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
             }
         }
 
-        for (let i = 0; i < 60; i++) particles.push(new Particle());
+        for (let i = 0; i < 40; i++) particles.push(new Particle());
 
         function animateParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => { p.update(); p.draw(); });
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
             requestAnimationFrame(animateParticles);
         }
         animateParticles();
-
-        // Copy IP function with Toast Notification
-        function copyIP() {
-            const ip = "play.stormsteal.net";
-            navigator.clipboard.writeText(ip);
-            const toast = document.getElementById("toast");
-            toast.className = "show";
-            setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 3000);
-        }
-
-        // Leaderboard Search Filter
-        function searchLeaderboard() {
-            const input = document.getElementById("lbSearch").value.toUpperCase();
-            const tr = document.getElementById("lb-body").getElementsByTagName("tr");
-            for (let i = 0; i < tr.length; i++) {
-                const td = tr[i].getElementsByTagName("td")[1];
-                if (td) {
-                    const txtValue = td.textContent || td.innerText;
-                    tr[i].style.display = txtValue.toUpperCase().indexOf(input) > -1 ? "" : "none";
-                }
-            }
-        }
-
-        // Player Lookup Function
-        function lookupPlayer() {
-            const name = document.getElementById("lookupName").value.trim();
-            if(!name) return;
-
-            document.getElementById("lookupHead").src = `https://mc-heads.net/avatar/${name}/64`;
-            document.getElementById("lookupPlayerName").innerText = name;
-            
-            if(name.toLowerCase() === 'shuj4playz') {
-                document.getElementById("lookupDetails").innerText = "Hearts: 22 | Kills: 210 | Status: Owner & Developer";
-            } else if(name.toLowerCase() === 'void_x_viperyt' || name.toLowerCase() === 'azyan') {
-                document.getElementById("lookupDetails").innerText = "Hearts: 26 | Kills: 289 | Status: Server Admin";
-            } else if(name.toLowerCase() === 'glitchbloom') {
-                document.getElementById("lookupDetails").innerText = "Hearts: 18 | Kills: 154 | Status: Server Admin";
-            } else {
-                document.getElementById("lookupDetails").innerText = "Hearts: 10 | Kills: 0 | Status: Member";
-            }
-        }
-
-        // FAQ Toggle
-        function toggleFAQ(element) {
-            element.parentElement.classList.toggle("open");
-        }
     </script>
 </body>
 </html>
