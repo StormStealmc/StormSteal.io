@@ -156,15 +156,18 @@
         }
 
         /* Server Status Bar */
-        .status-bar {
-            display: inline-flex;
+        .status-bar-wrapper {
+            display: inline-block;
+            margin: 0 auto;
+        }
+
+        .status-bar-inner {
+            display: flex;
             align-items: center;
             gap: 15px;
             background: var(--bg-card);
             padding: 12px 28px;
             border-radius: 50px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
         }
 
         .status-dot {
@@ -183,18 +186,20 @@
         }
 
         /* Countdown Banner */
-        .event-banner {
-            background: linear-gradient(90deg, rgba(255,42,95,0.15), rgba(157,78,221,0.15));
-            border: 1px dashed var(--accent-red);
+        .event-banner-wrapper {
             max-width: 900px;
             margin: 40px auto 0;
-            padding: 20px;
-            border-radius: 12px;
+        }
+
+        .event-banner-inner {
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
             gap: 15px;
+            padding: 20px;
+            background: var(--bg-card);
+            border-radius: 14px;
         }
 
         .timer-boxes {
@@ -356,6 +361,10 @@
             isolation: isolate;
         }
 
+        .neon-border.pill-radius {
+            border-radius: 50px;
+        }
+
         .neon-border::before,
         .neon-border::after {
             content: '';
@@ -364,18 +373,23 @@
             border-radius: 18px;
             background: conic-gradient(
                 from var(--angle),
-                transparent 70%,
-                var(--accent-red) 88%,
-                #ffffff 95%,
+                transparent 60%,
+                var(--accent-red) 85%,
+                #ffffff 94%,
                 var(--accent-purple) 100%
             );
-            animation: rotateGlow 3s linear infinite;
+            animation: rotateGlow 2.5s linear infinite;
             z-index: -2;
+        }
+
+        .neon-border.pill-radius::before,
+        .neon-border.pill-radius::after {
+            border-radius: 50px;
         }
 
         .neon-border::after {
             filter: blur(12px);
-            opacity: 0.8;
+            opacity: 0.85;
             z-index: -3;
         }
 
@@ -384,12 +398,12 @@
         .neon-border.owner-neon::after {
             background: conic-gradient(
                 from var(--angle),
-                transparent 60%,
-                #ff003c 85%,
-                #ffffff 94%,
+                transparent 50%,
+                #ff003c 80%,
+                #ffffff 92%,
                 #ff2a5f 100%
             );
-            animation: rotateGlow 2s linear infinite;
+            animation: rotateGlow 1.8s linear infinite;
         }
 
         .neon-border.owner-neon::after {
@@ -430,15 +444,14 @@
         }
 
         /* Player Lookup Tool */
-        .lookup-box {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            padding: 30px;
-            border-radius: 16px;
+        .lookup-inner {
             display: flex;
             gap: 30px;
             align-items: center;
             flex-wrap: wrap;
+            padding: 30px;
+            background: var(--bg-card);
+            border-radius: 14px;
         }
 
         .lookup-display {
@@ -619,24 +632,33 @@
         <h1>Ultimate <span>Lifesteal</span> Experience</h1>
         <p>Kill players to steal their hearts. Craft revive beacons, dominate the leaderboards, and rule the realm on Storm Steal Network!</p>
         
-        <div class="status-bar">
-            <div class="status-dot"></div>
-            <span><strong>Server Online:</strong> <span id="player-count">34</span> / 100 Players</span>
-            <span style="color: var(--border-color);">|</span>
-            <span style="color: var(--text-muted); font-size: 0.9rem;">IP: play.stormsteal.net</span>
+        <!-- Status Bar with Neon Border -->
+        <div class="status-bar-wrapper">
+            <div class="neon-border pill-radius">
+                <div class="status-bar-inner">
+                    <div class="status-dot"></div>
+                    <span><strong>Server Online:</strong> <span id="player-count">34</span> / 100 Players</span>
+                    <span style="color: var(--border-color);">|</span>
+                    <span style="color: var(--text-muted); font-size: 0.9rem;">IP: play.stormsteal.net</span>
+                </div>
+            </div>
         </div>
 
-        <!-- Event Countdown Banner -->
-        <div class="event-banner">
-            <div>
-                <i class="fa-solid fa-fire-flame-curated" style="color: var(--accent-red);"></i>
-                <strong>NEXT KIT RESET & ENDER DRAGON EVENT</strong>
-            </div>
-            <div class="timer-boxes">
-                <div class="timer-box"><span id="days">02</span><span>Days</span></div>
-                <div class="timer-box"><span id="hours">14</span><span>Hours</span></div>
-                <div class="timer-box"><span id="mins">35</span><span>Mins</span></div>
-                <div class="timer-box"><span id="secs">10</span><span>Secs</span></div>
+        <!-- Event Countdown Banner with Neon Border -->
+        <div class="event-banner-wrapper">
+            <div class="neon-border owner-neon">
+                <div class="event-banner-inner">
+                    <div>
+                        <i class="fa-solid fa-fire-flame-curated" style="color: var(--accent-red);"></i>
+                        <strong>NEXT KIT RESET & ENDER DRAGON EVENT</strong>
+                    </div>
+                    <div class="timer-boxes">
+                        <div class="timer-box"><span id="days">02</span><span>Days</span></div>
+                        <div class="timer-box"><span id="hours">14</span><span>Hours</span></div>
+                        <div class="timer-box"><span id="mins">35</span><span>Mins</span></div>
+                        <div class="timer-box"><span id="secs">10</span><span>Secs</span></div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -725,21 +747,23 @@
             </table>
         </section>
 
-        <!-- Player Stats Lookup Tool -->
+        <!-- Player Stats Lookup Tool with Neon Border -->
         <section style="margin-top: 80px;">
             <h2 class="section-title">Player Stats Lookup</h2>
             <p class="section-subtitle">Check heart status and kill count of any server member</p>
             
-            <div class="lookup-box">
-                <div style="display:flex; gap: 10px; flex: 1;">
-                    <input type="text" id="lookupName" class="search-input" placeholder="Enter Minecraft Username" style="flex:1;">
-                    <button class="btn-copy-ip" onclick="lookupPlayer()">Search</button>
-                </div>
-                <div class="lookup-display" id="lookupResult">
-                    <img id="lookupHead" src="https://mc-heads.net/avatar/Shuj4Playz/64" style="width:64px; height:64px; border-radius:8px;">
-                    <div>
-                        <h4 id="lookupPlayerName" style="font-size:1.3rem;">Shuj4Playz</h4>
-                        <p id="lookupDetails" style="color: var(--text-muted); font-size:0.9rem;">Hearts: 22 | Kills: 210 | Status: Owner & Developer</p>
+            <div class="neon-border">
+                <div class="lookup-inner">
+                    <div style="display:flex; gap: 10px; flex: 1;">
+                        <input type="text" id="lookupName" class="search-input" placeholder="Enter Minecraft Username" style="flex:1;">
+                        <button class="btn-copy-ip" onclick="lookupPlayer()">Search</button>
+                    </div>
+                    <div class="lookup-display" id="lookupResult">
+                        <img id="lookupHead" src="https://mc-heads.net/avatar/Shuj4Playz/64" style="width:64px; height:64px; border-radius:8px;">
+                        <div>
+                            <h4 id="lookupPlayerName" style="font-size:1.3rem;">Shuj4Playz</h4>
+                            <p id="lookupDetails" style="color: var(--text-muted); font-size:0.9rem;">Hearts: 22 | Kills: 210 | Status: Owner & Developer</p>
+                        </div>
                     </div>
                 </div>
             </div>
